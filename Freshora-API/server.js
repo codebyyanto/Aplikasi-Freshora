@@ -180,3 +180,16 @@ app.get('/api/categories', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch categories' });
   }
 });
+
+// Routes Keranjang
+app.get('/api/cart', authenticateToken, async (req, res) => {
+  try {
+    const cartItems = await prisma.cartItem.findMany({
+      where: { userId: req.user.userId },
+      include: { product: true }
+    });
+    res.json(cartItems);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch cart' });
+  }
+});
