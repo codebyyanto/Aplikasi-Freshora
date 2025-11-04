@@ -359,3 +359,48 @@ app.post('/api/addresses', authenticateToken, async (req, res) => {
     res.status(500).json({ error: 'Failed to create address' });
   }
 });
+
+// Routes Favorites
+app.get('/api/favorites', authenticateToken, async (req, res) => {
+  try {
+    const favorites = await prisma.favorite.findMany({
+      where: { userId: req.user.userId },
+      include: { product: true }
+    });
+    res.json(favorites);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch favorites' });
+  }
+});
+
+app.post('/api/favorites', authenticateToken, async (req, res) => {
+  try {
+    const { productId } = req.body;
+    
+    const favorite = await prisma.favorite.create({
+      data: {
+        userId: req.user.userId,
+        productId: parseInt(productId)
+      },
+      include: { product: true }
+    });
+    
+    res.json(favorite);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to add favorite' });
+  }
+});
+
+app.delete('/api/favorites/:productId', authenticateToken, async (req, res) => {
+  try {
+    await prisma.favorite.deleteMany({
+      where: {
+        userId: req.user.userId,
+        productId: parseInt(req.params.productId)
+      }
+    });
+    res.json({ message: 'Removed from favorites' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to remove favorite' });
+  }
+});
