@@ -274,3 +274,28 @@ app.post('/api/orders', authenticateToken, async (req, res) => {
       },
       include: { items: { include: { product: true } } }
     });
+
+
+    // Clear cart after order
+    await prisma.cartItem.deleteMany({
+      where: { userId: req.user.userId }
+    });
+
+    res.json(order);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create order' });
+  }
+});
+
+app.get('/api/orders', authenticateToken, async (req, res) => {
+  try {
+    const orders = await prisma.order.findMany({
+      where: { userId: req.user.userId },
+      include: { items: { include: { product: true } } },
+      orderBy: { createdAt: 'desc' }
+    });
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch orders' });
+  }
+});
