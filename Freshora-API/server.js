@@ -106,3 +106,16 @@ app.post('/api/auth/login', async (req, res) => {
     res.status(500).json({ error: 'Login failed' });
   }
 });
+
+// Get user profile
+app.get('/api/auth/me', authenticateToken, async (req, res) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.userId },
+      select: { id: true, name: true, email: true, phone: true }
+    });
+    res.json({ user });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch user' });
+  }
+});
