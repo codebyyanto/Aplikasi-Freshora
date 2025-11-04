@@ -193,3 +193,61 @@ app.get('/api/cart', authenticateToken, async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch cart' });
   }
 });
+
+app.post('/api/cart', authenticateToken, async (req, res) => {
+  try {
+    const { productId, quantity } = req.body;
+    
+    const existingItem = await prisma.cartItem.findFirst({
+      where: {
+        userId: req.user.userId,
+        productId: parseInt(productId)
+      }
+    });
+
+    if (existingItem) {
+      const updatedItem = await prisma.cartItem.update({
+        where: { id: existingItem.id },
+        data: { quantity: existingItem.quantity + quantity }
+      });
+      res.json(updatedItem);
+    } else {
+      const newItem = await prisma.cartItem.create({
+        data: {
+          userId: req.user.userId,
+          productId: parseInt(productId),
+          quantity
+        },
+        include: { product: true }
+      });
+      res.json(newItem);
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to add to cart' });
+  }
+});
+
+app.put('/api/cart/:id', authenticateToken, async (req, res) => {
+  try {
+    const { quantity } = req.body;
+    const updatedItem = await prisma.cartItem.update({
+      where: { id: parseInt(req.params.id) },
+      data: { quantity },
+      include: { product: true }
+    });
+    res.json(updatedItem);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update cart' });
+  }
+});
+
+app.delete('/api/cart/:id', authenticateToken, async (req, res) => {
+  try {
+    await prisma.cartItem.delete({
+      where: { id: parseInt(req.params.id) }
+    });
+    res.json({ message: 'Item removed from cart' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to remove item' });
+  }
+});
