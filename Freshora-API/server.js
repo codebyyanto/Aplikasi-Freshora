@@ -316,3 +316,46 @@ app.get('/api/orders/:id', authenticateToken, async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch order' });
   }
 });
+
+// Routes Address
+app.get('/api/addresses', authenticateToken, async (req, res) => {
+  try {
+    const addresses = await prisma.address.findMany({
+      where: { userId: req.user.userId }
+    });
+    res.json(addresses);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch addresses' });
+  }
+});
+
+app.post('/api/addresses', authenticateToken, async (req, res) => {
+  try {
+    const { name, street, city, state, zipCode, country, isDefault } = req.body;
+    
+    if (isDefault) {
+      // Reset other default addresses
+      await prisma.address.updateMany({
+        where: { userId: req.user.userId },
+        data: { isDefault: false }
+      });
+    }
+    
+    const address = await prisma.address.create({
+      data: {
+        userId: req.user.userId,
+        name,
+        street,
+        city,
+        state,
+        zipCode,
+        country,
+        isDefault
+      }
+    });
+    
+    res.json(address);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create address' });
+  }
+});
