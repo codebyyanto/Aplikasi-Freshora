@@ -299,3 +299,20 @@ app.get('/api/orders', authenticateToken, async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch orders' });
   }
 });
+
+app.get('/api/orders/:id', authenticateToken, async (req, res) => {
+  try {
+    const order = await prisma.order.findUnique({
+      where: { id: parseInt(req.params.id) },
+      include: { items: { include: { product: true } } }
+    });
+    
+    if (!order || order.userId !== req.user.userId) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+    
+    res.json(order);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch order' });
+  }
+});
