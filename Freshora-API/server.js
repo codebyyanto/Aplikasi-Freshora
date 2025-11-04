@@ -251,3 +251,26 @@ app.delete('/api/cart/:id', authenticateToken, async (req, res) => {
     res.status(500).json({ error: 'Failed to remove item' });
   }
 });
+
+// Routes Order
+app.post('/api/orders', authenticateToken, async (req, res) => {
+  try {
+    const { items, total, shippingAddress, paymentMethod, shippingMethod } = req.body;
+    
+    const order = await prisma.order.create({
+      data: {
+        userId: req.user.userId,
+        total,
+        shippingAddress,
+        paymentMethod,
+        shippingMethod,
+        items: {
+          create: items.map(item => ({
+            productId: item.productId,
+            quantity: item.quantity,
+            price: item.price
+          }))
+        }
+      },
+      include: { items: { include: { product: true } } }
+    });
