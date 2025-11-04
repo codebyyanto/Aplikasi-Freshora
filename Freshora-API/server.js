@@ -404,3 +404,12 @@ app.delete('/api/favorites/:productId', authenticateToken, async (req, res) => {
     res.status(500).json({ error: 'Failed to remove favorite' });
   }
 });
+
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', message: 'Freshora API is running' });
+});
+
+app.listen(PORT, () => {
+  console.log(`Freshora API server running on port ${PORT}`);
+});
