@@ -165,3 +165,18 @@ app.get('/api/products/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch product' });
   }
 });
+
+// Routes Kategori
+app.get('/api/categories', async (req, res) => {
+  try {
+    const categories = await prisma.product.groupBy({
+      by: ['category'],
+      _count: {
+        id: true
+      }
+    });
+    res.json(categories.map(cat => cat.category));
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch categories' });
+  }
+});
