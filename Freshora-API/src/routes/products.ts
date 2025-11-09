@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { listProducts, getProduct, createProduct, updateProduct, deleteProduct } from '../controllers/productController';
+import { authMiddleware } from '../middlewares/auth';
+const r = Router();
+r.get('/', listProducts);
+r.get('/:id', getProduct);
+r.post('/', authMiddleware, createProduct);
+r.put('/:id', authMiddleware, updateProduct);
+r.delete('/:id', authMiddleware, deleteProduct);
+export default r;
