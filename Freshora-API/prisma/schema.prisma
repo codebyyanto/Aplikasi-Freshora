@@ -32,3 +32,9 @@ model Address {
   user   User    @relation(fields: [userId], references: [id])
   orders Order[]
 }
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  products Product[]
+}
