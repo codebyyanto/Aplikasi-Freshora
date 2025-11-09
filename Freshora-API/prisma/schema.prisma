@@ -19,3 +19,16 @@ model User {
   reviews   Review[]
   createdAt DateTime   @default(now())
 }
+
+model Address {
+  id     Int     @id @default(autoincrement())
+  userId Int
+  label  String
+  street String
+  city   String
+  postal String
+  lat    Float?
+  lng    Float?
+  user   User    @relation(fields: [userId], references: [id])
+  orders Order[]
+}
