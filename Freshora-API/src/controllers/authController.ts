@@ -23,3 +23,8 @@ export async function login(req: Request, res: Response) {
   const token = signToken({ id: user.id, email: user.email });
   res.json({ user: { id: user.id, name: user.name, email: user.email }, token });
 }
+
+export async function me(req: any, res: Response) {
+  const user = await prisma.user.findUnique({ where: { id: req.user.id }, include: { addresses: true }});
+  res.json({ user });
+}
