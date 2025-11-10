@@ -16,3 +16,6 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
+
+// Ambil ukuran layar perangkat
+const { height } = Dimensions.get("window");
