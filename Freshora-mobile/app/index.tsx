@@ -43,3 +43,112 @@ const slides = [
     background: require("../assets/splash4.png"),
   },
 ];
+
+// Komponen utama onboarding
+export default function Onboarding() {
+  const router = useRouter(); 
+
+  return (
+    <View style={styles.container}>
+      <Swiper
+        loop={false} 
+        activeDotColor="#6CC51D" 
+        dotColor="#D9D9D9"
+        paginationStyle={{ bottom: 80 }} 
+      >
+        {/* looping setiap slide */}
+        {slides.map((item, index) => (
+          <ImageBackground
+            key={item.id}
+            source={item.background} 
+            style={styles.background}
+            resizeMode="cover"
+          >
+            <View style={styles.darkOverlay} />
+
+            <View style={styles.overlayContent}>
+              <View style={styles.textContainer}>
+                <Text style={styles.title}>{item.title}</Text>
+                {item.brand && <Text style={styles.brand}>{item.brand}</Text>}
+                <Text style={styles.desc}>{item.desc}</Text>
+              </View>
+
+              {index === slides.length - 1 && (
+                <TouchableOpacity
+                  style={styles.buttonContainer}
+                  onPress={() => router.push("/login")} // pindah ke halaman login
+                >
+                  <LinearGradient
+                    colors={["#7ED957", "#6CC51D"]} 
+                    style={styles.button}
+                  >
+                    <Text style={styles.buttonText}>Get started</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              )}
+            </View>
+          </ImageBackground>
+        ))}
+      </Swiper>
+    </View>
+  );
+}
+
+// Style tampilan
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  background: {
+    width,
+    height,
+    justifyContent: "center",
+  },
+  darkOverlay: {
+    ...StyleSheet.absoluteFillObject, 
+    backgroundColor: "rgba(29, 28, 28, 0.21)", 
+  },
+  overlayContent: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 100,
+  },
+  textContainer: {
+    alignItems: "center",
+    marginTop: 60,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "700",
+    color: "#fff",
+    textAlign: "center",
+  },
+  brand: {
+    fontSize: 26,
+    fontWeight: "bold",
+    color: "#7ED957",
+    textAlign: "center",
+    marginTop: 5,
+  },
+  desc: {
+    color: "#f0f0f0",
+    fontSize: 14,
+    textAlign: "center",
+    marginTop: 10,
+    lineHeight: 20,
+  },
+  buttonContainer: {
+    width: "80%",
+  },
+  button: {
+    borderRadius: 10,
+    paddingVertical: 14,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "600",
+    fontSize: 16,
+  },
+});
