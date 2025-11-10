@@ -56,3 +56,34 @@ export default function LoginScreen() {
       hide.remove();
     };
   }, [modalY]);
+
+  // Fungsi login terhubung dengan Freshora-API
+  const handleLogin = async () => {
+    if (!email || !password) {
+      return Alert.alert("Peringatan", "Email dan password wajib diisi.");
+    }
+
+    try {
+      const response = await fetch("http://192.168.100.10:4000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Login gagal, periksa kembali data Anda.");
+      }
+
+      if (data.token) {
+      }
+
+      Alert.alert("Login Berhasil", `Selamat datang, ${data.user?.name || "User"}!`);
+
+      // ke halaman home
+      router.push("/home");
+    } catch (error: any) {
+      Alert.alert("Gagal Login", error.message);
+    }
+  };
