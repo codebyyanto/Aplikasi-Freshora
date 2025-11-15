@@ -28,3 +28,14 @@ export default function RegisterScreen() {
 
   // Animasi posisi modal (akan naik saat keyboard muncul)
   const modalY = React.useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    // Listener saat keyboard muncul
+    const show = Keyboard.addListener("keyboardDidShow", () => {
+      Animated.timing(modalY, {
+        toValue: -height * 0.30, 
+        duration: 300,
+        easing: Easing.out(Easing.ease),
+        useNativeDriver: true,
+      }).start();
+    });
