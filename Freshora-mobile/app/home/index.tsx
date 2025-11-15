@@ -30,6 +30,21 @@ export default function Home() {
         const data = await res.json();
         console.log("Response data:", data);
 
+        // Tangani semua kemungkinan format respons
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else if (Array.isArray(data.products)) {
+          setProducts(data.products);
+        } else {
+          console.warn("Format data tidak sesuai, produk kosong:", data);
+          setProducts([]);
+        }
+      } catch (err) {
+        console.error("Gagal mengambil produk:", err);
+        setProducts([]);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchData();
   }, []);
