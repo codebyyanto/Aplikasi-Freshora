@@ -67,4 +67,8 @@ export default function RegisterScreen() {
         body: JSON.stringify({ name, email, password, phone }),
       });
 
+      // Ambil hasil respons dari server
+      const data = await res.json();
+
+      
   };
