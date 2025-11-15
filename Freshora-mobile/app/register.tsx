@@ -106,6 +106,53 @@ return (
         <Text style={styles.title}>Create account</Text>
         <Text style={styles.subtitle}>Quickly create account</Text>
 
+        {/*  Input nama lengkap */}
+        <View style={styles.inputBox}>
+          <TextInput
+            placeholder="Full name"
+            placeholderTextColor="#777"
+            style={styles.input}
+            value={name}
+            onChangeText={setName}
+          />
+        </View>
+
+        {/* Input email */}
+        <View style={styles.inputBox}>
+          <TextInput
+            placeholder="Email address"
+            placeholderTextColor="#777"
+            style={styles.input}
+            keyboardType="email-address"
+            value={email}
+            onChangeText={setEmail}
+          />
+        </View>
+
+        {/* Input nomor telepon */}
+        <View style={styles.inputBox}>
+          <TextInput
+            placeholder="Phone number"
+            placeholderTextColor="#777"
+            style={styles.input}
+            keyboardType="phone-pad"
+            value={phone}
+            onChangeText={setPhone}
+          />
+        </View>
+
+        {/* Input password */}
+        <View style={styles.inputBox}>
+          <TextInput
+            placeholder="Password"
+            placeholderTextColor="#777"
+            style={styles.input}
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+          />
+        </View>
+
 //   styles tampilan register
   const styles = StyleSheet.create({
   bg: { flex: 1, justifyContent: "flex-end" },
