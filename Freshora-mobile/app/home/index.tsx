@@ -45,4 +45,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 150,
     borderRadius: 15,
+  },
+  bannerText: {
+    position: "absolute",
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 18,
+    top: 20,
+    left: 20,
   }
