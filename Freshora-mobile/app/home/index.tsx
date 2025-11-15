@@ -35,4 +35,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#E9F8E3",
     padding: 8,
     borderRadius: 10,
+  },
+  bannerBox: {
+    marginVertical: 15,
+    borderRadius: 15,
+    overflow: "hidden",
   }
