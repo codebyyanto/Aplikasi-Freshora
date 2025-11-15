@@ -64,4 +64,11 @@ const styles = StyleSheet.create({
   category: {
     alignItems: "center",
     marginRight: 15,
+  },
+  catIcon: { width: 50, height: 50, borderRadius: 25 },
+  catText: { fontSize: 12, color: "#555", marginTop: 4 },
+  grid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   }
