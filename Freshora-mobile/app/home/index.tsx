@@ -28,4 +28,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#F3F3F3",
     borderRadius: 10,
     paddingHorizontal: 10,
+  },
+  input: { flex: 1, paddingVertical: 8, fontSize: 14 },
+  filterBtn: {
+    marginLeft: 10,
+    backgroundColor: "#E9F8E3",
+    padding: 8,
+    borderRadius: 10,
   }
