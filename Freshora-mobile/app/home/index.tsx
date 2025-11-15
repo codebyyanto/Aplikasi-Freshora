@@ -17,6 +17,24 @@ import { useRouter } from "expo-router";
 // Ambil ukuran layar perangkat
 const { width } = Dimensions.get("window");
 
+// Komponen utama halaman home
+return (
+    <SafeAreaView style={styles.container}>
+      {/* Search Bar */}
+      <View style={styles.searchRow}>
+        <View style={styles.searchBox}>
+          <Ionicons name="search-outline" size={20} color="#777" />
+          <TextInput
+            placeholder="Search keywords.."
+            placeholderTextColor="#999"
+            style={styles.input}
+          />
+        </View>
+        <TouchableOpacity style={styles.filterBtn}>
+          <Ionicons name="options-outline" size={22} color="#6CC51D" />
+        </TouchableOpacity>
+      </View>
+
 // style untuk komponen
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", padding: 15 },
