@@ -83,4 +83,21 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     overflow: "hidden",
     position: "relative",
-  }
+  },
+  productImg: {
+    width: "100%",
+    height: 120,
+  },
+  infoBox: { padding: 10 },
+  price: { color: "#6CC51D", fontWeight: "bold" },
+  name: { fontWeight: "600", fontSize: 14, color: "#333" },
+  weight: { color: "#999", fontSize: 12 },
+  cartBtn: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    backgroundColor: "#E9F8E3",
+    borderRadius: 20,
+    padding: 6,
+  },
+});
