@@ -39,3 +39,13 @@ export default function RegisterScreen() {
         useNativeDriver: true,
       }).start();
     });
+
+    // Listener saat keyboard disembunyikan
+    const hide = Keyboard.addListener("keyboardDidHide", () => {
+      Animated.timing(modalY, {
+        toValue: 0,
+        duration: 250,
+        easing: Easing.in(Easing.ease),
+        useNativeDriver: true,
+      }).start();
+    });
