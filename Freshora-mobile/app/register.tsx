@@ -25,3 +25,6 @@ export default function RegisterScreen() {
   const [password, setPassword] = useState("");
 
   const router = useRouter();
+
+  // Animasi posisi modal (akan naik saat keyboard muncul)
+  const modalY = React.useRef(new Animated.Value(0)).current;
