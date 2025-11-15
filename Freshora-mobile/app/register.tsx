@@ -78,5 +78,8 @@ export default function RegisterScreen() {
 
       // Arahkan user ke halaman login
       router.push("/login");
-   
+    } catch (err: any) {
+      // Tangani error (misalnya email sudah terdaftar)
+      Alert.alert("Gagal Daftar", err.message);
+    }
   };
