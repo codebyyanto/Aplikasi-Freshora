@@ -83,7 +83,25 @@ export default function RegisterScreen() {
       Alert.alert("Gagal Daftar", err.message);
     }
   };
+// Render tampilan register
+return (
+    <ImageBackground
+      source={require("../assets/bg-register.png")} // ✅ Gambar latar belakang halaman register
+      style={styles.bg}
+      resizeMode="cover"
+    >
+      {/* Lapisan transparan hitam agar teks lebih kontras */}
+      <View style={styles.overlay} />
 
+      {/* Animated.View agar modal dapat bergerak naik/turun saat keyboard aktif */}
+      <Animated.View
+        style={[
+          styles.modal,
+          {
+            transform: [{ translateY: modalY }], 
+          },
+        ]}
+      >
 
 //   styles tampilan register
   const styles = StyleSheet.create({
