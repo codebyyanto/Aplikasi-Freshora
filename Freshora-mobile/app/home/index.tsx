@@ -61,6 +61,40 @@ return (
         ))}
       </ScrollView>
 
+      {/* Products */}
+      <Text style={styles.sectionTitle}>Produk unggulan</Text>
+      {loading ? (
+        <ActivityIndicator color="#6CC51D" size="large" />
+      ) : (
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.grid}>
+            {products.map((item: any) => (
+              <TouchableOpacity
+                key={item.id}
+                style={styles.card}
+                onPress={() => router.push(`/home/${item.id}`)}
+              >
+                <Image
+                  source={{ uri: item.image || "#" }}
+                  style={styles.productImg}
+                />
+                <View style={styles.infoBox}>
+                  <Text style={styles.price}>Rp {item.price?.toLocaleString() || "0"}</Text>
+                  <Text style={styles.name}>{item.name || "Produk Tanpa Nama"}</Text>
+                  <Text style={styles.weight}>1.50 lbs</Text>
+                </View>
+                <TouchableOpacity style={styles.cartBtn}>
+                  <Ionicons name="cart-outline" size={20} color="#6CC51D" />
+                </TouchableOpacity>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
+      )}
+    </SafeAreaView>
+  );
+}
+
 // style untuk komponen
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", padding: 15 },
