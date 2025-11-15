@@ -160,6 +160,18 @@ return (
           </LinearGradient>
         </TouchableOpacity>
 
+        {/* Teks footer untuk berpindah ke halaman login */}
+        <Text style={styles.footer}>
+          Already have an account?{" "}
+          <Text style={styles.link} onPress={() => router.push("/login")}>
+            Login
+          </Text>
+        </Text>
+      </Animated.View>
+    </ImageBackground>
+  );
+}
+
 //   styles tampilan register
   const styles = StyleSheet.create({
   bg: { flex: 1, justifyContent: "flex-end" },
