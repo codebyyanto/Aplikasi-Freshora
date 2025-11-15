@@ -13,3 +13,6 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+
+// Ambil ukuran layar perangkat
+const { width } = Dimensions.get("window");
