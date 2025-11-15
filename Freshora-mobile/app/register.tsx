@@ -70,5 +70,5 @@ export default function RegisterScreen() {
       // Ambil hasil respons dari server
       const data = await res.json();
 
-      
-  };
+      // Jika server memberikan status selain 200 OK → lempar error
+      if (!res.ok) throw new Error(data.message);
