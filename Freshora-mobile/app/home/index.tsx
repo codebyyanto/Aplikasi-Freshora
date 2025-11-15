@@ -53,4 +53,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     top: 20,
     left: 20,
+  },
+  sectionTitle: {
+    fontWeight: "700",
+    fontSize: 18,
+    marginTop: 10,
+    marginBottom: 8,
+    color: "#333",
   }
