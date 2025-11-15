@@ -44,6 +44,23 @@ return (
         <Text style={styles.bannerText}>20% off on your first purchase</Text>
       </View>
 
+      {/* Categories */}
+      <Text style={styles.sectionTitle}>Kategori</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {[
+          { icon: require("../../assets/icons/vegetables.png"), name: "Vegetables" },
+          { icon: require("../../assets/icons/fruits.png"), name: "Buah" },
+          { icon: require("../../assets/icons/drinks.png"), name: "Minuman" },
+          { icon: require("../../assets/icons/groceries.png"), name: "Kebutuhan" },
+          { icon: require("../../assets/icons/oil.png"), name: "Minyak nabati" },
+        ].map((cat, index) => (
+          <View key={index} style={styles.category}>
+            <Image source={cat.icon} style={styles.catIcon} />
+            <Text style={styles.catText}>{cat.name}</Text>
+          </View>
+        ))}
+      </ScrollView>
+
 // style untuk komponen
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", padding: 15 },
