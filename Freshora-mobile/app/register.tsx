@@ -102,6 +102,9 @@ return (
           },
         ]}
       >
+        {/* Judul halaman */}
+        <Text style={styles.title}>Create account</Text>
+        <Text style={styles.subtitle}>Quickly create account</Text>
 
 //   styles tampilan register
   const styles = StyleSheet.create({
