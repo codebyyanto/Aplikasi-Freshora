@@ -83,3 +83,48 @@ export default function RegisterScreen() {
       Alert.alert("Gagal Daftar", err.message);
     }
   };
+
+
+//   styles tampilan register
+  const styles = StyleSheet.create({
+  bg: { flex: 1, justifyContent: "flex-end" },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0,0,0,0.3)", 
+  },
+  modal: {
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    padding: 25,
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+  },
+  title: { fontSize: 22, fontWeight: "700", color: "#000" },
+  subtitle: { color: "#777", marginBottom: 25 },
+  inputBox: {
+    backgroundColor: "#F3F3F3",
+    borderRadius: 10,
+    marginBottom: 15,
+    paddingHorizontal: 15,
+  },
+  input: {
+    height: 48,
+    fontSize: 14,
+    color: "#000",
+  },
+  btnContainer: { width: "100%", marginTop: 10 },
+  btn: {
+    borderRadius: 10,
+    paddingVertical: 14,
+    alignItems: "center",
+  },
+  btnText: { color: "#fff", fontWeight: "600", fontSize: 16 },
+  footer: {
+    textAlign: "center",
+    marginTop: 15,
+    color: "#777",
+  },
+  link: { color: "#6CC51D", fontWeight: "600" },
+});
