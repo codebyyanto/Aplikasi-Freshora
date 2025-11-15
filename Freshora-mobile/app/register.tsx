@@ -153,6 +153,13 @@ return (
           />
         </View>
 
+         {/*  Tombol Signup dengan efek gradasi hijau */}
+        <TouchableOpacity style={styles.btnContainer} onPress={handleSignup}>
+          <LinearGradient colors={["#7ED957", "#6CC51D"]} style={styles.btn}>
+            <Text style={styles.btnText}>Signup</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+
 //   styles tampilan register
   const styles = StyleSheet.create({
   bg: { flex: 1, justifyContent: "flex-end" },
