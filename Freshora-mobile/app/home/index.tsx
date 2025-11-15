@@ -40,4 +40,9 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     borderRadius: 15,
     overflow: "hidden",
+  },
+  bannerImg: {
+    width: "100%",
+    height: 150,
+    borderRadius: 15,
   }
