@@ -17,6 +17,23 @@ import { useRouter } from "expo-router";
 // Ambil ukuran layar perangkat
 const { width } = Dimensions.get("window");
 
+// Fungsi untuk mengambil data produk dari API
+export default function Home() {
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://192.168.100.10:4000/api/products");
+        const data = await res.json();
+        console.log("Response data:", data);
+
+    };
+    fetchData();
+  }, []);
+
 // Komponen utama halaman home
 return (
     <SafeAreaView style={styles.container}>
