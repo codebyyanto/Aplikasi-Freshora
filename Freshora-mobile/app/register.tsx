@@ -72,3 +72,8 @@ export default function RegisterScreen() {
 
       // Jika server memberikan status selain 200 OK → lempar error
       if (!res.ok) throw new Error(data.message);
+
+      // Berhasil daftar
+      Alert.alert("Pendaftaran Berhasil", "Silakan login untuk melanjutkan");
+
+  };
