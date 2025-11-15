@@ -49,3 +49,10 @@ export default function RegisterScreen() {
         useNativeDriver: true,
       }).start();
     });
+
+    // Hapus listener agar tidak terjadi memory leak
+    return () => {
+      show.remove();
+      hide.remove();
+    };
+  }, []);
