@@ -76,4 +76,7 @@ export default function RegisterScreen() {
       // Berhasil daftar
       Alert.alert("Pendaftaran Berhasil", "Silakan login untuk melanjutkan");
 
+      // Arahkan user ke halaman login
+      router.push("/login");
+   
   };
