@@ -60,4 +60,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 8,
     color: "#333",
+  },
+  category: {
+    alignItems: "center",
+    marginRight: 15,
   }
