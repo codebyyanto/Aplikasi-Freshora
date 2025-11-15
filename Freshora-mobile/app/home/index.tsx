@@ -35,6 +35,15 @@ return (
         </TouchableOpacity>
       </View>
 
+      {/* Banner */}
+      <View style={styles.bannerBox}>
+        <Image
+          source={require("../../assets/banner.png")}
+          style={styles.bannerImg}
+        />
+        <Text style={styles.bannerText}>20% off on your first purchase</Text>
+      </View>
+
 // style untuk komponen
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", padding: 15 },
