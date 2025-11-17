@@ -8,9 +8,9 @@ export default function RootLayout() {
         <Stack.Screen name="index" />
         <Stack.Screen name="login" />
         <Stack.Screen name="register" />
-        <Stack.Screen name="home/index" />
-        <Stack.Screen name="home/[id]" />
-        <Stack.Screen name="profile/index" />
+        
+        {/* Semua halaman dalam folder (tabs) akan memakai bottom navigation */}
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </PaperProvider>
   );
