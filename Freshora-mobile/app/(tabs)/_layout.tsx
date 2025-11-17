@@ -44,3 +44,16 @@ export default function TabsLayout() {
           ),
         }}
       />
+      {/* Profile */}
+      <Tabs.Screen
+        name="profile/index"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="person-outline" size={24} color={color} />
+          ),
+        }}
+      />
+    </Tabs>
+  );
+}
