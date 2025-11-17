@@ -34,3 +34,13 @@ export default function TabsLayout() {
         }}
       /> 
       
+       {/* Favorites */}
+      <Tabs.Screen
+        name="favorites/index"
+        options={{
+          title: "Favorites",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="heart-outline" size={24} color={color} />
+          ),
+        }}
+      />
