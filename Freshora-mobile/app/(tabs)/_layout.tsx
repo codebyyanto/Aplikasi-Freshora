@@ -21,3 +21,16 @@ export default function TabsLayout() {
           fontSize: 12,
         },
       }}
+
+      >
+      {/* Home */}
+      <Tabs.Screen
+        name="home/index"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home-outline" size={24} color={color} />
+          ),
+        }}
+      /> 
+      
