@@ -349,3 +349,114 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
     },
+
+    nameText: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#333",
+        marginBottom: 4
+    },
+    weightText: {
+        color: "#999",
+        fontSize: 12,
+        marginBottom: 8
+    },
+    priceText: {
+        color: "#6CC51D",
+        fontSize: 15,
+        fontWeight: "700"
+    },
+    qtyContainer: {
+        alignItems: "center",
+        justifyContent: "space-between",
+        height: 80,
+        backgroundColor: "#F9F9F9",
+        borderRadius: 30, // Capsule shape
+        paddingVertical: 5,
+        width: 36,
+    },
+    qtyButton: {
+        width: 28,
+        height: 28,
+        backgroundColor: "#fff",
+        borderRadius: 14,
+        justifyContent: "center",
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        elevation: 2
+    },
+    qtyText: {
+        fontSize: 14,
+        fontWeight: "bold",
+        color: "#333",
+    },
+    deleteButton: {
+        backgroundColor: "#FF5252",
+        justifyContent: "center",
+        alignItems: "center",
+        width: 80,
+        marginBottom: 16,
+        borderRadius: 16,
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+        height: 94, // Approx card height
+        marginLeft: -10, // Pull closer
+    },
+    summaryRow: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 10
+    },
+    summaryLabel: { color: "#888", fontSize: 14 },
+    summaryValue: { color: "#333", fontSize: 14, fontWeight: "600" },
+    divider: {
+        height: 1,
+        backgroundColor: "#eee",
+        marginVertical: 12
+    },
+    totalLabel: { color: "#333", fontSize: 18, fontWeight: "bold" },
+    totalValue: { color: "#333", fontSize: 20, fontWeight: "bold" },
+    checkoutBtn: {
+        backgroundColor: "#6CC51D",
+        paddingVertical: 16,
+        borderRadius: 14,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 20,
+        shadowColor: "#6CC51D",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 5
+    },
+    checkoutText: {
+        color: "#fff",
+        fontSize: 16,
+        fontWeight: "bold"
+    },
+    emptyState: {
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 100,
+    },
+    emptyText: {
+        fontSize: 16,
+        color: "#999",
+        marginTop: 15,
+        marginBottom: 20
+    },
+    shopNowBtn: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        backgroundColor: "#E9F8E3",
+        borderRadius: 8
+    },
+    shopNowText: {
+        color: "#6CC51D",
+        fontWeight: "bold"
+    }
+});
