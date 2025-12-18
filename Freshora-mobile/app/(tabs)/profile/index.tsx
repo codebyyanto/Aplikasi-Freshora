@@ -44,3 +44,11 @@ export default function Profile() {
     await AsyncStorage.removeItem("userInfo");
     router.replace("/login");
   };
+
+  const menu = [
+    { icon: "person-outline", text: "About me", action: () => { } },
+    { icon: "cube-outline", text: "My Orders", action: () => router.push("/orders") },
+    { icon: "heart-outline", text: "My Favorites", action: () => router.push("/(tabs)/favorites") },
+    { icon: "location-outline", text: "My Address", action: () => { } },
+    { icon: "log-out-outline", text: "Sign out", action: handleLogout },
+  ];
