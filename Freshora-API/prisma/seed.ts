@@ -12,3 +12,13 @@ async function main() {
     { name: 'Kebutuhan' },
     { name: 'Minyak nabati' }
   ];
+
+  const categories: Record<string, number> = {};
+  for (const cat of categoriesData) {
+    const record = await prisma.category.upsert({
+      where: { name: cat.name },
+      update: {},
+      create: { name: cat.name },
+    });
+    categories[cat.name] = record.id;
+  }
