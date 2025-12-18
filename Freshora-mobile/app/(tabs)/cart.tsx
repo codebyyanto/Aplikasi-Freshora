@@ -36,7 +36,6 @@ export default function CartScreen() {
     const [cartItems, setCartItems] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
-    // Refresh cart every time the screen comes into focus
     useFocusEffect(
         useCallback(() => {
             fetchCart();
@@ -317,7 +316,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.08,
         shadowRadius: 8,
         elevation: 20,
-        marginBottom: 60, // Clear the Tab Bar
+        marginBottom: 60,
     },
     cardContainer: {
         flexDirection: "row",
@@ -371,7 +370,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         height: 80,
         backgroundColor: "#F9F9F9",
-        borderRadius: 30, // Capsule shape
+        borderRadius: 30,
         paddingVertical: 5,
         width: 36,
     },
