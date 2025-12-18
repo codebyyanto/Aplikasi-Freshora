@@ -86,3 +86,23 @@ export default function Home() {
       console.error(error);
     }
   };
+
+  // Menambah / menghapus produk dari favorit
+  const toggleFavorite = async (product: any) => {
+    try {
+      let newFavs = [...favorites];
+      const exists = newFavs.find((f) => f.id === product.id);
+
+      if (exists) {
+        newFavs = newFavs.filter((f) => f.id !== product.id);
+      } else {
+        newFavs.push(product);
+      }
+
+      setFavorites(newFavs);
+      await AsyncStorage.setItem("userFavorites", JSON.stringify(newFavs));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
