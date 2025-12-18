@@ -106,3 +106,24 @@ export default function Home() {
     }
   };
 
+  // Mengambil data produk dan kategori dari API
+  const fetchData = async () => {
+    try {
+      // Fetch produk
+      const prodRes = await fetch(`${API_BASE_URL}${ENDPOINTS.PRODUCTS}`);
+      const prodData = await prodRes.json();
+      if (prodData?.products) {
+        setProducts(prodData.products);
+      }
+
+      // Fetch kategori
+      const catRes = await fetch(`${API_BASE_URL}${ENDPOINTS.CATEGORIES}`);
+      const catData = await catRes.json();
+      if (catData?.categories) {
+        setCategories(catData.categories);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
