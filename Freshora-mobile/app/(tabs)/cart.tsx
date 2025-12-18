@@ -195,3 +195,19 @@ export default function CartScreen() {
                         <Text style={styles.weightText}>{item.weight}</Text>
                         <Text style={styles.priceText}>Rp {Number(item.price * item.quantity).toLocaleString("id-ID")}</Text>
                     </View>
+
+                    <View style={styles.qtyContainer}>
+                        <TouchableOpacity onPress={() => handleDecrement(item)} style={styles.qtyButton}>
+                            <Ionicons name="remove" size={16} color="#6CC51D" />
+                        </TouchableOpacity>
+
+                        <Text style={styles.qtyText}>{item.quantity}</Text>
+
+                        <TouchableOpacity onPress={() => handleIncrement(item)} style={styles.qtyButton}>
+                            <Ionicons name="add" size={16} color="#6CC51D" />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Swipeable>
+        );
+    };
