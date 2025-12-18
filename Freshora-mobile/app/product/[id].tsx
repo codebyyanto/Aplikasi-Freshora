@@ -207,3 +207,33 @@ export default function ProductDetail() {
         product.image && IMAGE_MAP[product.image]
             ? IMAGE_MAP[product.image]
             : IMAGE_MAP.default;
+
+    return (
+        <View style={styles.imageContainer}>
+            <TouchableOpacity
+                style={styles.backBtn}
+                onPress={() => router.back()}
+            >
+                <Ionicons name="arrow-back" size={24} color="#333" />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={styles.favBtn}
+                onPress={toggleFavorite}
+            >
+                <Ionicons
+                    name={isFav ? "heart" : "heart-outline"}
+                    size={24}
+                    color={isFav ? "#FF5252" : "#999"}
+                />
+            </TouchableOpacity>
+
+            <Image
+                source={imageSource}
+                style={styles.image}
+                resizeMode="contain"
+            />
+        </View>
+
+
+    );
