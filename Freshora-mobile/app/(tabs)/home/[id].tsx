@@ -120,3 +120,40 @@ export default function ProductDetail() {
         </ScrollView>
     );
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: "#fff" },
+    center: { flex: 1, justifyContent: "center", alignItems: "center" },
+    backBtn: { padding: 15 },
+    image: { width: "100%", height: 260, backgroundColor: "#E9F8E3" },
+    detailBox: { padding: 20 },
+    price: { color: "#6CC51D", fontSize: 18, fontWeight: "bold" },
+    name: { fontSize: 20, fontWeight: "700", color: "#333" },
+    rating: { color: "#999", marginTop: 4, marginBottom: 10 },
+    desc: { color: "#555", lineHeight: 20 },
+    qtyRow: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginTop: 25,
+    },
+    qtyLabel: { fontSize: 15, color: "#333", fontWeight: "500" },
+    qtyBox: {
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "#F3F3F3",
+        borderRadius: 8,
+    },
+    qtyBtn: { padding: 10 },
+    qtyText: { width: 40, textAlign: "center", fontSize: 16, fontWeight: "500" },
+    addCartBtn: {
+        backgroundColor: "#6CC51D",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 10,
+        paddingVertical: 14,
+        marginTop: 25,
+    },
+    addCartText: { color: "#fff", marginLeft: 6, fontWeight: "600" },
+});
