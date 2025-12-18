@@ -144,3 +144,23 @@ export default function CartScreen() {
             handleDelete(item.id);
         }
     };
+
+    const handleDelete = (id: any) => {
+        Alert.alert("Konfirmasi", "Hapus produk ini dari keranjang?", [
+            { text: "Batal", style: "cancel" },
+            {
+                text: "Hapus", style: "destructive", onPress: async () => {
+                    try {
+                        const token = await AsyncStorage.getItem("userToken");
+                        await fetch(`${API_BASE_URL}${ENDPOINTS.CART}/${id}`, {
+                            method: "DELETE",
+                            headers: { Authorization: `Bearer ${token}` }
+                        });
+                        fetchCart();
+                    } catch (e) {
+                        console.error(e);
+                    }
+                }
+            }
+        ]);
+    };
