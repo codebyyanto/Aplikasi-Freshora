@@ -312,3 +312,207 @@ export default function Home() {
           );
         })}
 
+        const styles = StyleSheet.create({
+          container: {
+          flex: 1,
+        backgroundColor: "#fff",
+  },
+        scrollContent: {
+          paddingBottom: 100 // Increased to ensure content clears bottom navigation
+  },
+        scrollContent: {
+          paddingBottom: 100,
+        paddingTop: 10,
+  },
+        header: {
+          paddingHorizontal: 20,
+        marginTop: 25,
+        marginBottom: 15,
+        backgroundColor: "#fff",
+        zIndex: 10,
+  },
+        searchBar: {
+          flexDirection: "row",
+        backgroundColor: "#F6F7FB", // Light grey
+        borderRadius: 12,
+        paddingHorizontal: 15,
+        paddingVertical: 12,
+        alignItems: "center",
+        // Shadow
+        shadowColor: "#000",
+        shadowOffset: {width: 0, height: 1 },
+        shadowOpacity: 0.05,
+        shadowRadius: 2,
+        elevation: 2,
+  },
+        searchInput: {
+          flex: 1,
+        marginHorizontal: 10,
+        fontSize: 14,
+        color: "#333",
+  },
+        bannerContainer: {
+          marginHorizontal: 20,
+        marginBottom: 25,
+        borderRadius: 15,
+        overflow: "hidden",
+        height: 160, // Pendek
+        position: "relative",
+  },
+        bannerImage: {
+          width: "100%",
+        height: "100%",
+  },
+        bannerTextOverlay: {
+          position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        padding: 20,
+        justifyContent: "center",
+        width: "60%", // Limit text width
+  },
+        bannerTitle: {
+          fontSize: 20,
+        fontWeight: "bold",
+        color: "#111", // Text color on banner
+  },
+        sectionHeader: {
+          flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingHorizontal: 20,
+        marginBottom: 15,
+  },
+        sectionTitle: {
+          fontSize: 18,
+        fontWeight: "bold",
+        color: "#000",
+  },
+        categoriesScroll: {
+          marginBottom: 25,
+  },
+        categoryItem: {
+          alignItems: "center",
+        marginRight: 20,
+  },
+        iconContainer: {
+          width: 60,
+        height: 60,
+        borderRadius: 30,
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 8,
+  },
+        categoryIcon: {
+          width: 30,
+        height: 30,
+        resizeMode: "contain",
+  },
+        categoryName: {
+          fontSize: 12,
+        color: "#666",
+  },
+        productsGrid: {
+          flexDirection: "row",
+        flexWrap: "wrap",
+        paddingHorizontal: 15,
+        justifyContent: "space-between",
+  },
+        productCard: {
+          width: (width - 45) / 2, // 2 column with margins
+        backgroundColor: "#fff",
+        borderRadius: 15,
+        marginBottom: 15,
+        padding: 10,
+        // Shadow light
+        shadowColor: "#000",
+        shadowOffset: {width: 0, height: 1 },
+        shadowOpacity: 0.05,
+        shadowRadius: 5,
+        elevation: 2,
+        borderWidth: 1,
+        borderColor: "#F0F0F0"
+  },
+        badgeNew: {
+          position: "absolute",
+        top: 10,
+        left: 10,
+        backgroundColor: "#FFEDD5", // Light orange
+        paddingHorizontal: 6,
+        paddingVertical: 2,
+        borderRadius: 4,
+        zIndex: 1
+  },
+        badgeDiscount: {
+          position: "absolute",
+        top: 10,
+        left: 10,
+        backgroundColor: "#FFE2E2", // Light red
+        paddingHorizontal: 6,
+        paddingVertical: 2,
+        borderRadius: 4,
+        zIndex: 1
+  },
+        badgeText: {
+          fontSize: 10,
+        fontWeight: "bold",
+        color: "#F57C00" // Orange text
+  },
+        favIcon: {
+          position: "absolute",
+        top: 10,
+        right: 10,
+        zIndex: 1
+  },
+        productImageContainer: {
+          height: 100,
+        justifyContent: "center",
+        alignItems: "center",
+        marginVertical: 10,
+  },
+        productImage: {
+          width: 80,
+        height: 80,
+  },
+        productPrice: {
+          fontSize: 14,
+        fontWeight: "bold",
+        color: "#6CC51D", // Green price
+        marginBottom: 2,
+        textAlign: "center"
+  },
+        productName: {
+          fontSize: 14,
+        fontWeight: "bold",
+        color: "#333",
+        textAlign: "center",
+        marginBottom: 2
+  },
+        productWeight: {
+          fontSize: 12,
+        color: "#999",
+        textAlign: "center",
+        marginBottom: 10
+  },
+        actionRow: {
+          flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 5,
+        borderTopWidth: 1,
+        borderTopColor: "#F5F5F5",
+        paddingTop: 8
+  },
+        addToCartBtn: {
+          flexDirection: "row",
+        alignItems: "center",
+  },
+        btnText: {
+          fontSize: 12,
+        fontWeight: "600",
+        color: "#333",
+        marginLeft: 5
+  }
+});
