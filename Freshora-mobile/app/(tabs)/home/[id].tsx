@@ -32,3 +32,20 @@ export default function ProductDetail() {
 
     // Router untuk navigasi halaman
     const router = useRouter();
+
+    // Mengambil data produk dari API saat halaman dibuka
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const res = await fetch(
+                    `http://192.168.100.10:4000/api/products/${id}`
+                );
+                const data = await res.json();
+                setProduct(data);
+            } catch (error) {
+                console.error("Gagal mengambil data produk:", error);
+            }
+        };
+
+        fetchProduct();
+    }, [id]);
