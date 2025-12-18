@@ -254,3 +254,22 @@ export default function CartScreen() {
                             <Text style={styles.summaryValue}>Rp {shipping.toLocaleString("id-ID")}</Text>
                         </View>
                         <View style={styles.divider} />
+
+                        <View style={styles.summaryRow}>
+                            <Text style={styles.totalLabel}>Total</Text>
+                            <Text style={styles.totalValue}>Rp {Math.floor(total).toLocaleString("id-ID")}</Text>
+                        </View>
+
+                        <TouchableOpacity
+                            style={styles.checkoutBtn}
+                            onPress={handleCheckout}
+                        >
+                            <Text style={styles.checkoutText}>Checkout Sekarang</Text>
+                            <Ionicons name="arrow-forward" size={20} color="#fff" style={{ marginLeft: 5 }} />
+                        </TouchableOpacity>
+                    </View>
+                )}
+            </SafeAreaView>
+        </GestureHandlerRootView>
+    );
+}
