@@ -71,3 +71,29 @@ export default function OrderHistory() {
                 setLoading(false);
             }
         };
+
+        // Render setiap item pesanan
+        const renderItem = ({ item }: { item: any }) => (
+            <View style={styles.card}>
+                <View style={styles.header}>
+                    <Text style={styles.orderId}>
+                        Order #{item.id}
+                    </Text>
+                    <Text style={styles.status}>
+                        {item.status}
+                    </Text>
+                </View>
+
+                <Text style={styles.date}>
+                    {new Date(item.createdAt).toLocaleDateString()}
+                </Text>
+
+                <View style={styles.divider} />
+
+                <View style={styles.footer}>
+                    <Text style={styles.totalPrice}>
+                        Total: Rp {Number(item.total).toLocaleString("id-ID")}
+                    </Text>
+                </View>
+            </View>
+        );
