@@ -47,3 +47,8 @@ export default function CartScreen() {
         try {
             const token = await AsyncStorage.getItem("userToken");
             if (!token) return;
+
+            const response = await fetch(`${API_BASE_URL}${ENDPOINTS.CART}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const data = await response.json();
