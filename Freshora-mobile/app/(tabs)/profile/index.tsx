@@ -12,3 +12,7 @@ export default function Profile() {
     email: "user@example.com",
     avatar: "avatar.png",
   });
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
