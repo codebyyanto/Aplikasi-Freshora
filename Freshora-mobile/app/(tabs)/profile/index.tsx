@@ -81,3 +81,12 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff" },
   profileBox: { alignItems: "center", paddingVertical: 30 },
   avatar: { width: 90, height: 90, borderRadius: 45 },
+
+  cameraBtn: {
+    position: "absolute",
+    bottom: 35,
+    right: 150,
+    backgroundColor: "#6CC51D",
+    padding: 5,
+    borderRadius: 12,
+  },
