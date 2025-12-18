@@ -209,31 +209,52 @@ export default function ProductDetail() {
             : IMAGE_MAP.default;
 
     return (
-        <View style={styles.imageContainer}>
-            <TouchableOpacity
-                style={styles.backBtn}
-                onPress={() => router.back()}
-            >
-                <Ionicons name="arrow-back" size={24} color="#333" />
-            </TouchableOpacity>
+        <View style={styles.container}>
+            <ScrollView>
+                {/* Header Image */}
+                <View style={styles.imageContainer}>
+                    <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
+                        <Ionicons name="arrow-back" size={24} color="#333" />
+                    </TouchableOpacity>
 
-            <TouchableOpacity
-                style={styles.favBtn}
-                onPress={toggleFavorite}
-            >
-                <Ionicons
-                    name={isFav ? "heart" : "heart-outline"}
-                    size={24}
-                    color={isFav ? "#FF5252" : "#999"}
-                />
-            </TouchableOpacity>
+                    <TouchableOpacity style={styles.favBtn} onPress={toggleFavorite}>
+                        <Ionicons name={isFav ? "heart" : "heart-outline"} size={24} color={isFav ? "#FF5252" : "#999"} />
+                    </TouchableOpacity>
 
-            <Image
-                source={imageSource}
-                style={styles.image}
-                resizeMode="contain"
-            />
+                    <Image source={imageSource} style={styles.image} resizeMode="contain" />
+                </View>
+
+                {/* Content */}
+                <View style={styles.content}>
+                    <Text style={styles.title}>{product.name}</Text>
+                    <Text style={styles.price}>{formatCurrency(product.price)} / kg</Text>
+
+                    <Text style={styles.description}>
+                        {product.description || "Sayuran/Buah segar berkualitas tinggi langsung dari petani lokal. Dijamin segar dan sehat untuk keluarga Anda."}
+                    </Text>
+
+                    {/* Qty Selector */}
+                    <View style={styles.qtyRow}>
+                        <Text style={styles.qtyLabel}>Quantity</Text>
+                        <View style={styles.qtyControl}>
+                            <TouchableOpacity onPress={() => setQty(q => Math.max(1, q - 1))} style={styles.qtyBtn}>
+                                <Ionicons name="remove" size={20} color="#6CC51D" />
+                            </TouchableOpacity>
+                            <Text style={styles.qtyValue}>{qty}</Text>
+                            <TouchableOpacity onPress={() => setQty(q => q + 1)} style={styles.qtyBtn}>
+                                <Ionicons name="add" size={20} color="#6CC51D" />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </ScrollView>
+
+            {/* Footer Button */}
+            <View style={styles.footer}>
+                <TouchableOpacity style={styles.addToCartBtn} onPress={handleAddToCart}>
+                    <Text style={styles.btnText}>Masukan Keranjang — {formatCurrency(product.price * qty)}</Text>
+                </TouchableOpacity>
+            </View>
         </View>
-
-
     );
+}
