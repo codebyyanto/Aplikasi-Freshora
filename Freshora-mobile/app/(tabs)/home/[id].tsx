@@ -70,3 +70,21 @@ export default function ProductDetail() {
             <Image source={{ uri: product.image }} style={styles.image} />
 
             <View style={styles.detailBox}>
+                {/* Harga produk */}
+                <Text style={styles.price}>
+                    Rp {product?.price
+                        ? Number(product.price).toLocaleString("id-ID")
+                        : "0"}
+                </Text>
+
+                {/* Nama produk */}
+                <Text style={styles.name}>{product.name}</Text>
+
+                {/* Rating produk (sementara statis) */}
+                <Text style={styles.rating}>⭐ 4.5 (89 reviews)</Text>
+
+                {/* Deskripsi produk */}
+                <Text style={styles.desc}>
+                    {product.description ||
+                        "Produk segar berkualitas terbaik dari Freshora setiap hari!"}
+                </Text>
