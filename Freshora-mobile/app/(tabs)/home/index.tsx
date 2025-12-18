@@ -40,3 +40,15 @@ const IMAGE_MAP: Record<string, any> = {
   // Fallback jika image tidak ditemukan
   default: require("../../../assets/images/products/peach.png"),
 };
+
+// Mapping icon kategori berdasarkan nama kategori dari API
+const CATEGORY_ICONS: Record<string, any> = {
+  Vegetables: require("../../../assets/images/categories/vegetables.png"),
+  Buah: require("../../../assets/images/categories/fruits.png"),
+  Minuman: require("../../../assets/images/categories/drinks.png"),
+  Kebutuhan: require("../../../assets/images/categories/needs.png"),
+  "Minyak nabati": require("../../../assets/images/categories/oil.png"),
+
+  // Fallback icon
+  default: require("../../../assets/images/categories/vegetables.png"),
+};
