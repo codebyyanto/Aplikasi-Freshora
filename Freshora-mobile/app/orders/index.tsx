@@ -40,3 +40,34 @@ export default function OrderHistory() {
 
         // State loading
         const [loading, setLoading] = useState(true);
+
+        useEffect(() => {
+            fetchOrders();
+        }, []);
+
+        // Mengambil data order dari API
+        const fetchOrders = async () => {
+            try {
+                const token = await AsyncStorage.getItem("userToken");
+                if (!token) return;
+
+                const res = await fetch(
+                    `${API_BASE_URL}${ENDPOINTS.ORDERS}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
+
+                const data = await res.json();
+
+                if (res.ok && data.orders) {
+                    setOrders(data.orders);
+                }
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+        };
