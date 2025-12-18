@@ -211,3 +211,14 @@ export default function CartScreen() {
             </Swipeable>
         );
     };
+
+    return (
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+                {/* Header */}
+                <View style={styles.header}>
+                    <Text style={styles.headerTitle}>Keranjang Belanja</Text>
+                    {cartItems.length > 0 && (
+                        <Text style={styles.headerCount}>{cartItems.length} items</Text>
+                    )}
+                </View>
