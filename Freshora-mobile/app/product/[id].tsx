@@ -129,3 +129,60 @@ export default function ProductDetail() {
             console.error(e);
         }
     };
+
+    const handleAddToCart = async () => {
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            if (!token) {
+                Alert.alert(
+                    "Login Required",
+                    "Silakan login untuk belanja",
+                    [
+                        { text: "Login", onPress: () => router.push("/login") },
+                        { text: "Cancel", style: "cancel" }
+                    ]
+                );
+                return;
+            }
+
+            const res = await fetch(
+                `${API_BASE_URL}${ENDPOINTS.CART}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        productId: Number(id),
+                        quantity: qty
+                    })
+                }
+            );
+
+            const data = await res.json();
+
+            if (res.ok) {
+                Alert.alert(
+                    "Sukses",
+                    "Produk berhasil masuk keranjang",
+                    [
+                        { text: "Lanjut Belanja", style: "cancel" },
+                        {
+                            text: "Lihat Keranjang",
+                            onPress: () =>
+                                router.push("/(tabs)/cart")
+                        }
+                    ]
+                );
+            } else {
+                Alert.alert(
+                    "Gagal",
+                    data.message || "Gagal menambahkan ke keranjang"
+                );
+            }
+        } catch (error) {
+            console.error("Add to cart error:", error);
+            Alert.alert("Error", "Terjadi kesalahan sistem");
+        }
+    };
