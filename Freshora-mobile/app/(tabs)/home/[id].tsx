@@ -57,3 +57,16 @@ export default function ProductDetail() {
                 <ActivityIndicator size="large" color="#6CC51D" />
             </View>
         );
+
+    return (
+        <ScrollView style={styles.container}>
+
+            {/* Tombol kembali ke halaman sebelumnya */}
+            <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+                <Ionicons name="arrow-back-outline" size={26} color="#333" />
+            </TouchableOpacity>
+
+            {/* Gambar produk */}
+            <Image source={{ uri: product.image }} style={styles.image} />
+
+            <View style={styles.detailBox}>
