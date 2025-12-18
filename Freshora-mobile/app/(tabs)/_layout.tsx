@@ -22,7 +22,7 @@ export default function TabsLayout() {
         },
       }}
 
-      >
+    >
       {/* Home */}
       <Tabs.Screen
         name="home/index"
@@ -32,9 +32,9 @@ export default function TabsLayout() {
             <Ionicons name="home-outline" size={24} color={color} />
           ),
         }}
-      /> 
-      
-       {/* Favorites */}
+      />
+
+      {/* Favorites */}
       <Tabs.Screen
         name="favorites/index"
         options={{
