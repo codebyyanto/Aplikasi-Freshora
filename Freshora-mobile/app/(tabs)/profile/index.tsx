@@ -63,3 +63,16 @@ export default function Profile() {
         <Text style={styles.name}>{user.name}</Text>
         <Text style={styles.email}>{user.email}</Text>
       </View>
+
+      <View style={styles.menuBox}>
+        {menu.map((item, i) => (
+          <TouchableOpacity key={i} style={styles.menuItem} onPress={item.action}>
+            <Ionicons name={item.icon as any} size={22} color="#6CC51D" />
+            <Text style={styles.menuText}>{item.text}</Text>
+            <Ionicons name="chevron-forward-outline" size={20} color="#ccc" />
+          </TouchableOpacity>
+        ))}
+      </View>
+    </ScrollView>
+  );
+}
