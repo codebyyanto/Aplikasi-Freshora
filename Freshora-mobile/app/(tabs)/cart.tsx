@@ -189,3 +189,9 @@ export default function CartScreen() {
                     <View style={styles.imageWrapper}>
                         <Image source={imageSource} style={styles.image} resizeMode="contain" />
                     </View>
+
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.nameText}>{item.name}</Text>
+                        <Text style={styles.weightText}>{item.weight}</Text>
+                        <Text style={styles.priceText}>Rp {Number(item.price * item.quantity).toLocaleString("id-ID")}</Text>
+                    </View>
