@@ -76,3 +76,8 @@ export default function Profile() {
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: "#fff" },
+  profileBox: { alignItems: "center", paddingVertical: 30 },
+  avatar: { width: 90, height: 90, borderRadius: 45 },
