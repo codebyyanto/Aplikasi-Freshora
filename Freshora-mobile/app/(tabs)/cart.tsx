@@ -115,3 +115,20 @@ export default function CartScreen() {
             console.error("Checkout error:", error);
         }
     };
+
+    const updateQuantity = async (id: number, quantity: number) => {
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            await fetch(`${API_BASE_URL}${ENDPOINTS.CART}/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ quantity })
+            });
+            fetchCart();
+        } catch (error) {
+            console.error("Error updating cart:", error);
+        }
+    };
