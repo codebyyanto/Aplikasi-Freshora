@@ -84,3 +84,14 @@ export default function CartScreen() {
                 { text: "Batal", style: "cancel" },
                 {
                     text: "Bayar", onPress: async () => {
+                        try {
+                            const res = await fetch(`${API_BASE_URL}${ENDPOINTS.ORDERS}`, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Authorization: `Bearer ${token}`
+                                },
+                                body: JSON.stringify({ items: cartItems }) // Backend logic might just need empty body if it uses cart directly, but sticking to general pattern
+                            });
+
+                            const data = await res.json();
