@@ -22,3 +22,21 @@ async function main() {
     });
     categories[cat.name] = record.id;
   }
+
+  const productsData = [
+    {
+      name: "Fresh Peach",
+      description: "Fresh Peach per dozen",
+      price: 8.00,
+      stock: 50,
+      image: "peach.png",
+      categoryName: "Buah"
+    },
+    {
+      name: "Avacado",
+      description: "Fresh Avocado 2.0 lbs",
+      price: 7.00,
+      stock: 40,
+      image: "avocado.png",
+      categoryName: "Vegetables"
+    },
