@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Ambil ukuran layar perangkat
 const { height } = Dimensions.get("window");
@@ -64,7 +65,13 @@ export default function LoginScreen() {
     }
 
     try {
-      const response = await fetch("http://192.168.100.10:4000/api/auth/login", {
+      // Menggunakan konfigurasi centralized
+      const { API_BASE_URL, ENDPOINTS } = require("../constants/Config");
+      const url = `${API_BASE_URL}${ENDPOINTS.LOGIN}`;
+
+      console.log("Attempting login to:", url);
+
+      const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -76,15 +83,23 @@ export default function LoginScreen() {
         throw new Error(data.message || "Login gagal, periksa kembali data Anda.");
       }
 
+      // Simpan token JWT jika backend mengirim token
       if (data.token) {
+        await AsyncStorage.setItem("userToken", data.token);
+      }
+
+      // Simpan info user untuk keperluan lain (opsional)
+      if (data.user) {
+        await AsyncStorage.setItem("userInfo", JSON.stringify(data.user));
       }
 
       Alert.alert("Login Berhasil", `Selamat datang, ${data.user?.name || "User"}!`);
 
-      // ke halaman home
-      router.push("/home");
+      // Arahkan ke halaman home (pastikan path benar)
+      router.replace("/(tabs)/home");
     } catch (error: any) {
-      Alert.alert("Gagal Login", error.message);
+      console.error("Login Error:", error);
+      Alert.alert("Gagal Login", error.message || "Terjadi kesalahan jaringan.");
     }
   };
 
@@ -131,7 +146,7 @@ export default function LoginScreen() {
         </View>
 
         {!keyboardVisible && (
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={() => { }}>
             <Text style={styles.forgot}>Forgot password?</Text>
           </TouchableOpacity>
         )}
