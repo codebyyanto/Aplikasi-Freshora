@@ -90,3 +90,6 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 12,
   },
+
+  name: { fontSize: 18, fontWeight: "700", color: "#333", marginTop: 10 },
+  email: { color: "#777", fontSize: 13 },
