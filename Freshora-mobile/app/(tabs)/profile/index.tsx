@@ -93,3 +93,13 @@ const styles = StyleSheet.create({
 
   name: { fontSize: 18, fontWeight: "700", color: "#333", marginTop: 10 },
   email: { color: "#777", fontSize: 13 },
+
+  menuBox: { marginTop: 10 },
+  menuItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 15,
+    paddingHorizontal: 25,
+    borderBottomWidth: 1,
+    borderBottomColor: "#F3F3F3",
+  },
