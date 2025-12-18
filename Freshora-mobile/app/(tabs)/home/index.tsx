@@ -52,3 +52,5 @@ const CATEGORY_ICONS: Record<string, any> = {
   // Fallback icon
   default: require("../../../assets/images/categories/vegetables.png"),
 };
+// Import konfigurasi API
+import { API_BASE_URL, ENDPOINTS } from "../../../constants/Config";
