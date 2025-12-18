@@ -28,3 +28,10 @@ const IMAGE_MAP: Record<string, any> = {
     "broccoli.png": require("../../assets/images/products/broccoli.png"),
     "default": require("../../assets/images/products/peach.png")
 };
+
+import { API_BASE_URL, ENDPOINTS } from "../../constants/Config";
+
+export default function CartScreen() {
+    const router = useRouter();
+    const [cartItems, setCartItems] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
