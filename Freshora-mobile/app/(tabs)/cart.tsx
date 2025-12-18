@@ -64,3 +64,13 @@ export default function CartScreen() {
                     image: item.product.image
                 }));
                 setCartItems(mapped);
+
+            } else {
+                setCartItems([]);
+            }
+        } catch (error) {
+            console.error("Error fetching cart:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
