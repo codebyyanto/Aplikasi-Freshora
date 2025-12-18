@@ -52,3 +52,14 @@ export default function Profile() {
     { icon: "location-outline", text: "My Address", action: () => { } },
     { icon: "log-out-outline", text: "Sign out", action: handleLogout },
   ];
+
+  return (
+    <ScrollView style={styles.container}>
+      <View style={styles.profileBox}>
+        <Image source={{ uri: user.avatar }} style={styles.avatar} />
+        <TouchableOpacity style={styles.cameraBtn}>
+          <Ionicons name="camera" size={16} color="#fff" />
+        </TouchableOpacity>
+        <Text style={styles.name}>{user.name}</Text>
+        <Text style={styles.email}>{user.email}</Text>
+      </View>
