@@ -103,3 +103,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#F3F3F3",
   },
+
+  menuText: {
+    flex: 1,
+    marginLeft: 15,
+    color: "#333",
+    fontSize: 15,
+  },
+});
