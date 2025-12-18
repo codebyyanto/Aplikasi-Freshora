@@ -66,3 +66,11 @@ export default function Home() {
 
   // State daftar favorit
   const [favorites, setFavorites] = useState<any[]>([]);
+
+  // Akan dijalankan setiap kali halaman Home difokuskan
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchData();
+      loadFavorites();
+    }, [])
+  );
