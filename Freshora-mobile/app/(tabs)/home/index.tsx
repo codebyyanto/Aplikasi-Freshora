@@ -49,8 +49,8 @@ export default function Home() {
     fetchData();
   }, []);
 
-// Komponen utama halaman home
-return (
+  // Komponen utama halaman home
+  return (
     <SafeAreaView style={styles.container}>
       {/* Search Bar */}
       <View style={styles.searchRow}>
@@ -70,7 +70,7 @@ return (
       {/* Banner */}
       <View style={styles.bannerBox}>
         <Image
-          source={require("../../assets/banner.png")}
+          source={require("../../../assets/banner.png")}
           style={styles.bannerImg}
         />
         <Text style={styles.bannerText}>20% off on your first purchase</Text>
@@ -80,11 +80,11 @@ return (
       <Text style={styles.sectionTitle}>Kategori</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {[
-          { icon: require("../../assets/icons/vegetables.png"), name: "Vegetables" },
-          { icon: require("../../assets/icons/fruits.png"), name: "Buah" },
-          { icon: require("../../assets/icons/drinks.png"), name: "Minuman" },
-          { icon: require("../../assets/icons/groceries.png"), name: "Kebutuhan" },
-          { icon: require("../../assets/icons/oil.png"), name: "Minyak nabati" },
+          { icon: require("../../../assets/icons/vegetables.png"), name: "Vegetables" },
+          { icon: require("../../../assets/icons/fruits.png"), name: "Buah" },
+          { icon: require("../../../assets/icons/drinks.png"), name: "Minuman" },
+          { icon: require("../../../assets/icons/groceries.png"), name: "Kebutuhan" },
+          { icon: require("../../../assets/icons/oil.png"), name: "Minyak nabati" },
         ].map((cat, index) => (
           <View key={index} style={styles.category}>
             <Image source={cat.icon} style={styles.catIcon} />
