@@ -186,3 +186,24 @@ export default function ProductDetail() {
             Alert.alert("Error", "Terjadi kesalahan sistem");
         }
     };
+
+    if (loading) {
+        return (
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}
+            >
+                <ActivityIndicator size="large" color="#6CC51D" />
+            </View>
+        );
+    }
+
+    if (!product) return null;
+
+    const imageSource =
+        product.image && IMAGE_MAP[product.image]
+            ? IMAGE_MAP[product.image]
+            : IMAGE_MAP.default;
