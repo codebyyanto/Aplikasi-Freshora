@@ -258,3 +258,45 @@ export default function ProductDetail() {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: "#fff" },
+    imageContainer: {
+        height: 300,
+        backgroundColor: "#F3F5F7",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative"
+    },
+    backBtn: {
+        position: "absolute",
+        top: 50,
+        left: 20,
+        zIndex: 10,
+        backgroundColor: "#fff",
+        padding: 8,
+        borderRadius: 20
+    },
+    favBtn: {
+        position: "absolute",
+        top: 50,
+        right: 20,
+        zIndex: 10,
+        backgroundColor: "#fff",
+        padding: 8,
+        borderRadius: 20
+    },
+    image: { width: 200, height: 200 },
+    content: { padding: 20 },
+    title: { fontSize: 24, fontWeight: "bold", color: "#333", marginBottom: 5 },
+    price: { fontSize: 18, fontWeight: "600", color: "#6CC51D", marginBottom: 15 },
+    description: { fontSize: 14, color: "#666", lineHeight: 22, marginBottom: 20 },
+    qtyRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 20 },
+    qtyLabel: { fontSize: 16, fontWeight: "bold", color: "#333" },
+    qtyControl: { flexDirection: "row", alignItems: "center" },
+    qtyBtn: { width: 32, height: 32, backgroundColor: "#F3F5F7", borderRadius: 8, justifyContent: "center", alignItems: "center" },
+    qtyValue: { marginHorizontal: 15, fontSize: 16, fontWeight: "bold" },
+    footer: { padding: 20, borderTopWidth: 1, borderTopColor: "#eee" },
+    addToCartBtn: { backgroundColor: "#6CC51D", paddingVertical: 15, borderRadius: 12, alignItems: "center" },
+    btnText: { color: "#fff", fontSize: 16, fontWeight: "bold" }
+});
