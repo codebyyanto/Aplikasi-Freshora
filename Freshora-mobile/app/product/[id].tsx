@@ -43,3 +43,19 @@ const IMAGE_MAP: Record<string, any> = {
     "broccoli.png": require("../../assets/images/products/broccoli.png"),
     default: require("../../assets/images/products/peach.png")
 };
+
+export default function ProductDetail() {
+    const { id } = useLocalSearchParams();
+    const router = useRouter();
+
+    // State data produk
+    const [product, setProduct] = useState<any>(null);
+
+    // State loading
+    const [loading, setLoading] = useState(true);
+
+    // State quantity
+    const [qty, setQty] = useState(1);
+
+    // State favorit
+    const [isFav, setIsFav] = useState(false);
