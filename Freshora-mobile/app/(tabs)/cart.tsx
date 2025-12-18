@@ -95,3 +95,8 @@ export default function CartScreen() {
                             });
 
                             const data = await res.json();
+
+                            if (res.ok) {
+                                Alert.alert("Berhasil", "Pesanan Anda telah dibuat!");
+                                setCartItems([]); // Clear local UI
+                                router.push("/orders"); // Go to orders page (we will create this)
