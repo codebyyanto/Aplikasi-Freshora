@@ -222,3 +222,22 @@ export default function CartScreen() {
                         <Text style={styles.headerCount}>{cartItems.length} items</Text>
                     )}
                 </View>
+
+                {/* List */}
+                <FlatList
+                    data={cartItems}
+                    keyExtractor={(item) => String(item.id)}
+                    renderItem={renderItem}
+                    contentContainerStyle={styles.listContent}
+                    style={styles.flatList}
+                    showsVerticalScrollIndicator={false}
+                    ListEmptyComponent={
+                        <View style={styles.emptyState}>
+                            <Ionicons name="cart-outline" size={80} color="#DDD" />
+                            <Text style={styles.emptyText}>Keranjang Anda masih kosong</Text>
+                            <TouchableOpacity style={styles.shopNowBtn} onPress={() => router.push("/home")}>
+                                <Text style={styles.shopNowText}>Mulai Belanja</Text>
+                            </TouchableOpacity>
+                        </View>
+                    }
+                />
