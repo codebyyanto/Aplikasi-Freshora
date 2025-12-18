@@ -130,7 +130,7 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
 
-      {/* ================= SEARCH BAR ================= */}
+      {/*SEARCH BAR */}
       {/* Digunakan untuk input pencarian produk (UI saja) */}
       <View style={styles.header}>
         <View style={styles.searchBar}>
@@ -151,7 +151,7 @@ export default function Home() {
         contentContainerStyle={styles.scrollContent}
       >
 
-        {/* ================= BANNER PROMO ================= */}
+        {/*BANNER PROMO*/}
         {/* Banner promosi statis */}
         <View style={styles.bannerContainer}>
           <Image
@@ -165,7 +165,8 @@ export default function Home() {
             </Text>
           </View>
         </View>
-        {/* ================= KATEGORI ================= */}
+
+        {/*KATEGORI */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Kategori</Text>
           <Ionicons name="chevron-forward" size={20} color="#666" />
@@ -207,7 +208,7 @@ export default function Home() {
           })}
         </ScrollView>
 
-        {/* ================= PRODUK UNGGULAN ================= */}
+        {/*PRODUK UNGGULAN*/}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Produk unggulan</Text>
           <Ionicons name="chevron-forward" size={20} color="#666" />
@@ -249,4 +250,65 @@ export default function Home() {
             );
           })}
         </View>
+
+        {products.map((prod) => {
+          const imageSource =
+            prod.image && IMAGE_MAP[prod.image]
+              ? IMAGE_MAP[prod.image]
+              : IMAGE_MAP["default"];
+
+          const isFav = favorites.some((f) => f.id === prod.id);
+
+          return (
+            <TouchableOpacity
+              key={prod.id}
+              style={styles.productCard}
+              onPress={() => router.push(`/product/${prod.id}`)}
+            >
+              {/* ICON FAVORIT */}
+              <TouchableOpacity
+                style={styles.favIcon}
+                onPress={() => toggleFavorite(prod)}
+              >
+                <Ionicons
+                  name={isFav ? "heart" : "heart-outline"}
+                  size={18}
+                  color={isFav ? "#FF5252" : "#999"}
+                />
+              </TouchableOpacity>
+
+              {/* ADD TO CART */}
+              <View style={styles.actionRow}>
+                <TouchableOpacity
+                  style={styles.addToCartBtn}
+                  onPress={async () => {
+                    const token = await AsyncStorage.getItem("userToken");
+                    if (!token) {
+                      alert("Harap login terlebih dahulu");
+                      router.push("/login");
+                      return;
+                    }
+
+                    await fetch(`${API_BASE_URL}${ENDPOINTS.CART}`, {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                      },
+                      body: JSON.stringify({
+                        productId: prod.id,
+                        quantity: 1,
+                      }),
+                    });
+
+                    alert("Berhasil masuk keranjang!");
+                  }}
+                >
+                  <Ionicons name="bag-handle-outline" size={16} color="#6CC51D" />
+                  <Text style={styles.btnText}>Add to cart</Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
 
