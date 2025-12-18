@@ -127,3 +127,42 @@ export default function Home() {
     }
   };
 
+  return (
+    <SafeAreaView style={styles.container}>
+
+      {/* ================= SEARCH BAR ================= */}
+      {/* Digunakan untuk input pencarian produk (UI saja) */}
+      <View style={styles.header}>
+        <View style={styles.searchBar}>
+          <Ionicons name="search-outline" size={20} color="#999" />
+
+          <TextInput
+            placeholder="Search keywords..."
+            placeholderTextColor="#999"
+            style={styles.searchInput}
+          />
+
+          <Ionicons name="options-outline" size={20} color="#333" />
+        </View>
+      </View>
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+
+        {/* ================= BANNER PROMO ================= */}
+        {/* Banner promosi statis */}
+        <View style={styles.bannerContainer}>
+          <Image
+            source={require("../../../assets/images/banner/banner-promo.png")}
+            style={styles.bannerImage}
+            resizeMode="cover"
+          />
+          <View style={styles.bannerTextOverlay}>
+            <Text style={styles.bannerTitle}>
+              20% off on your first purchase
+            </Text>
+          </View>
+        </View>
+
