@@ -38,3 +38,9 @@ export default function Profile() {
       console.error("Profile fetch error", e);
     }
   };
+
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem("userToken");
+    await AsyncStorage.removeItem("userInfo");
+    router.replace("/login");
+  };
