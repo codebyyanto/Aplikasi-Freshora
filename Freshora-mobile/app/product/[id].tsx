@@ -86,3 +86,46 @@ export default function ProductDetail() {
             setLoading(false);
         }
     };
+
+    // Mengecek apakah produk favorit
+    const checkFavorite = async () => {
+        try {
+            const json = await AsyncStorage.getItem("userFavorites");
+            if (json) {
+                const favs = JSON.parse(json);
+                const exists = favs.some(
+                    (f: any) => String(f.id) === String(id)
+                );
+                setIsFav(exists);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    // Toggle favorit
+    const toggleFavorite = async () => {
+        if (!product) return;
+
+        try {
+            const json = await AsyncStorage.getItem("userFavorites");
+            let favs = json ? JSON.parse(json) : [];
+
+            if (isFav) {
+                favs = favs.filter(
+                    (f: any) => String(f.id) !== String(id)
+                );
+                setIsFav(false);
+            } else {
+                favs.push(product);
+                setIsFav(true);
+            }
+
+            await AsyncStorage.setItem(
+                "userFavorites",
+                JSON.stringify(favs)
+            );
+        } catch (e) {
+            console.error(e);
+        }
+    };
