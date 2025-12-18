@@ -165,4 +165,45 @@ export default function Home() {
             </Text>
           </View>
         </View>
+        {/* ================= KATEGORI ================= */}
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Kategori</Text>
+          <Ionicons name="chevron-forward" size={20} color="#666" />
+        </View>
+
+        {/* List kategori horizontal */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.categoriesScroll}
+        >
+          {categories.map((cat, index) => {
+            // Ambil icon kategori berdasarkan nama dari API
+            const iconSource =
+              CATEGORY_ICONS[cat.name] || CATEGORY_ICONS["default"];
+
+            return (
+              <View
+                key={cat.id}
+                style={[
+                  styles.categoryItem,
+                  index === 0 && { marginLeft: 20 },
+                ]}
+              >
+                <View
+                  style={[
+                    styles.iconContainer,
+                    index === 0
+                      ? { backgroundColor: "#E9F8E3" }
+                      : { backgroundColor: "#F3F5F7" },
+                  ]}
+                >
+                  <Image source={iconSource} style={styles.categoryIcon} />
+                </View>
+
+                <Text style={styles.categoryName}>{cat.name}</Text>
+              </View>
+            );
+          })}
+        </ScrollView>
 
