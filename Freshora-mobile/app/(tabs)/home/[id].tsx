@@ -88,3 +88,35 @@ export default function ProductDetail() {
                     {product.description ||
                         "Produk segar berkualitas terbaik dari Freshora setiap hari!"}
                 </Text>
+                <View style={styles.qtyRow}>
+                    <Text style={styles.qtyLabel}>Quantity</Text>
+
+                    <View style={styles.qtyBox}>
+                        {/* Tombol mengurangi quantity (minimal 1) */}
+                        <TouchableOpacity
+                            onPress={() => setQty(Math.max(1, qty - 1))}
+                            style={styles.qtyBtn}
+                        >
+                            <Ionicons name="remove" size={20} color="#6CC51D" />
+                        </TouchableOpacity>
+
+                        {/* Menampilkan jumlah quantity */}
+                        <Text style={styles.qtyText}>{qty}</Text>
+
+                        {/* Tombol menambah quantity */}
+                        <TouchableOpacity
+                            onPress={() => setQty(qty + 1)}
+                            style={styles.qtyBtn}
+                        >
+                            <Ionicons name="add" size={20} color="#6CC51D" />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <TouchableOpacity style={styles.addCartBtn}>
+                    <Ionicons name="cart-outline" size={20} color="#fff" />
+                    <Text style={styles.addCartText}>Add to cart</Text>
+                </TouchableOpacity>
+            </View>
+        </ScrollView>
+    );
+}
