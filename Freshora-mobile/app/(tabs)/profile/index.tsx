@@ -16,3 +16,12 @@ export default function Profile() {
   useEffect(() => {
     fetchProfile();
   }, []);
+
+  const fetchProfile = async () => {
+    try {
+      const token = await AsyncStorage.getItem("userToken");
+      if (token) {
+        const res = await fetch(`${API_BASE_URL}${ENDPOINTS.ME}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const data = await res.json();
