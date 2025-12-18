@@ -52,3 +52,15 @@ export default function CartScreen() {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const data = await response.json();
+
+            if (data.items) {
+                const mapped = data.items.map((item: any) => ({
+                    id: item.id,
+                    productId: item.productId,
+                    name: item.product.name,
+                    price: item.product.price,
+                    weight: "1 kg",
+                    quantity: item.quantity,
+                    image: item.product.image
+                }));
+                setCartItems(mapped);
