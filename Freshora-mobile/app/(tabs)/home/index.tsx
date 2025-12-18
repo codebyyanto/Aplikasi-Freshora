@@ -54,3 +54,15 @@ const CATEGORY_ICONS: Record<string, any> = {
 };
 // Import konfigurasi API
 import { API_BASE_URL, ENDPOINTS } from "../../../constants/Config";
+
+export default function Home() {
+  const router = useRouter();
+
+  // State daftar produk
+  const [products, setProducts] = useState<any[]>([]);
+
+  // State daftar kategori
+  const [categories, setCategories] = useState<any[]>([]);
+
+  // State daftar favorit
+  const [favorites, setFavorites] = useState<any[]>([]);
