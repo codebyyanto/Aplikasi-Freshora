@@ -75,3 +75,16 @@ async function main() {
       categoryName: "Vegetables"
     }
   ];
+
+  for (const prod of productsData) {
+    await prisma.product.create({
+      data: {
+        name: prod.name,
+        description: prod.description,
+        price: prod.price,
+        stock: prod.stock,
+        image: prod.image,
+        categoryId: categories[prod.categoryName]
+      }
+    });
+  }
