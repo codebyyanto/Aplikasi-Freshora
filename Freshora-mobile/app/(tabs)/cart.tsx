@@ -164,3 +164,7 @@ export default function CartScreen() {
             }
         ]);
     };
+
+    const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    const shipping = 5000;
+    const total = subtotal + (cartItems.length > 0 ? shipping : 0);
