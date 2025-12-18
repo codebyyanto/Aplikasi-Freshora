@@ -40,3 +40,20 @@ async function main() {
       image: "avocado.png",
       categoryName: "Vegetables"
     },
+
+    {
+      name: "Pineapple",
+      description: "Fresh Pineapple 1.50 lbs",
+      price: 9.90,
+      stock: 30,
+      image: "pineapple.png",
+      categoryName: "Buah"
+    },
+    {
+      name: "Black Grapes",
+      description: "Black Grapes 5.0 lbs",
+      price: 7.05,
+      stock: 25,
+      image: "grapes.png",
+      categoryName: "Buah"
+    },
