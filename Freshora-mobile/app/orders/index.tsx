@@ -101,7 +101,7 @@ export default function OrderHistory() {
         return (
             <View style={styles.container}>
 
-                {/* ===== TOP BAR ===== */}
+                {/*TOP BAR */}
                 <View style={styles.topBar}>
                     <TouchableOpacity
                         onPress={() => router.back()}
@@ -118,3 +118,29 @@ export default function OrderHistory() {
                         Riwayat Pesanan
                     </Text>
                 </View>
+
+                {loading ? (
+                    // Loading indicator
+                    <ActivityIndicator
+                        size="large"
+                        color="#6CC51D"
+                        style={{ marginTop: 50 }}
+                    />
+                ) : (
+                    <FlatList
+                        data={orders}
+                        keyExtractor={(item) => String(item.id)}
+                        renderItem={renderItem}
+                        contentContainerStyle={styles.list}
+                        ListEmptyComponent={
+                            <View style={styles.empty}>
+                                <Text style={styles.emptyText}>
+                                    Belum ada pesanan
+                                </Text>
+                            </View>
+                        }
+                    />
+                )}
+            </View>
+        );
+    }
