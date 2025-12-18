@@ -34,6 +34,17 @@ export default function TabsLayout() {
         }}
       />
 
+      {/* CART */}
+      <Tabs.Screen
+        name="cart"
+        options={{
+          title: "Cart",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="cart-outline" size={24} color={color} />
+          ),
+        }}
+      />
+
       {/* Favorites */}
       <Tabs.Screen
         name="favorites/index"
