@@ -74,3 +74,15 @@ export default function Home() {
       loadFavorites();
     }, [])
   );
+
+  // Mengambil data favorit dari AsyncStorage
+  const loadFavorites = async () => {
+    try {
+      const json = await AsyncStorage.getItem("userFavorites");
+      if (json) {
+        setFavorites(JSON.parse(json));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
