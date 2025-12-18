@@ -49,3 +49,11 @@ export default function ProductDetail() {
 
         fetchProduct();
     }, [id]);
+
+    // Menampilkan loading jika data produk belum tersedia
+    if (!product)
+        return (
+            <View style={styles.center}>
+                <ActivityIndicator size="large" color="#6CC51D" />
+            </View>
+        );
