@@ -241,3 +241,16 @@ export default function CartScreen() {
                         </View>
                     }
                 />
+
+                {/* Footer */}
+                {cartItems.length > 0 && (
+                    <View style={styles.footer}>
+                        <View style={styles.summaryRow}>
+                            <Text style={styles.summaryLabel}>Subtotal</Text>
+                            <Text style={styles.summaryValue}>Rp {subtotal.toLocaleString("id-ID")}</Text>
+                        </View>
+                        <View style={styles.summaryRow}>
+                            <Text style={styles.summaryLabel}>Ongkos Kirim</Text>
+                            <Text style={styles.summaryValue}>Rp {shipping.toLocaleString("id-ID")}</Text>
+                        </View>
+                        <View style={styles.divider} />
