@@ -207,3 +207,46 @@ export default function Home() {
           })}
         </ScrollView>
 
+        {/* ================= PRODUK UNGGULAN ================= */}
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Produk unggulan</Text>
+          <Ionicons name="chevron-forward" size={20} color="#666" />
+        </View>
+
+        <View style={styles.productsGrid}>
+          {products.map((prod) => {
+            // Mapping image dari API ke asset lokal
+            const imageSource =
+              prod.image && IMAGE_MAP[prod.image]
+                ? IMAGE_MAP[prod.image]
+                : IMAGE_MAP["default"];
+
+            return (
+              <TouchableOpacity
+                key={prod.id}
+                style={styles.productCard}
+                activeOpacity={0.9}
+                onPress={() => router.push(`/product/${prod.id}`)}
+              >
+                <View style={styles.productImageContainer}>
+                  <Image
+                    source={imageSource}
+                    style={styles.productImage}
+                    resizeMode="contain"
+                  />
+                </View>
+
+                <Text style={styles.productPrice}>
+                  Rp {Number(prod.price).toLocaleString("id-ID")}
+                </Text>
+
+                <Text style={styles.productName} numberOfLines={1}>
+                  {prod.name}
+                </Text>
+
+                <Text style={styles.productWeight}>1 kg</Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+
