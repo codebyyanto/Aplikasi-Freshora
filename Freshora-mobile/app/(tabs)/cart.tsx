@@ -132,3 +132,15 @@ export default function CartScreen() {
             console.error("Error updating cart:", error);
         }
     };
+
+    const handleIncrement = (item: any) => {
+        updateQuantity(item.id, item.quantity + 1);
+    };
+
+    const handleDecrement = (item: any) => {
+        if (item.quantity > 1) {
+            updateQuantity(item.id, item.quantity - 1);
+        } else {
+            handleDelete(item.id);
+        }
+    };
