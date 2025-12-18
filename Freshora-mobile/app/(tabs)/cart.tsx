@@ -79,3 +79,8 @@ export default function CartScreen() {
         try {
             const token = await AsyncStorage.getItem("userToken");
             if (!token) return;
+
+            Alert.alert("Konfirmasi", `Total pembayaran adalah Rp ${Math.floor(subtotal + (cartItems.length > 0 ? 1.60 : 0)).toLocaleString("id-ID")}. Lanjutkan?`, [
+                { text: "Batal", style: "cancel" },
+                {
+                    text: "Bayar", onPress: async () => {
