@@ -59,3 +59,30 @@ export default function ProductDetail() {
 
     // State favorit
     const [isFav, setIsFav] = useState(false);
+
+    useEffect(() => {
+        fetchProductDetail();
+        checkFavorite();
+    }, [id]);
+
+    // Fetch detail produk
+    const fetchProductDetail = async () => {
+        try {
+            const response = await fetch(
+                `${API_BASE_URL}${ENDPOINTS.PRODUCTS}/${id}`
+            );
+            const data = await response.json();
+
+            if (response.ok) {
+                setProduct(data.product);
+            } else {
+                Alert.alert("Error", "Gagal memuat detail produk");
+                router.back();
+            }
+        } catch (error) {
+            console.error("Fetch detail error:", error);
+            Alert.alert("Error", "Gagal terhubung ke server");
+        } finally {
+            setLoading(false);
+        }
+    };
