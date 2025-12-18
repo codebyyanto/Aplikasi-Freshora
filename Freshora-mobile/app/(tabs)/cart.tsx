@@ -42,3 +42,8 @@ export default function CartScreen() {
             fetchCart();
         }, [])
     );
+
+    const fetchCart = async () => {
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            if (!token) return;
