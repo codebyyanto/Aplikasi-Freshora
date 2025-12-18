@@ -307,3 +307,45 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingBottom: 20
     },
+    footer: {
+        padding: 30,
+        backgroundColor: "#fff",
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: -4 },
+        shadowOpacity: 0.08,
+        shadowRadius: 8,
+        elevation: 20,
+        marginBottom: 60, // Clear the Tab Bar
+    },
+    cardContainer: {
+        flexDirection: "row",
+        backgroundColor: "#fff",
+        borderRadius: 16,
+        padding: 12,
+        marginBottom: 16,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 8,
+        elevation: 3,
+    },
+    imageWrapper: {
+        width: 70,
+        height: 70,
+        backgroundColor: "#F5F7FA",
+        borderRadius: 12,
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: 15
+    },
+    image: {
+        width: 50,
+        height: 50,
+    },
+    infoContainer: {
+        flex: 1,
+        justifyContent: "center",
+    },
