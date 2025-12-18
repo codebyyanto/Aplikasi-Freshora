@@ -144,3 +144,76 @@ export default function OrderHistory() {
             </View>
         );
     }
+
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: "#F7F9FC"
+        },
+        topBar: {
+            flexDirection: "row",
+            alignItems: "center",
+            padding: 20,
+            paddingTop: 50,
+            backgroundColor: "#fff",
+            elevation: 2
+        },
+        backBtn: {
+            marginRight: 15
+        },
+        title: {
+            fontSize: 20,
+            fontWeight: "bold",
+            color: "#333"
+        },
+        list: {
+            padding: 20
+        },
+        card: {
+            backgroundColor: "#fff",
+            padding: 15,
+            borderRadius: 12,
+            marginBottom: 15,
+            elevation: 1
+        },
+        header: {
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 5
+        },
+        orderId: {
+            fontWeight: "bold",
+            fontSize: 16
+        },
+        status: {
+            color: "#6CC51D",
+            fontWeight: "bold"
+        },
+        date: {
+            color: "#888",
+            fontSize: 12,
+            marginBottom: 10
+        },
+        divider: {
+            height: 1,
+            backgroundColor: "#eee",
+            marginVertical: 10
+        },
+        footer: {
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center"
+        },
+        totalPrice: {
+            fontWeight: "bold",
+            fontSize: 16,
+            color: "#333"
+        },
+        empty: {
+            alignItems: "center",
+            marginTop: 50
+        },
+        emptyText: {
+            color: "#999"
+        }
+    });
