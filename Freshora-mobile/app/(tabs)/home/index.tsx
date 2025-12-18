@@ -27,3 +27,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Ambil lebar layar untuk layout grid
 const { width } = Dimensions.get("window");
+
+// Mapping nama file image dari API ke asset lokal
+const IMAGE_MAP: Record<string, any> = {
+  "peach.png": require("../../../assets/images/products/peach.png"),
+  "avocado.png": require("../../../assets/images/products/avocado.png"),
+  "pineapple.png": require("../../../assets/images/products/pineapple.png"),
+  "grapes.png": require("../../../assets/images/products/grapes.png"),
+  "pomegranate.png": require("../../../assets/images/products/pomegranate.png"),
+  "broccoli.png": require("../../../assets/images/products/broccoli.png"),
+
+  // Fallback jika image tidak ditemukan
+  default: require("../../../assets/images/products/peach.png"),
+};
