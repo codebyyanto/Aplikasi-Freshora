@@ -91,12 +91,27 @@ export default function CartScreen() {
                                     "Content-Type": "application/json",
                                     Authorization: `Bearer ${token}`
                                 },
-                                body: JSON.stringify({ items: cartItems }) // Backend logic might just need empty body if it uses cart directly, but sticking to general pattern
+                                body: JSON.stringify({ items: cartItems })
                             });
 
                             const data = await res.json();
 
                             if (res.ok) {
                                 Alert.alert("Berhasil", "Pesanan Anda telah dibuat!");
-                                setCartItems([]); // Clear local UI
-                                router.push("/orders"); // Go to orders page (we will create this)
+                                setCartItems([]);
+                                router.push("/orders");
+
+                            } else {
+                                Alert.alert("Gagal", data.message || "Gagal checkout");
+                            }
+                        } catch (e: any) {
+                            Alert.alert("Error", e.message);
+                        }
+                    }
+                }
+            ]);
+
+        } catch (error) {
+            console.error("Checkout error:", error);
+        }
+    };
