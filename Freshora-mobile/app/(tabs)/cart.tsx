@@ -179,3 +179,13 @@ export default function CartScreen() {
             </TouchableOpacity>
         );
     };
+
+    const renderItem = ({ item }: { item: any }) => {
+        const imageSource = IMAGE_MAP[item.image] || IMAGE_MAP["default"];
+
+        return (
+            <Swipeable renderRightActions={() => renderRightActions(item.id)}>
+                <View style={styles.cardContainer}>
+                    <View style={styles.imageWrapper}>
+                        <Image source={imageSource} style={styles.image} resizeMode="contain" />
+                    </View>
