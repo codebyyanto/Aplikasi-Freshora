@@ -25,3 +25,16 @@ export default function Profile() {
           headers: { Authorization: `Bearer ${token}` }
         });
         const data = await res.json();
+
+        if (res.ok && data.user) {
+          setUser({
+            name: data.user.name,
+            email: data.user.email,
+            avatar: "https://i.pravatar.cc/150"
+          });
+        }
+      }
+    } catch (e) {
+      console.error("Profile fetch error", e);
+    }
+  };
