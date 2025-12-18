@@ -57,3 +57,21 @@ async function main() {
       image: "grapes.png",
       categoryName: "Buah"
     },
+
+    {
+      name: "Pomegranate",
+      description: "Fresh Pomegranate 1.50 lbs",
+      price: 2.09,
+      stock: 45,
+      image: "pomegranate.png",
+      categoryName: "Buah"
+    },
+    {
+      name: "Fresh Broccoli",
+      description: "Fresh Broccoli 1 kg",
+      price: 3.00,
+      stock: 60,
+      image: "broccoli.png",
+      categoryName: "Vegetables"
+    }
+  ];
