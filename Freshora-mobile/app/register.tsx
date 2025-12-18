@@ -33,7 +33,7 @@ export default function RegisterScreen() {
     // Listener saat keyboard muncul
     const show = Keyboard.addListener("keyboardDidShow", () => {
       Animated.timing(modalY, {
-        toValue: -height * 0.30, 
+        toValue: -height * 0.30,
         duration: 300,
         easing: Easing.out(Easing.ease),
         useNativeDriver: true,
@@ -57,11 +57,20 @@ export default function RegisterScreen() {
     };
   }, []);
 
-  // Fungsi untuk mengirim data pendaftaran ke backend API
+  //Fungsi untuk mengirim data pendaftaran ke backend API
   const handleSignup = async () => {
+    if (!name || !email || !password || !phone) {
+      return Alert.alert("Peringatan", "Semua data wajib diisi.");
+    }
+
     try {
+      const { API_BASE_URL, ENDPOINTS } = require("../constants/Config");
+      const url = `${API_BASE_URL}${ENDPOINTS.REGISTER}`;
+
+      console.log("Attempting register to:", url);
+
       // Lakukan permintaan POST ke endpoint register API
-      const res = await fetch("http://192.168.100.10:4000/api/auth/register", {
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password, phone }),
@@ -71,22 +80,23 @@ export default function RegisterScreen() {
       const data = await res.json();
 
       // Jika server memberikan status selain 200 OK → lempar error
-      if (!res.ok) throw new Error(data.message);
+      if (!res.ok) throw new Error(data.message || "Gagal mendaftar");
 
       // Berhasil daftar
-      Alert.alert("Pendaftaran Berhasil", "Silakan login untuk melanjutkan");
+      Alert.alert("Pendaftaran Berhasil", "Silakan login untuk melanjutkan", [
+        { text: "OK", onPress: () => router.push("/login") }
+      ]);
 
-      // Arahkan user ke halaman login
-      router.push("/login");
     } catch (err: any) {
       // Tangani error (misalnya email sudah terdaftar)
-      Alert.alert("Gagal Daftar", err.message);
+      console.error("Register Error:", err);
+      Alert.alert("Gagal Daftar", err.message || "Terjadi kesalahan jaringan.");
     }
   };
-// Render tampilan register
-return (
+  // Render tampilan register
+  return (
     <ImageBackground
-      source={require("../assets/bg-register.png")} // ✅ Gambar latar belakang halaman register
+      source={require("../assets/bg-register.png")}
       style={styles.bg}
       resizeMode="cover"
     >
@@ -98,7 +108,7 @@ return (
         style={[
           styles.modal,
           {
-            transform: [{ translateY: modalY }], 
+            transform: [{ translateY: modalY }],
           },
         ]}
       >
@@ -153,7 +163,7 @@ return (
           />
         </View>
 
-         {/*  Tombol Signup dengan efek gradasi hijau */}
+        {/*  Tombol Signup dengan efek gradasi hijau */}
         <TouchableOpacity style={styles.btnContainer} onPress={handleSignup}>
           <LinearGradient colors={["#7ED957", "#6CC51D"]} style={styles.btn}>
             <Text style={styles.btnText}>Signup</Text>
@@ -173,11 +183,11 @@ return (
 }
 
 //   styles tampilan register
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   bg: { flex: 1, justifyContent: "flex-end" },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.3)", 
+    backgroundColor: "rgba(0,0,0,0.3)",
   },
   modal: {
     backgroundColor: "#fff",
