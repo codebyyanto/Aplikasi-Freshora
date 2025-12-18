@@ -97,3 +97,24 @@ export default function OrderHistory() {
                 </View>
             </View>
         );
+
+        return (
+            <View style={styles.container}>
+
+                {/* ===== TOP BAR ===== */}
+                <View style={styles.topBar}>
+                    <TouchableOpacity
+                        onPress={() => router.back()}
+                        style={styles.backBtn}
+                    >
+                        <Ionicons
+                            name="arrow-back"
+                            size={24}
+                            color="#333"
+                        />
+                    </TouchableOpacity>
+
+                    <Text style={styles.title}>
+                        Riwayat Pesanan
+                    </Text>
+                </View>
