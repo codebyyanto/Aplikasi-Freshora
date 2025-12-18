@@ -35,3 +35,10 @@ export default function CartScreen() {
     const router = useRouter();
     const [cartItems, setCartItems] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+
+    // Refresh cart every time the screen comes into focus
+    useFocusEffect(
+        useCallback(() => {
+            fetchCart();
+        }, [])
+    );
