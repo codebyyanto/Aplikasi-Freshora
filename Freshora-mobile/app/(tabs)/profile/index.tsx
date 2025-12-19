@@ -52,6 +52,7 @@ export default function Profile() {
     { icon: "location-outline", text: "Alamat Saya", action: () => { } },
     { icon: "card-outline", text: "Kartu Saya", action: () => { } },
     { icon: "cash-outline", text: "Transaksi Saya", action: () => { } },
+    { icon: "notifications-outline", text: "Notifikasi", action: () => { } },
     { icon: "key-outline", text: "Ubah Password", action: () => { } },
     { icon: "log-out-outline", text: "Keluar", action: handleLogout },
   ];
