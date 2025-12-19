@@ -84,8 +84,8 @@ export default function Profile() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff" },
-  profileBox: { alignItems: "center", paddingVertical: 30 },
+  container: { flex: 1, backgroundColor: "#e6e6e6ff" },
+  profileBox: { alignItems: "center", paddingVertical: 30, backgroundColor: "#fff" },
   avatarContainer: {
     position: "relative",
     width: 90,
@@ -115,13 +115,13 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 25,
     borderBottomWidth: 1,
-    borderBottomColor: "#F3F3F3",
+    borderBottomColor: "#dfdfdfff",
   },
 
   menuText: {
     flex: 1,
     marginLeft: 15,
-    color: "#333",
+    color: "#080808ff",
     fontSize: 15,
   },
 });
