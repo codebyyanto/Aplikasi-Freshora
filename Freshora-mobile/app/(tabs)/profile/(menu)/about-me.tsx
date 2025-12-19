@@ -27,3 +27,12 @@ export default function AboutMe() {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 const data = await res.json();
+
+                if (res.ok && data.user) {
+                    setUser({
+                        name: data.user.name,
+                        email: data.user.email,
+                        phone: data.user.phone || "+62 812 3456 7890",
+                    });
+                }
+            }
