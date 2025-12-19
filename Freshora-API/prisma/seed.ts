@@ -27,7 +27,7 @@ async function main() {
     {
       name: "Fresh Peach",
       description: "Fresh Peach per dozen",
-      price: 8.00,
+      price: 8000,
       stock: 50,
       image: "peach.png",
       categoryName: "Buah"
@@ -35,7 +35,7 @@ async function main() {
     {
       name: "Avacado",
       description: "Fresh Avocado 2.0 lbs",
-      price: 7.00,
+      price: 7000,
       stock: 40,
       image: "avocado.png",
       categoryName: "Vegetables"
@@ -44,7 +44,7 @@ async function main() {
     {
       name: "Pineapple",
       description: "Fresh Pineapple 1.50 lbs",
-      price: 9.90,
+      price: 9900,
       stock: 30,
       image: "pineapple.png",
       categoryName: "Buah"
@@ -52,7 +52,7 @@ async function main() {
     {
       name: "Black Grapes",
       description: "Black Grapes 5.0 lbs",
-      price: 7.05,
+      price: 7050,
       stock: 25,
       image: "grapes.png",
       categoryName: "Buah"
@@ -61,7 +61,7 @@ async function main() {
     {
       name: "Pomegranate",
       description: "Fresh Pomegranate 1.50 lbs",
-      price: 2.09,
+      price: 2090,
       stock: 45,
       image: "pomegranate.png",
       categoryName: "Buah"
@@ -69,7 +69,7 @@ async function main() {
     {
       name: "Fresh Broccoli",
       description: "Fresh Broccoli 1 kg",
-      price: 3.00,
+      price: 3000,
       stock: 60,
       image: "broccoli.png",
       categoryName: "Vegetables"
