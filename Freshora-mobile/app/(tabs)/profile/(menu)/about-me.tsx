@@ -46,3 +46,12 @@ export default function AboutMe() {
         <>
             <Stack.Screen options={{ headerShown: false }} />
             <Tabs.Screen options={{ tabBarStyle: { display: "none" }, href: null }} />
+
+            <View style={styles.container}>
+                {/* Custom Header */}
+                <View style={styles.header}>
+                    <TouchableOpacity onPress={() => router.replace("/(tabs)/profile")} style={styles.backButton}>
+                        <Ionicons name="arrow-back" size={24} color="#000" />
+                    </TouchableOpacity>
+                    <Text style={styles.headerTitle}>Tentang Saya</Text>
+                </View>
