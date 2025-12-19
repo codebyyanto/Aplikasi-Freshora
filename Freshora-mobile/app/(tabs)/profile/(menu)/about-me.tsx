@@ -41,3 +41,8 @@ export default function AboutMe() {
             console.error("Profile fetch error", e);
         }
     };
+
+    return (
+        <>
+            <Stack.Screen options={{ headerShown: false }} />
+            <Tabs.Screen options={{ tabBarStyle: { display: "none" }, href: null }} />
