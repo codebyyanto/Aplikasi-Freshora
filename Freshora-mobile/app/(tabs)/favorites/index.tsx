@@ -19,3 +19,22 @@ const IMAGE_MAP: Record<string, any> = {
 export default function FavoritesScreen() {
   const router = useRouter();
   const [favorites, setFavorites] = useState<any[]>([]);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadFavorites();
+    }, [])
+  );
+
+  const loadFavorites = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("userFavorites");
+      if (jsonValue != null) {
+        setFavorites(JSON.parse(jsonValue));
+      } else {
+        setFavorites([]);
+      }
+    } catch (e) {
+      console.error("Failed to load favorites", e);
+    }
+  };
