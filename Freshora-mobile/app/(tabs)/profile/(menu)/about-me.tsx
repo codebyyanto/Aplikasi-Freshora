@@ -55,3 +55,6 @@ export default function AboutMe() {
                     </TouchableOpacity>
                     <Text style={styles.headerTitle}>Tentang Saya</Text>
                 </View>
+
+                <ScrollView contentContainerStyle={styles.scrollContent}>
+                    <Text style={styles.sectionTitle}>Detail Tentang Saya</Text>
