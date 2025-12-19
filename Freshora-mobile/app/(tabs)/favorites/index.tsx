@@ -100,3 +100,20 @@ export default function FavoritesScreen() {
           <Text style={styles.title}>Favorites</Text>
           <View style={{ width: 24 }} />
         </View>
+
+        <FlatList
+          data={favorites}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={renderItem}
+          contentContainerStyle={styles.listContent}
+          ListEmptyComponent={
+            <View style={styles.emptyState}>
+              <Ionicons name="heart-dislike-outline" size={60} color="#DDD" />
+              <Text style={styles.emptyText}>Belum ada barang favorit</Text>
+            </View>
+          }
+        />
+      </SafeAreaView>
+    </GestureHandlerRootView>
+  );
+}
