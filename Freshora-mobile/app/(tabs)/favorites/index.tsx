@@ -117,3 +117,94 @@ export default function FavoritesScreen() {
     </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#F0F0F0"
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#333"
+  },
+  listContent: {
+    padding: 20,
+    paddingBottom: 100
+  },
+  card: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    marginBottom: 16,
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#F5F7FA"
+  },
+  imageContainer: {
+    width: 70,
+    height: 70,
+    backgroundColor: "#F8F8F8",
+    borderRadius: 35,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 15
+  },
+  image: {
+    width: 45,
+    height: 45
+  },
+  infoContainer: {
+    flex: 1
+  },
+  priceText: {
+    color: "#6CC51D",
+    fontWeight: "bold",
+    fontSize: 14,
+    marginBottom: 2
+  },
+  nameText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 2
+  },
+  weightText: {
+    color: "#999",
+    fontSize: 12
+  },
+  actionsContainer: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    height: 60
+  },
+  iconBtn: {
+    padding: 5
+  },
+  deleteButton: {
+    backgroundColor: "#FF5252",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 70,
+    height: "100%",
+    marginBottom: 16,
+  },
+  emptyState: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 100
+  },
+  emptyText: {
+    color: "#999",
+    marginTop: 10
+  }
+});
