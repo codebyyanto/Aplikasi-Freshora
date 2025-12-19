@@ -89,3 +89,14 @@ export default function FavoritesScreen() {
       </Swipeable>
     );
   };
+
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => router.back()}>
+            <Ionicons name="arrow-back" size={24} color="#000" />
+          </TouchableOpacity>
+          <Text style={styles.title}>Favorites</Text>
+          <View style={{ width: 24 }} />
+        </View>
