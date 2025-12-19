@@ -113,3 +113,15 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginRight: 30,
     },
+
+    scrollContent: {
+        padding: 20,
+        backgroundColor: "#F8F9FB",
+        flexGrow: 1,
+    },
+    sectionTitle: {
+        fontSize: 16,
+        fontWeight: "600",
+        marginBottom: 15,
+        color: "#000",
+    },
