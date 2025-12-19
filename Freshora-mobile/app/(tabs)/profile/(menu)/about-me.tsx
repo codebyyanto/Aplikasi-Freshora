@@ -70,3 +70,11 @@ export default function AboutMe() {
                             <Text style={styles.text}>{user.email}</Text>
                         </View>
                     </View>
+                    <View style={styles.card}>
+                        <View style={styles.row}>
+                            <Ionicons name="call-outline" size={20} color="#888" style={styles.icon} />
+                            <Text style={styles.text}>{user.phone}</Text>
+                        </View>
+                    </View>
+
+                </ScrollView>
