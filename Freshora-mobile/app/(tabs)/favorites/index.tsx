@@ -15,3 +15,7 @@ const IMAGE_MAP: Record<string, any> = {
   "broccoli.png": require("../../../assets/images/products/broccoli.png"),
   "default": require("../../../assets/images/products/peach.png")
 };
+
+export default function FavoritesScreen() {
+  const router = useRouter();
+  const [favorites, setFavorites] = useState<any[]>([]);
