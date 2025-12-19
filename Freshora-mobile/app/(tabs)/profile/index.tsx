@@ -51,6 +51,7 @@ export default function Profile() {
     { icon: "heart-outline", text: "Favorit Saya", action: () => router.push("/(tabs)/favorites") },
     { icon: "location-outline", text: "Alamat Saya", action: () => { } },
     { icon: "card-outline", text: "Kartu Saya", action: () => { } },
+    { icon: "cash-outline", text: "Transaksi Saya", action: () => { } },
     { icon: "key-outline", text: "Ubah Password", action: () => { } },
     { icon: "log-out-outline", text: "Keluar", action: handleLogout },
   ];
