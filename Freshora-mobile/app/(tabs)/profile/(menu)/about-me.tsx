@@ -58,3 +58,9 @@ export default function AboutMe() {
 
                 <ScrollView contentContainerStyle={styles.scrollContent}>
                     <Text style={styles.sectionTitle}>Detail Tentang Saya</Text>
+                    <View style={styles.card}>
+                        <View style={styles.row}>
+                            <Ionicons name="person-outline" size={20} color="#888" style={styles.icon} />
+                            <Text style={styles.text}>{user.name}</Text>
+                        </View>
+                    </View>
