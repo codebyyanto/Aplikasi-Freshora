@@ -48,3 +48,14 @@ export default function FavoritesScreen() {
       console.error("Failed to remove favorite", e);
     }
   };
+
+  const renderRightActions = (id: number) => {
+    return (
+      <TouchableOpacity
+        style={styles.deleteButton}
+        onPress={() => removeFavorite(id)}
+      >
+        <Ionicons name="trash-outline" size={24} color="#fff" />
+      </TouchableOpacity>
+    );
+  };
