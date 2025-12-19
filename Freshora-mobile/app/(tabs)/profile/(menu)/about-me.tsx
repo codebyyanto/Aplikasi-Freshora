@@ -36,3 +36,8 @@ export default function AboutMe() {
                     });
                 }
             }
+
+        } catch (e) {
+            console.error("Profile fetch error", e);
+        }
+    };
