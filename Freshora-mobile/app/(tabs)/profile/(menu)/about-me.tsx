@@ -64,3 +64,9 @@ export default function AboutMe() {
                             <Text style={styles.text}>{user.name}</Text>
                         </View>
                     </View>
+                    <View style={styles.card}>
+                        <View style={styles.row}>
+                            <Ionicons name="mail-outline" size={20} color="#888" style={styles.icon} />
+                            <Text style={styles.text}>{user.email}</Text>
+                        </View>
+                    </View>
