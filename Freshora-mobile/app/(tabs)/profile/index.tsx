@@ -46,7 +46,7 @@ export default function Profile() {
   };
 
   const menu = [
-    { icon: "person-outline", text: "Tentang Saya", action: () => { } },
+    { icon: "person-outline", text: "Tentang Saya", action: () => router.push("/profile/about-me") },
     { icon: "cube-outline", text: "Pesanan Saya", action: () => router.push("/orders") },
     { icon: "heart-outline", text: "Favorit Saya", action: () => router.push("/(tabs)/favorites") },
     { icon: "location-outline", text: "Alamat Saya", action: () => { } },

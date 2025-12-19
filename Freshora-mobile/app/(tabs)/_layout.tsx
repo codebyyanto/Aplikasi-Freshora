@@ -65,6 +65,13 @@ export default function TabsLayout() {
           ),
         }}
       />
+
+      <Tabs.Screen
+        name="profile/(menu)/about-me"
+        options={{
+          href: null,
+        }}
+      />
     </Tabs>
   );
 }

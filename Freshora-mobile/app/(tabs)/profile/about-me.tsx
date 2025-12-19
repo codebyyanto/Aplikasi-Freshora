@@ -1,0 +1,167 @@
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { Stack, useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import React, { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { API_BASE_URL, ENDPOINTS } from "../../../constants/Config";
+
+export default function AboutMe() {
+    const router = useRouter();
+    const [user, setUser] = useState({
+        name: "User",
+        email: "user@example.com",
+        phone: "+62 812 3456 7890", // Default or fetched
+    });
+
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
+    const fetchProfile = async () => {
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            if (token) {
+                const res = await fetch(`${API_BASE_URL}${ENDPOINTS.ME}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                const data = await res.json();
+                if (res.ok && data.user) {
+                    setUser({
+                        name: data.user.name,
+                        email: data.user.email,
+                        phone: data.user.phone || "+62 812 3456 7890", // Mock if not available
+                    });
+                }
+            }
+        } catch (e) {
+            console.error("Profile fetch error", e);
+        }
+    };
+
+    return (
+        <>
+            <Stack.Screen options={{ headerShown: false }} />
+            <View style={styles.container}>
+                {/* Custom Header */}
+                <View style={styles.header}>
+                    <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+                        <Ionicons name="arrow-back" size={24} color="#000" />
+                    </TouchableOpacity>
+                    <Text style={styles.headerTitle}>Tentang Saya</Text>
+                </View>
+
+                <ScrollView contentContainerStyle={styles.scrollContent}>
+                    <Text style={styles.sectionTitle}>Detail Tentang Saya</Text>
+
+                    <View style={styles.card}>
+                        <View style={styles.row}>
+                            <Ionicons name="person-outline" size={20} color="#888" style={styles.icon} />
+                            <Text style={styles.text}>{user.name}</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.card}>
+                        <View style={styles.row}>
+                            <Ionicons name="mail-outline" size={20} color="#888" style={styles.icon} />
+                            <Text style={styles.text}>{user.email}</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.card}>
+                        <View style={styles.row}>
+                            <Ionicons name="call-outline" size={20} color="#888" style={styles.icon} />
+                            <Text style={styles.text}>{user.phone}</Text>
+                        </View>
+                    </View>
+
+                </ScrollView>
+
+                <View style={styles.footer}>
+                    <TouchableOpacity style={styles.editButton} onPress={() => { /* Navigate to edit */ }}>
+                        <Text style={styles.editButtonText}>Edit Tentang Saya</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff", // White to match design
+    },
+    header: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingHorizontal: 20,
+        paddingTop: 50, // Adjust for status bar
+        paddingBottom: 20,
+        backgroundColor: "#fff",
+    },
+    backButton: {
+        marginRight: 15,
+    },
+    headerTitle: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#000",
+        flex: 1,
+        textAlign: "center",
+        marginRight: 30, // Balance the back button spacing
+    },
+    scrollContent: {
+        padding: 20,
+        backgroundColor: "#F8F9FB",
+        flexGrow: 1,
+    },
+    sectionTitle: {
+        fontSize: 16,
+        fontWeight: "600",
+        marginBottom: 15,
+        color: "#000",
+    },
+    card: {
+        backgroundColor: "#fff",
+        borderRadius: 8,
+        paddingVertical: 15,
+        paddingHorizontal: 15,
+        marginBottom: 12,
+        borderWidth: 1,
+        borderColor: "#EAEAEA",
+        // Shadow for iOS
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.05,
+        shadowRadius: 2,
+        // Shadow for Android
+        elevation: 2,
+    },
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    icon: {
+        marginRight: 15,
+    },
+    text: {
+        fontSize: 15,
+        color: "#555",
+        fontWeight: "500",
+    },
+    footer: {
+        padding: 20,
+        paddingBottom: 40,
+    },
+    editButton: {
+        backgroundColor: "#6CC51D",
+        paddingVertical: 15,
+        borderRadius: 8,
+        alignItems: "center",
+    },
+    editButtonText: {
+        color: "#fff",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+});
