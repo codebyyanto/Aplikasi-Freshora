@@ -56,10 +56,12 @@ export default function Profile() {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileBox}>
-        <Image source={{ uri: user.avatar }} style={styles.avatar} />
-        <TouchableOpacity style={styles.cameraBtn}>
-          <Ionicons name="camera" size={16} color="#fff" />
-        </TouchableOpacity>
+        <View style={styles.avatarContainer}>
+          <Image source={{ uri: user.avatar }} style={styles.avatar} />
+          <TouchableOpacity style={styles.cameraBtn}>
+            <Ionicons name="camera" size={16} color="#fff" />
+          </TouchableOpacity>
+        </View>
         <Text style={styles.name}>{user.name}</Text>
         <Text style={styles.email}>{user.email}</Text>
       </View>
@@ -80,18 +82,26 @@ export default function Profile() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff" },
   profileBox: { alignItems: "center", paddingVertical: 30 },
+  avatarContainer: {
+    position: "relative",
+    width: 90,
+    height: 90,
+    marginBottom: 10,
+  },
   avatar: { width: 90, height: 90, borderRadius: 45 },
 
   cameraBtn: {
     position: "absolute",
-    bottom: 35,
-    right: 150,
+    bottom: 0,
+    right: 0,
     backgroundColor: "#6CC51D",
-    padding: 5,
-    borderRadius: 12,
+    padding: 6,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: "#fff",
   },
 
-  name: { fontSize: 18, fontWeight: "700", color: "#333", marginTop: 10 },
+  name: { fontSize: 18, fontWeight: "700", color: "#333" },
   email: { color: "#777", fontSize: 13 },
 
   menuBox: { marginTop: 10 },
