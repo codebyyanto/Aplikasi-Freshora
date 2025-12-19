@@ -50,7 +50,7 @@ export default function Profile() {
     { icon: "cube-outline", text: "Pesanan Saya", action: () => router.push("/orders") },
     { icon: "heart-outline", text: "Favorit Saya", action: () => router.push("/(tabs)/favorites") },
     { icon: "location-outline", text: "Alamat Saya", action: () => { } },
-    { icon: "log-out-outline", text: "Sign out", action: handleLogout },
+    { icon: "log-out-outline", text: "Keluar", action: handleLogout },
   ];
 
   return (
