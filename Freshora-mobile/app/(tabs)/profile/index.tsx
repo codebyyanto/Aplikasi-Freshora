@@ -46,7 +46,7 @@ export default function Profile() {
   };
 
   const menu = [
-    { icon: "person-outline", text: "About me", action: () => { } },
+    { icon: "person-outline", text: "Tentang Saya", action: () => { } },
     { icon: "cube-outline", text: "My Orders", action: () => router.push("/orders") },
     { icon: "heart-outline", text: "My Favorites", action: () => router.push("/(tabs)/favorites") },
     { icon: "location-outline", text: "My Address", action: () => { } },
