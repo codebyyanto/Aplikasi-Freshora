@@ -48,7 +48,7 @@ export default function Profile() {
   const menu = [
     { icon: "person-outline", text: "Tentang Saya", action: () => { } },
     { icon: "cube-outline", text: "Pesanan Saya", action: () => router.push("/orders") },
-    { icon: "heart-outline", text: "My Favorites", action: () => router.push("/(tabs)/favorites") },
+    { icon: "heart-outline", text: "Favorit Saya", action: () => router.push("/(tabs)/favorites") },
     { icon: "location-outline", text: "My Address", action: () => { } },
     { icon: "log-out-outline", text: "Sign out", action: handleLogout },
   ];
