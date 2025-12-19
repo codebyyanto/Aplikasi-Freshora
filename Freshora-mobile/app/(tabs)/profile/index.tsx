@@ -30,7 +30,7 @@ export default function Profile() {
           setUser({
             name: data.user.name,
             email: data.user.email,
-            avatar: "https://i.pravatar.cc/150"
+            avatar: "https://img.freepik.com/premium-vector/vector-flat-icon-isolated-user-profile-avatar-silhouette-man-woman-gray-silhouette-black-background-perfect-social-media-messengers-stories-your-adx9xa_719432-807.jpg"
           });
         }
       }
