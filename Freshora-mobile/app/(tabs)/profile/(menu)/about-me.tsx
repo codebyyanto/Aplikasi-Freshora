@@ -13,3 +13,7 @@ export default function AboutMe() {
         email: "user@example.com",
         phone: "+62 812 3456 7890",
     });
+
+    useEffect(() => {
+        fetchProfile();
+    }, []);
