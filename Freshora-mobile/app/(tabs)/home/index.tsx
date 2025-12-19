@@ -43,14 +43,14 @@ const IMAGE_MAP: Record<string, any> = {
 
 // Mapping icon kategori berdasarkan nama kategori dari API
 const CATEGORY_ICONS: Record<string, any> = {
-  Vegetables: require("../../../assets/images/categories/vegetables.png"),
-  Buah: require("../../../assets/images/categories/fruits.png"),
-  Minuman: require("../../../assets/images/categories/drinks.png"),
-  Kebutuhan: require("../../../assets/images/categories/needs.png"),
-  "Minyak nabati": require("../../../assets/images/categories/oil.png"),
+  Vegetables: require("../../../assets/categories_icons/vegetables.png"),
+  Buah: require("../../../assets/categories_icons/fruits.png"),
+  Minuman: require("../../../assets/categories_icons/drinks.png"),
+  Kebutuhan: require("../../../assets/categories_icons/groceries.png"),
+  "Minyak nabati": require("../../../assets/categories_icons/oil.png"),
 
   // Fallback icon
-  default: require("../../../assets/images/categories/vegetables.png"),
+  default: require("../../../assets/categories_icons/vegetables.png"),
 };
 // Import konfigurasi API
 import { API_BASE_URL, ENDPOINTS } from "../../../constants/Config";
@@ -152,7 +152,6 @@ export default function Home() {
       >
 
         {/*BANNER PROMO*/}
-        {/* Banner promosi statis */}
         <View style={styles.bannerContainer}>
           <Image
             source={require("../../../assets/images/banner/banner-promo.png")}
