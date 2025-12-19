@@ -152,3 +152,20 @@ const styles = StyleSheet.create({
         color: "#555",
         fontWeight: "500",
     },
+
+    footer: {
+        padding: 20,
+        paddingBottom: 40,
+    },
+    editButton: {
+        backgroundColor: "#6CC51D",
+        paddingVertical: 15,
+        borderRadius: 8,
+        alignItems: "center",
+    },
+    editButtonText: {
+        color: "#fff",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+});
