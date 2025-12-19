@@ -5,3 +5,13 @@ import { useRouter, useFocusEffect } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GestureHandlerRootView, Swipeable } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const IMAGE_MAP: Record<string, any> = {
+  "peach.png": require("../../../assets/images/products/peach.png"),
+  "avocado.png": require("../../../assets/images/products/avocado.png"),
+  "pineapple.png": require("../../../assets/images/products/pineapple.png"),
+  "grapes.png": require("../../../assets/images/products/grapes.png"),
+  "pomegranate.png": require("../../../assets/images/products/pomegranate.png"),
+  "broccoli.png": require("../../../assets/images/products/broccoli.png"),
+  "default": require("../../../assets/images/products/peach.png")
+};
