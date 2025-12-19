@@ -78,3 +78,13 @@ export default function AboutMe() {
                     </View>
 
                 </ScrollView>
+
+                <View style={styles.footer}>
+                    <TouchableOpacity style={styles.editButton} onPress={() => { /* Navigate to edit */ }}>
+                        <Text style={styles.editButtonText}>Edit Tentang Saya</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </>
+    );
+}
