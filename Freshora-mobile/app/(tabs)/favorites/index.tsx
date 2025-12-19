@@ -38,3 +38,13 @@ export default function FavoritesScreen() {
       console.error("Failed to load favorites", e);
     }
   };
+
+  const removeFavorite = async (id: number) => {
+    try {
+      const newFavorites = favorites.filter(item => item.id !== id);
+      setFavorites(newFavorites);
+      await AsyncStorage.setItem("userFavorites", JSON.stringify(newFavorites));
+    } catch (e) {
+      console.error("Failed to remove favorite", e);
+    }
+  };
