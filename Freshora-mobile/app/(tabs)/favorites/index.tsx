@@ -59,3 +59,33 @@ export default function FavoritesScreen() {
       </TouchableOpacity>
     );
   };
+
+  const renderItem = ({ item }: { item: any }) => {
+    const imageSource = item.image && IMAGE_MAP[item.image] ? IMAGE_MAP[item.image] : IMAGE_MAP["default"];
+
+    return (
+      <Swipeable renderRightActions={() => renderRightActions(item.id)}>
+        <View style={styles.card}>
+          <View style={styles.imageContainer}>
+            <Image source={imageSource} style={styles.image} resizeMode="contain" />
+          </View>
+
+          <View style={styles.infoContainer}>
+            <Text style={styles.priceText}>Rp {item.price.toLocaleString("id-ID")}</Text>
+            <Text style={styles.nameText}>{item.name}</Text>
+            <Text style={styles.weightText}>1 kg</Text>
+          </View>
+
+          <View style={styles.actionsContainer}>
+            <TouchableOpacity style={styles.iconBtn} onPress={() => Alert.alert("Feature", "Add to cart logic here")}>
+              <Ionicons name="add" size={20} color="#6CC51D" />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.iconBtn} onPress={() => removeFavorite(item.id)}>
+              <Ionicons name="remove" size={20} color="#6CC51D" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Swipeable>
+    );
+  };
