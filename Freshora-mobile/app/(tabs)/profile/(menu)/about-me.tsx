@@ -125,3 +125,30 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         color: "#000",
     },
+
+    card: {
+        backgroundColor: "#fff",
+        borderRadius: 8,
+        paddingVertical: 15,
+        paddingHorizontal: 15,
+        marginBottom: 12,
+        borderWidth: 1,
+        borderColor: "#EAEAEA",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.05,
+        shadowRadius: 2,
+        elevation: 2,
+    },
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    icon: {
+        marginRight: 15,
+    },
+    text: {
+        fontSize: 15,
+        color: "#555",
+        fontWeight: "500",
+    },
