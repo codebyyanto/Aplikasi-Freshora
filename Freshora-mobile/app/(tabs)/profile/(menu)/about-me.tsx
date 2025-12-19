@@ -5,3 +5,11 @@ import React, { useEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_BASE_URL, ENDPOINTS } from "../../../../constants/Config";
+
+export default function AboutMe() {
+    const router = useRouter();
+    const [user, setUser] = useState({
+        name: "User",
+        email: "user@example.com",
+        phone: "+62 812 3456 7890",
+    });
