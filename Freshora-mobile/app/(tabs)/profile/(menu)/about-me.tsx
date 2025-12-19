@@ -17,3 +17,8 @@ export default function AboutMe() {
     useEffect(() => {
         fetchProfile();
     }, []);
+
+    const fetchProfile = async () => {
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            if (token) {
