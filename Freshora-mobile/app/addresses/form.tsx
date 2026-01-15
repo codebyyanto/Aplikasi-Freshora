@@ -109,3 +109,28 @@ export default function AddressForm() {
             setLoading(false);
         }
     };
+
+    if (initialLoading) {
+        return (
+            <View style={[styles.container, { justifyContent: 'center' }]}>
+                <ActivityIndicator size="large" color="#6CC51D" />
+            </View>
+        );
+    }
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.topBar}>
+                <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+                    <Ionicons name="arrow-back" size={24} color="#333" />
+                </TouchableOpacity>
+                <Text style={styles.title}>{isEdit ? "Ubah Alamat" : "Tambah Alamat"}</Text>
+                <View style={{ width: 24 }} />
+            </View>
+
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={{ flex: 1 }}
+            >
+                <ScrollView contentContainerStyle={styles.scrollContent}>
+                    {/}
