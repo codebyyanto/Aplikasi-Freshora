@@ -151,3 +151,38 @@ export default function PaymentScreen() {
                                     {isSelected && <View style={styles.radioInner} />}
                                 </View>
                             </View>
+
+                            {/* Extra Input (e.g. GoPay Number) */}
+                            {isSelected && method.requiresInput && (
+                                <View style={styles.extraInputContainer}>
+                                    <Text style={styles.inputLabel}>{method.inputLabel}</Text>
+                                    <TextInput
+                                        style={styles.textInput}
+                                        placeholder={method.inputPlaceholder}
+                                        keyboardType="phone-pad"
+                                        value={extraInput}
+                                        onChangeText={setExtraInput}
+                                    />
+                                </View>
+                            )}
+                        </TouchableOpacity>
+                    );
+                })}
+            </ScrollView>
+
+            <View style={styles.footer}>
+                <TouchableOpacity
+                    style={[styles.payBtn, (submitting || !selectedMethod) && styles.disabledBtn]}
+                    onPress={handlePayment}
+                    disabled={submitting || !selectedMethod}
+                >
+                    {submitting ? (
+                        <ActivityIndicator color="#fff" />
+                    ) : (
+                        <Text style={styles.payBtnText}>Bayar Sekarang</Text>
+                    )}
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
+    );
+}
