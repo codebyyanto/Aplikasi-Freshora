@@ -131,5 +131,18 @@ return (
         {loading ? (
             <ActivityIndicator size="large" color="#6CC51D" style={{ marginTop: 20 }} />
         ) : (
-                // FlatList akan ada di sini
-            )
+            <FlatList
+                data={addresses}
+                keyExtractor={(item) => String(item.id)}
+                renderItem={renderItem}
+                contentContainerStyle={styles.list}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={["#6CC51D"]} />
+                }
+                ListEmptyComponent={
+                    <View style={styles.empty}>
+                        <Text style={styles.emptyText}>Belum ada alamat tersimpan</Text>
+                    </View>
+                }
+            />
+        )
