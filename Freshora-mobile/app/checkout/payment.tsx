@@ -75,3 +75,18 @@ export default function PaymentScreen() {
             });
 
             const data = await res.json();
+
+            if (res.ok) {
+                Alert.alert("Sukses", "Pesanan berhasil dibuat!", [
+                    { text: "Lihat Pesanan", onPress: () => router.replace("/orders") }
+                ]);
+            } else {
+                Alert.alert("Gagal", data.message || "Gagal membuat pesanan");
+            }
+        } catch (error) {
+            console.error(error);
+            Alert.alert("Error", "Gagal menghubungi server");
+        } finally {
+            setSubmitting(false);
+        }
+    };
