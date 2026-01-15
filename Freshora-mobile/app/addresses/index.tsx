@@ -22,3 +22,24 @@ export default function AddressList() {
 const [addresses, setAddresses] = useState<any[]>([]);
 const [loading, setLoading] = useState(true);
 const [refreshing, setRefreshing] = useState(false);
+
+const fetchAddresses = async () => {
+    try {
+        const token = await AsyncStorage.getItem("userToken");
+        if (!token) return;
+
+        const res = await fetch(`${API_BASE_URL}${ENDPOINTS.PROFILE}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+
+        const data = await res.json();
+        if (res.ok && data.user) {
+            setAddresses(data.user.addresses || []);
+        }
+    } catch (error) {
+        console.error(error);
+    } finally {
+        setLoading(false);
+        setRefreshing(false);
+    }
+};
