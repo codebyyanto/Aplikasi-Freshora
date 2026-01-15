@@ -31,6 +31,11 @@ model Address {
   lng    Float?
   user   User    @relation(fields: [userId], references: [id])
   orders Order[]
+
+  recipientName String?
+  country       String?
+  phoneNumber   String?
+  isDefault     Boolean @default(false)
 }
 
 model Category {
