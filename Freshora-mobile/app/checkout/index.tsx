@@ -149,3 +149,65 @@ export default function CheckoutScreen() {
             </View>
 
             <ScrollView contentContainerStyle={styles.scrollContent}></ScrollView>
+            <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Alamat Pengiriman</Text>
+
+                {addresses.length === 0 ? (
+                    <TouchableOpacity style={styles.addAddressBtn} onPress={() => router.push("/addresses/form")}>
+                        <Ionicons name="add-circle-outline" size={24} color="#6CC51D" />
+                        <Text style={styles.addAddressText}>Tambah Alamat Baru</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <View style={styles.addressCard}>
+                        <View style={styles.addressHeader}>
+                            <Ionicons name="location" size={20} color="#6CC51D" />
+                            <Text style={styles.recipientName}>{selectedAddress?.recipientName || selectedAddress?.label}</Text>
+                        </View>
+                        <Text style={styles.addressText}>{selectedAddress?.street}</Text>
+                        <Text style={styles.addressText}>{selectedAddress?.city}, {selectedAddress?.postal}</Text>
+                        <Text style={styles.phoneText}>{selectedAddress?.phoneNumber}</Text>
+
+                        <TouchableOpacity
+                            style={styles.changeAddressBtn}
+                            onPress={() => setShowAddressList(!showAddressList)}
+                        >
+                            <Text style={styles.changeAddressText}>
+                                {showAddressList ? "Tutup Pilihan" : "Ganti Alamat"}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
+
+                {showAddressList && (
+                    <View style={styles.addressList}>
+                        {addresses.map(addr => (
+                            <TouchableOpacity
+                                key={addr.id}
+                                style={[
+                                    styles.addressOption,
+                                    selectedAddressId === addr.id && styles.selectedOption
+                                ]}
+                                onPress={() => {
+                                    setSelectedAddressId(addr.id);
+                                    setShowAddressList(false);
+                                }}
+                            >
+                                <View style={styles.radioOuter}>
+                                    {selectedAddressId === addr.id && <View style={styles.radioInner} />}
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.optionTitle}>{addr.recipientName || addr.label}</Text>
+                                    <Text style={styles.optionText} numberOfLines={1}>{addr.street}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        ))}
+                        <TouchableOpacity
+                            style={styles.addNewOption}
+                            onPress={() => router.push("/addresses/form")}
+                        >
+                            <Ionicons name="add" size={20} color="#6CC51D" />
+                            <Text style={styles.addNewText}>Tambah Alamat Lain</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
+            </View>
