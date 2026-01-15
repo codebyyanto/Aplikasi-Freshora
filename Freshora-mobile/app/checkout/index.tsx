@@ -80,3 +80,46 @@ export default function CheckoutScreen() {
             fetchData();
         }, [])
     );
+
+    const handleCreateOrder = async () => {
+        if (!selectedAddressId) {
+            Alert.alert("Error", "Silakan pilih alamat pengiriman terlebih dahulu");
+            return;
+        }
+
+        if (cartItems.length === 0) {
+            Alert.alert("Error", "Keranjang belanja kosong");
+            return;
+        }
+
+        setSubmitting(true);
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            const res = await fetch(`${API_BASE_URL}${ENDPOINTS.ORDERS}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    items: cartItems,
+                    addressId: selectedAddressId
+                })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                Alert.alert("Sukses", "Pesanan berhasil dibuat!", [
+                    { text: "Lihat Pesanan", onPress: () => router.replace("/orders") }
+                ]);
+            } else {
+                Alert.alert("Gagal", data.message || "Gagal membuat pesanan");
+            }
+        } catch (error) {
+            console.error(error);
+            Alert.alert("Error", "Terjadi kesalahan koneksi");
+        } finally {
+            setSubmitting(false);
+        }
+    };
