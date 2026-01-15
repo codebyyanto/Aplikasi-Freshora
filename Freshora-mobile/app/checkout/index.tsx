@@ -244,3 +244,24 @@ export default function CheckoutScreen() {
                 </View>
             </View>
         </ScrollView>
+
+        <View style={styles.footer}>
+                <TouchableOpacity
+                    style={[
+                        styles.orderBtn,
+                        (submitting || !selectedAddressId) && styles.disabledBtn
+                    ]}
+                    onPress={handleCreateOrder}
+                    disabled={submitting || !selectedAddressId}
+                >
+                    {submitting ? (
+                        <ActivityIndicator color="#fff" />
+                    ) : (
+                        <Text style={styles.orderBtnText}>Buat Pesanan</Text>
+                    )}
+                </TouchableOpacity>
+            </View>
+        </View >
+    );
+}
+
