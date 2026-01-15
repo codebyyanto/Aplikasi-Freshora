@@ -49,7 +49,7 @@ export default function Profile() {
     { icon: "person-outline", text: "Tentang Saya", action: () => router.push("/profile/about-me") },
     { icon: "cube-outline", text: "Pesanan Saya", action: () => router.push("/orders") },
     { icon: "heart-outline", text: "Favorit Saya", action: () => router.push("/(tabs)/favorites") },
-    { icon: "location-outline", text: "Alamat Saya", action: () => { } },
+    { icon: "location-outline", text: "Alamat Saya", action: () => router.push("/addresses") },
     { icon: "card-outline", text: "Kartu Saya", action: () => { } },
     { icon: "cash-outline", text: "Transaksi Saya", action: () => { } },
     { icon: "notifications-outline", text: "Notifikasi", action: () => { } },
