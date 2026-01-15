@@ -18,3 +18,7 @@ export default function AddressList() {
     const router = useRouter();
     // ... logic akan ada di sini
 }
+
+const [addresses, setAddresses] = useState<any[]>([]);
+const [loading, setLoading] = useState(true);
+const [refreshing, setRefreshing] = useState(false);
