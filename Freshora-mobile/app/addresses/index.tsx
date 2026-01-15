@@ -54,3 +54,29 @@ const onRefresh = () => {
     setRefreshing(true);
     fetchAddresses();
 };
+
+const handleDelete = async (id: number) => {
+    Alert.alert(
+        "Hapus Alamat",
+        "Apakah Anda yakin ingin menghapus alamat ini?",
+        [
+            { text: "Batal", style: "cancel" },
+            {
+                text: "Hapus",
+                style: "destructive",
+                onPress: async () => {
+                    try {
+                        const token = await AsyncStorage.getItem("userToken");
+                        await fetch(`${API_BASE_URL}/profile/address/${id}`, {
+                            method: 'DELETE',
+                            headers: { Authorization: `Bearer ${token}` }
+                        });
+                        fetchAddresses();
+                    } catch (e) {
+                        console.error(e);
+                    }
+                }
+            }
+        ]
+    );
+};
