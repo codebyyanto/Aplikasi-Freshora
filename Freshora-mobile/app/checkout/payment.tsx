@@ -114,3 +114,40 @@ export default function PaymentScreen() {
                 <Text style={styles.stepLabel}>Alamat</Text>
                 <Text style={[styles.stepLabel, styles.labelActive]}>Bayar</Text>
             </View>
+
+            <ScrollView contentContainerStyle={styles.content}>
+                <Text style={styles.sectionTitle}>Pilih Metode Pembayaran</Text>
+
+                {PAYMENT_METHODS.map((method) => {
+                    const isSelected = selectedMethod === method.id;
+                    return (
+                        <TouchableOpacity
+                            key={method.id}
+                            style={[
+                                styles.methodCard,
+                                isSelected && styles.methodCardSelected
+                            ]}
+                            onPress={() => setSelectedMethod(method.id)}
+                            activeOpacity={0.8}
+                        >
+                            <View style={styles.methodHeader}>
+                                <View style={[
+                                    styles.iconContainer,
+                                    isSelected ? { backgroundColor: "#6CC51D" } : { backgroundColor: "#F0F0F0" }
+                                ]}>
+                                    <Ionicons
+                                        name={method.icon as any}
+                                        size={24}
+                                        color={isSelected ? "#fff" : "#666"}
+                                    />
+                                </View>
+                                <View style={styles.methodInfo}>
+                                    <Text style={[styles.methodName, isSelected && styles.textSelected]}>
+                                        {method.name}
+                                    </Text>
+                                    <Text style={styles.methodDesc}>{method.description}</Text>
+                                </View>
+                                <View style={styles.radioOuter}>
+                                    {isSelected && <View style={styles.radioInner} />}
+                                </View>
+                            </View>
