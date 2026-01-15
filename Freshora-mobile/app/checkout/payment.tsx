@@ -15,3 +15,27 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_BASE_URL, ENDPOINTS } from "../../constants/Config";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const PAYMENT_METHODS = [
+    {
+        id: "cod",
+        name: "COD (Bayar di Tempat)",
+        icon: "cash-outline",
+        description: "Bayar tunai saat kurir sampai di lokasi Anda."
+    },
+    {
+        id: "gopay",
+        name: "GoPay",
+        icon: "wallet-outline",
+        description: "Hubungkan akun GoPay Anda untuk pembayaran instan.",
+        requiresInput: true,
+        inputLabel: "Nomor HP GoPay",
+        inputPlaceholder: "0812xxxx"
+    },
+    {
+        id: "bank_transfer",
+        name: "Transfer Bank",
+        icon: "card-outline",
+        description: "Transfer manual ke rekening Virtual Account (BCA/Mandiri/BRI)."
+    }
+];
