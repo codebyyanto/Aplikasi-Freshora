@@ -143,4 +143,129 @@ export default function OrderDetail() {
     );
 }
 
-
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#F7F9FC",
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#F7F9FC",
+    },
+    topBar: {
+        flexDirection: "row",
+        alignItems: "center",
+        padding: 20,
+        paddingTop: 50,
+        backgroundColor: "#fff",
+        elevation: 2,
+    },
+    backBtn: {
+        marginRight: 15,
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#333",
+    },
+    errorText: {
+        fontSize: 16,
+        color: "#999",
+        textAlign: "center",
+        marginTop: 50,
+    },
+    scrollContent: {
+        padding: 20,
+        paddingBottom: 40,
+    },
+    card: {
+        backgroundColor: "#fff",
+        borderRadius: 12,
+        padding: 15,
+        marginBottom: 15,
+        elevation: 1,
+    },
+    sectionTitle: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#333",
+    },
+    divider: {
+        height: 1,
+        backgroundColor: "#eee",
+        marginVertical: 10,
+    },
+    rowBetween: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    label: {
+        fontSize: 14,
+        color: "#666",
+    },
+    value: {
+        fontSize: 14,
+        color: "#333",
+        fontWeight: "500",
+    },
+    statusValue: {
+        fontSize: 14,
+        fontWeight: "bold",
+        color: "#6CC51D",
+        textTransform: "capitalize",
+    },
+    addressLabel: {
+        fontWeight: "bold",
+        color: "#333",
+        marginBottom: 4,
+    },
+    addressText: {
+        color: "#666",
+        fontSize: 14,
+        lineHeight: 20,
+    },
+    itemContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 8,
+        borderBottomWidth: 1,
+        borderBottomColor: "#f0f0f0",
+    },
+    itemImage: {
+        width: 50,
+        height: 50,
+        borderRadius: 8,
+        marginRight: 12,
+        backgroundColor: "#f5f5f5",
+    },
+    placeholderImage: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    itemDetails: {
+        flex: 1,
+    },
+    itemName: {
+        fontSize: 14,
+        color: "#333",
+        fontWeight: "500",
+        marginBottom: 4,
+    },
+    itemQty: {
+        fontSize: 12,
+        color: "#888",
+    },
+    itemTotal: {
+        fontSize: 14,
+        fontWeight: "bold",
+        color: "#333",
+    },
+    totalPrice: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#6CC51D",
+    },
+});
