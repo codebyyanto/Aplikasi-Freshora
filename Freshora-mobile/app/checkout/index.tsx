@@ -123,3 +123,17 @@ export default function CheckoutScreen() {
             setSubmitting(false);
         }
     };
+
+    const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    const shipping = 5000;
+    const total = subtotal + shipping;
+
+    const selectedAddress = addresses.find(a => a.id === selectedAddressId);
+
+    if (loading) {
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#6CC51D" />
+            </View>
+        );
+    }
