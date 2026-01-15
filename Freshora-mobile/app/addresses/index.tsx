@@ -43,3 +43,14 @@ const fetchAddresses = async () => {
         setRefreshing(false);
     }
 };
+
+useFocusEffect(
+    useCallback(() => {
+        fetchAddresses();
+    }, [])
+);
+
+const onRefresh = () => {
+    setRefreshing(true);
+    fetchAddresses();
+};
