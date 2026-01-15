@@ -186,3 +186,49 @@ export default function PaymentScreen() {
         </SafeAreaView>
     );
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: "#fff" },
+    header: {
+        flexDirection: "row",
+        alignItems: "center",
+        padding: 20,
+        backgroundColor: "#fff"
+    },
+    backBtn: { padding: 5, marginRight: 10 },
+    headerTitle: { fontSize: 20, fontWeight: "bold", color: "#333" },
+
+    // Stepper
+    stepperContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 10
+    },
+    stepDot: {
+        width: 24, height: 24, borderRadius: 12,
+        backgroundColor: "#ccc",
+        justifyContent: "center", alignItems: "center"
+    },
+    stepLine: {
+        width: 60, height: 2, backgroundColor: "#ccc"
+    },
+    stepActive: { backgroundColor: "#6CC51D" },
+    stepNum: { color: "#fff", fontSize: 12, fontWeight: "bold" },
+    stepperLabels: {
+        flexDirection: "row",
+        justifyContent: "center",
+        marginTop: 5,
+        marginBottom: 20,
+    },
+    stepLabel: {
+        fontSize: 12, color: "#999", width: 85, textAlign: "center"
+    },
+    labelActive: { color: "#6CC51D", fontWeight: "bold" },
+
+    content: {
+        padding: 20
+    },
+    sectionTitle: {
+        fontSize: 16, fontWeight: "bold", marginBottom: 15, color: "#333"
+    },
