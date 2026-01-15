@@ -16,146 +16,143 @@ import { API_BASE_URL, ENDPOINTS } from "../../constants/Config";
 
 export default function AddressList() {
     const router = useRouter();
-    // ... logic akan ada di sini
-}
+    const [addresses, setAddresses] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [refreshing, setRefreshing] = useState(false);
 
-const [addresses, setAddresses] = useState<any[]>([]);
-const [loading, setLoading] = useState(true);
-const [refreshing, setRefreshing] = useState(false);
+    const fetchAddresses = async () => {
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            if (!token) return;
 
-const fetchAddresses = async () => {
-    try {
-        const token = await AsyncStorage.getItem("userToken");
-        if (!token) return;
+            const res = await fetch(`${API_BASE_URL}${ENDPOINTS.PROFILE}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
 
-        const res = await fetch(`${API_BASE_URL}${ENDPOINTS.PROFILE}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        });
-
-        const data = await res.json();
-        if (res.ok && data.user) {
-            setAddresses(data.user.addresses || []);
+            const data = await res.json();
+            if (res.ok && data.user) {
+                setAddresses(data.user.addresses || []);
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+            setRefreshing(false);
         }
-    } catch (error) {
-        console.error(error);
-    } finally {
-        setLoading(false);
-        setRefreshing(false);
-    }
-};
+    };
 
-useFocusEffect(
-    useCallback(() => {
+    useFocusEffect(
+        useCallback(() => {
+            fetchAddresses();
+        }, [])
+    );
+
+    const onRefresh = () => {
+        setRefreshing(true);
         fetchAddresses();
-    }, [])
-);
+    };
 
-const onRefresh = () => {
-    setRefreshing(true);
-    fetchAddresses();
-};
-
-const handleDelete = async (id: number) => {
-    Alert.alert(
-        "Hapus Alamat",
-        "Apakah Anda yakin ingin menghapus alamat ini?",
-        [
-            { text: "Batal", style: "cancel" },
-            {
-                text: "Hapus",
-                style: "destructive",
-                onPress: async () => {
-                    try {
-                        const token = await AsyncStorage.getItem("userToken");
-                        await fetch(`${API_BASE_URL}/profile/address/${id}`, {
-                            method: 'DELETE',
-                            headers: { Authorization: `Bearer ${token}` }
-                        });
-                        fetchAddresses();
-                    } catch (e) {
-                        console.error(e);
+    const handleDelete = async (id: number) => {
+        Alert.alert(
+            "Hapus Alamat",
+            "Apakah Anda yakin ingin menghapus alamat ini?",
+            [
+                { text: "Batal", style: "cancel" },
+                {
+                    text: "Hapus",
+                    style: "destructive",
+                    onPress: async () => {
+                        try {
+                            const token = await AsyncStorage.getItem("userToken");
+                            await fetch(`${API_BASE_URL}/profile/address/${id}`, {
+                                method: 'DELETE',
+                                headers: { Authorization: `Bearer ${token}` }
+                            });
+                            fetchAddresses();
+                        } catch (e) {
+                            console.error(e);
+                        }
                     }
                 }
-            }
-        ]
-    );
-};
+            ]
+        );
+    };
 
-const renderItem = ({ item }: { item: any }) => (
-    <View style={styles.card}>
-        <View style={styles.cardHeader}>
-            <View style={styles.iconContainer}>
-                <Ionicons name="location-outline" size={24} color="#6CC51D" />
+    const renderItem = ({ item }: { item: any }) => (
+        <View style={styles.card}>
+            <View style={styles.cardHeader}>
+                <View style={styles.iconContainer}>
+                    <Ionicons name="location-outline" size={24} color="#6CC51D" />
+                </View>
+                <View style={styles.headerText}>
+                    <Text style={styles.name}>{item.recipientName || item.label}</Text>
+                    {item.isDefault && (
+                        <View style={styles.defaultTag}>
+                            <Text style={styles.defaultText}>UTAMA</Text>
+                        </View>
+                    )}
+                </View>
+                <TouchableOpacity onPress={() => router.push({ pathname: "/addresses/form", params: { id: item.id } })}>
+                    <Ionicons name="create-outline" size={20} color="#666" />
+                </TouchableOpacity>
             </View>
-            <View style={styles.headerText}>
-                <Text style={styles.name}>{item.recipientName || item.label}</Text>
-                {item.isDefault && (
-                    <View style={styles.defaultTag}>
-                        <Text style={styles.defaultText}>UTAMA</Text>
-                    </View>
+
+            <View style={styles.cardBody}>
+                <Text style={styles.addressText}>{item.street}</Text>
+                <Text style={styles.addressText}>{item.city}, {item.country} {item.postal}</Text>
+                <Text style={styles.phoneText}>{item.phoneNumber}</Text>
+            </View>
+
+            <View style={styles.cardFooter}>
+                {!item.isDefault && (
+                    <TouchableOpacity onPress={() => handleDelete(item.id)}>
+                        <Text style={styles.deleteText}>Hapus</Text>
+                    </TouchableOpacity>
                 )}
             </View>
-            <TouchableOpacity onPress={() => router.push({ pathname: "/addresses/form", params: { id: item.id } })}>
-                <Ionicons name="create-outline" size={20} color="#666" />
-            </TouchableOpacity>
         </View>
+    );
 
-        <View style={styles.cardBody}>
-            <Text style={styles.addressText}>{item.street}</Text>
-            <Text style={styles.addressText}>{item.city}, {item.country} {item.postal}</Text>
-            <Text style={styles.phoneText}>{item.phoneNumber}</Text>
-        </View>
-
-        <View style={styles.cardFooter}>
-            {!item.isDefault && (
-                <TouchableOpacity onPress={() => handleDelete(item.id)}>
-                    <Text style={styles.deleteText}>Hapus</Text>
+    return (
+        <View style={styles.container}>
+            <View style={styles.topBar}>
+                <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+                    <Ionicons name="arrow-back" size={24} color="#333" />
                 </TouchableOpacity>
+                <Text style={styles.title}>Alamat Saya</Text>
+                <TouchableOpacity onPress={() => router.push("/addresses/form")}>
+                    <Ionicons name="add-circle-outline" size={28} color="#333" />
+                </TouchableOpacity>
+            </View>
+
+            {loading ? (
+                <ActivityIndicator size="large" color="#6CC51D" style={{ marginTop: 20 }} />
+            ) : (
+                <FlatList
+                    data={addresses}
+                    keyExtractor={(item) => String(item.id)}
+                    renderItem={renderItem}
+                    contentContainerStyle={styles.list}
+                    refreshControl={
+                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={["#6CC51D"]} />
+                    }
+                    ListEmptyComponent={
+                        <View style={styles.empty}>
+                            <Text style={styles.emptyText}>Belum ada alamat tersimpan</Text>
+                        </View>
+                    }
+                />
             )}
+
+            <View style={styles.footerBtnContainer}>
+                <TouchableOpacity
+                    style={styles.addBtn}
+                    onPress={() => router.push("/addresses/form")}
+                >
+                    <Text style={styles.addBtnText}>Tambah Alamat Baru</Text>
+                </TouchableOpacity>
+            </View>
         </View>
-    </View>
-);
-
-return (
-    <View style={styles.container}>
-        <View style={styles.topBar}>
-            <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
-                <Ionicons name="arrow-back" size={24} color="#333" />
-            </TouchableOpacity>
-            <Text style={styles.title}>Alamat Saya</Text>
-            <TouchableOpacity onPress={() => router.push("/addresses/form")}>
-                <Ionicons name="add-circle-outline" size={28} color="#333" />
-            </TouchableOpacity>
-        </View>
-
-        {loading ? (
-            <ActivityIndicator size="large" color="#6CC51D" style={{ marginTop: 20 }} />
-        ) : (
-            <FlatList
-                data={addresses}
-                keyExtractor={(item) => String(item.id)}
-                renderItem={renderItem}
-                contentContainerStyle={styles.list}
-                refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={["#6CC51D"]} />
-                }
-                ListEmptyComponent={
-                    <View style={styles.empty}>
-                        <Text style={styles.emptyText}>Belum ada alamat tersimpan</Text>
-                    </View>
-                }
-            />
-        )
-
-        < View style={styles.footerBtnContainer}>
-        <TouchableOpacity
-            style={styles.addBtn}
-            onPress={() => router.push("/addresses/form")}
-        >
-            <Text style={styles.addBtnText}>Tambah Alamat Baru</Text>
-        </TouchableOpacity>
-    </View>
-        </View >
     );
 }
 
