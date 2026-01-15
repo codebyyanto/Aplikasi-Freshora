@@ -74,45 +74,12 @@ export default function CartScreen() {
         }
     };
 
-    const handleCheckout = async () => {
-        try {
-            const token = await AsyncStorage.getItem("userToken");
-            if (!token) return;
-
-            Alert.alert("Konfirmasi", `Total pembayaran adalah Rp ${Math.floor(subtotal + (cartItems.length > 0 ? 1.60 : 0)).toLocaleString("id-ID")}. Lanjutkan?`, [
-                { text: "Batal", style: "cancel" },
-                {
-                    text: "Bayar", onPress: async () => {
-                        try {
-                            const res = await fetch(`${API_BASE_URL}${ENDPOINTS.ORDERS}`, {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                    Authorization: `Bearer ${token}`
-                                },
-                                body: JSON.stringify({ items: cartItems })
-                            });
-
-                            const data = await res.json();
-
-                            if (res.ok) {
-                                Alert.alert("Berhasil", "Pesanan Anda telah dibuat!");
-                                setCartItems([]);
-                                router.push("/orders");
-
-                            } else {
-                                Alert.alert("Gagal", data.message || "Gagal checkout");
-                            }
-                        } catch (e: any) {
-                            Alert.alert("Error", e.message);
-                        }
-                    }
-                }
-            ]);
-
-        } catch (error) {
-            console.error("Checkout error:", error);
+    const handleCheckout = () => {
+        if (cartItems.length === 0) {
+            Alert.alert("Kosong", "Keranjang belanja Anda kosong");
+            return;
         }
+        router.push("/checkout");
     };
 
     const updateQuantity = async (id: number, quantity: number) => {
