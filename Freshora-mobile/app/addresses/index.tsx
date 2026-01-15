@@ -158,3 +158,84 @@ return (
         </View >
     );
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: "#F7F9FC" },
+    topBar: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: 20,
+        paddingTop: 50,
+        backgroundColor: "#fff",
+        elevation: 2,
+    },
+    backBtn: { padding: 5 },
+    title: { fontSize: 18, fontWeight: "bold", color: "#333" },
+    list: { padding: 20, paddingBottom: 100 },
+    card: {
+        backgroundColor: "#fff",
+        borderRadius: 16,
+        padding: 20,
+        marginBottom: 15,
+        elevation: 1,
+        borderWidth: 1,
+        borderColor: "#f0f0f0"
+    },
+    cardHeader: {
+        flexDirection: "row",
+        alignItems: "flex-start",
+        marginBottom: 10
+    },
+    iconContainer: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: "#F0F9E8",
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: 15
+    },
+    headerText: { flex: 1 },
+    name: { fontSize: 16, fontWeight: "bold", color: "#333", marginBottom: 4 },
+    defaultTag: {
+        backgroundColor: "#E8F5E9",
+        paddingHorizontal: 8,
+        paddingVertical: 2,
+        borderRadius: 4,
+        alignSelf: "flex-start"
+    },
+    defaultText: { fontSize: 10, color: "#6CC51D", fontWeight: "bold" },
+    cardBody: { marginLeft: 55 },
+    addressText: { color: "#666", fontSize: 14, marginBottom: 2 },
+    phoneText: { color: "#333", fontSize: 14, marginTop: 5, fontWeight: "500" },
+    cardFooter: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginTop: 10,
+        paddingTop: 10,
+        borderTopWidth: 1,
+        borderTopColor: '#f9f9f9',
+        marginLeft: 55
+    },
+    deleteText: { color: "#FF3B30", fontSize: 12 },
+    empty: { alignItems: "center", marginTop: 50 },
+    emptyText: { color: "#999" },
+    footerBtnContainer: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: 20,
+        backgroundColor: "#fff",
+        borderTopWidth: 1,
+        borderTopColor: "#eee"
+    },
+    addBtn: {
+        backgroundColor: "#6CC51D",
+        paddingVertical: 15,
+        borderRadius: 12,
+        alignItems: "center"
+    },
+    addBtnText: { color: "#fff", fontWeight: "bold", fontSize: 16 }
+});
