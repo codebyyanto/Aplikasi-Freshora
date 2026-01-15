@@ -80,3 +80,38 @@ const handleDelete = async (id: number) => {
         ]
     );
 };
+
+const renderItem = ({ item }: { item: any }) => (
+    <View style={styles.card}>
+        <View style={styles.cardHeader}>
+            <View style={styles.iconContainer}>
+                <Ionicons name="location-outline" size={24} color="#6CC51D" />
+            </View>
+            <View style={styles.headerText}>
+                <Text style={styles.name}>{item.recipientName || item.label}</Text>
+                {item.isDefault && (
+                    <View style={styles.defaultTag}>
+                        <Text style={styles.defaultText}>UTAMA</Text>
+                    </View>
+                )}
+            </View>
+            <TouchableOpacity onPress={() => router.push({ pathname: "/addresses/form", params: { id: item.id } })}>
+                <Ionicons name="create-outline" size={20} color="#666" />
+            </TouchableOpacity>
+        </View>
+
+        <View style={styles.cardBody}>
+            <Text style={styles.addressText}>{item.street}</Text>
+            <Text style={styles.addressText}>{item.city}, {item.country} {item.postal}</Text>
+            <Text style={styles.phoneText}>{item.phoneNumber}</Text>
+        </View>
+
+        <View style={styles.cardFooter}>
+            {!item.isDefault && (
+                <TouchableOpacity onPress={() => handleDelete(item.id)}>
+                    <Text style={styles.deleteText}>Hapus</Text>
+                </TouchableOpacity>
+            )}
+        </View>
+    </View>
+);
