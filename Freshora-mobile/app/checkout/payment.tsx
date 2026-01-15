@@ -58,3 +58,20 @@ export default function PaymentScreen() {
             Alert.alert("Input Kurang", "Masukkan nomor HP GoPay yang valid.");
             return;
         }
+
+        setSubmitting(true);
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            const res = await fetch(`${API_BASE_URL}${ENDPOINTS.ORDERS}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    addressId: Number(addressId),
+                    paymentMethod: selectedMethod,
+                })
+            });
+
+            const data = await res.json();
