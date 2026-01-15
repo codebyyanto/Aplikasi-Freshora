@@ -47,3 +47,14 @@ export default function PaymentScreen() {
     const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
     const [submitting, setSubmitting] = useState(false);
     const [extraInput, setExtraInput] = useState("");
+
+    const handlePayment = async () => {
+        if (!selectedMethod) {
+            Alert.alert("Pilih Pembayaran", "Silakan pilih metode pembayaran terlebih dahulu.");
+            return;
+        }
+
+        if (selectedMethod === 'gopay' && extraInput.length < 10) {
+            Alert.alert("Input Kurang", "Masukkan nomor HP GoPay yang valid.");
+            return;
+        }
