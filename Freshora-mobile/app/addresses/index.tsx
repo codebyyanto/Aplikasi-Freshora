@@ -146,3 +146,15 @@ return (
                 }
             />
         )
+
+        < View style={styles.footerBtnContainer}>
+        <TouchableOpacity
+            style={styles.addBtn}
+            onPress={() => router.push("/addresses/form")}
+        >
+            <Text style={styles.addBtnText}>Tambah Alamat Baru</Text>
+        </TouchableOpacity>
+    </View>
+        </View >
+    );
+}
