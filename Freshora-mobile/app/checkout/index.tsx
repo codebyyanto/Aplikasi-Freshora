@@ -211,3 +211,36 @@ export default function CheckoutScreen() {
                     </View>
                 )}
             </View>
+
+            <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Ringkasan Barang</Text>
+                {cartItems.map((item, index) => (
+                    <View key={index} style={styles.itemRow}>
+                        <View style={styles.itemInfo}>
+                            <Text style={styles.itemName}>{item.name}</Text>
+                            <Text style={styles.itemQty}>{item.quantity} x Rp {item.price.toLocaleString("id-ID")}</Text>
+                        </View>
+                        <Text style={styles.itemTotal}>
+                            Rp {(item.price * item.quantity).toLocaleString("id-ID")}
+                        </Text>
+                    </View>
+                ))}
+            </View>
+
+            <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Rincian Pembayaran</Text>
+                <View style={styles.summaryRow}>
+                    <Text style={styles.summaryLabel}>Subtotal Produk</Text>
+                    <Text style={styles.summaryValue}>Rp {subtotal.toLocaleString("id-ID")}</Text>
+                </View>
+                <View style={styles.summaryRow}>
+                    <Text style={styles.summaryLabel}>Ongkos Kirim</Text>
+                    <Text style={styles.summaryValue}>Rp {shipping.toLocaleString("id-ID")}</Text>
+                </View>
+                <View style={styles.divider} />
+                <View style={styles.summaryRow}>
+                    <Text style={styles.totalLabel}>Total Pembayaran</Text>
+                    <Text style={styles.totalValue}>Rp {total.toLocaleString("id-ID")}</Text>
+                </View>
+            </View>
+        </ScrollView>
