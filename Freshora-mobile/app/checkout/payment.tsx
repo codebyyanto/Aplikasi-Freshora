@@ -39,3 +39,11 @@ const PAYMENT_METHODS = [
         description: "Transfer manual ke rekening Virtual Account (BCA/Mandiri/BRI)."
     }
 ];
+
+export default function PaymentScreen() {
+    const router = useRouter();
+    const { addressId, items } = useLocalSearchParams();
+
+    const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
+    const [submitting, setSubmitting] = useState(false);
+    const [extraInput, setExtraInput] = useState("");
