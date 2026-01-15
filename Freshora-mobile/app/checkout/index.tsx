@@ -67,6 +67,7 @@ export default function CheckoutScreen() {
                     setSelectedAddressId(addrs[0].id);
                 }
             }
+
         } catch (error) {
             console.error("Error fetching checkout data:", error);
             Alert.alert("Error", "Gagal memuat data checkout");
@@ -148,104 +149,108 @@ export default function CheckoutScreen() {
                 <View style={{ width: 24 }} />
             </View>
 
-            <ScrollView contentContainerStyle={styles.scrollContent}></ScrollView>
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Alamat Pengiriman</Text>
+            <ScrollView contentContainerStyle={styles.scrollContent}>
+                {/* Section Alamat */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Alamat Pengiriman</Text>
 
-                {addresses.length === 0 ? (
-                    <TouchableOpacity style={styles.addAddressBtn} onPress={() => router.push("/addresses/form")}>
-                        <Ionicons name="add-circle-outline" size={24} color="#6CC51D" />
-                        <Text style={styles.addAddressText}>Tambah Alamat Baru</Text>
-                    </TouchableOpacity>
-                ) : (
-                    <View style={styles.addressCard}>
-                        <View style={styles.addressHeader}>
-                            <Ionicons name="location" size={20} color="#6CC51D" />
-                            <Text style={styles.recipientName}>{selectedAddress?.recipientName || selectedAddress?.label}</Text>
-                        </View>
-                        <Text style={styles.addressText}>{selectedAddress?.street}</Text>
-                        <Text style={styles.addressText}>{selectedAddress?.city}, {selectedAddress?.postal}</Text>
-                        <Text style={styles.phoneText}>{selectedAddress?.phoneNumber}</Text>
-
-                        <TouchableOpacity
-                            style={styles.changeAddressBtn}
-                            onPress={() => setShowAddressList(!showAddressList)}
-                        >
-                            <Text style={styles.changeAddressText}>
-                                {showAddressList ? "Tutup Pilihan" : "Ganti Alamat"}
-                            </Text>
+                    {addresses.length === 0 ? (
+                        <TouchableOpacity style={styles.addAddressBtn} onPress={() => router.push("/addresses/form")}>
+                            <Ionicons name="add-circle-outline" size={24} color="#6CC51D" />
+                            <Text style={styles.addAddressText}>Tambah Alamat Baru</Text>
                         </TouchableOpacity>
-                    </View>
-                )}
+                    ) : (
+                        <View style={styles.addressCard}>
+                            <View style={styles.addressHeader}>
+                                <Ionicons name="location" size={20} color="#6CC51D" />
+                                <Text style={styles.recipientName}>{selectedAddress?.recipientName || selectedAddress?.label}</Text>
+                            </View>
+                            <Text style={styles.addressText}>{selectedAddress?.street}</Text>
+                            <Text style={styles.addressText}>{selectedAddress?.city}, {selectedAddress?.postal}</Text>
+                            <Text style={styles.phoneText}>{selectedAddress?.phoneNumber}</Text>
 
-                {showAddressList && (
-                    <View style={styles.addressList}>
-                        {addresses.map(addr => (
                             <TouchableOpacity
-                                key={addr.id}
-                                style={[
-                                    styles.addressOption,
-                                    selectedAddressId === addr.id && styles.selectedOption
-                                ]}
-                                onPress={() => {
-                                    setSelectedAddressId(addr.id);
-                                    setShowAddressList(false);
-                                }}
+                                style={styles.changeAddressBtn}
+                                onPress={() => setShowAddressList(!showAddressList)}
                             >
-                                <View style={styles.radioOuter}>
-                                    {selectedAddressId === addr.id && <View style={styles.radioInner} />}
-                                </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.optionTitle}>{addr.recipientName || addr.label}</Text>
-                                    <Text style={styles.optionText} numberOfLines={1}>{addr.street}</Text>
-                                </View>
+                                <Text style={styles.changeAddressText}>
+                                    {showAddressList ? "Tutup Pilihan" : "Ganti Alamat"}
+                                </Text>
                             </TouchableOpacity>
-                        ))}
-                        <TouchableOpacity
-                            style={styles.addNewOption}
-                            onPress={() => router.push("/addresses/form")}
-                        >
-                            <Ionicons name="add" size={20} color="#6CC51D" />
-                            <Text style={styles.addNewText}>Tambah Alamat Lain</Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
-            </View>
-
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Ringkasan Barang</Text>
-                {cartItems.map((item, index) => (
-                    <View key={index} style={styles.itemRow}>
-                        <View style={styles.itemInfo}>
-                            <Text style={styles.itemName}>{item.name}</Text>
-                            <Text style={styles.itemQty}>{item.quantity} x Rp {item.price.toLocaleString("id-ID")}</Text>
                         </View>
-                        <Text style={styles.itemTotal}>
-                            Rp {(item.price * item.quantity).toLocaleString("id-ID")}
-                        </Text>
+                    )}
+
+                    {/* Dropdown Selection */}
+                    {showAddressList && (
+                        <View style={styles.addressList}>
+                            {addresses.map(addr => (
+                                <TouchableOpacity
+                                    key={addr.id}
+                                    style={[
+                                        styles.addressOption,
+                                        selectedAddressId === addr.id && styles.selectedOption
+                                    ]}
+                                    onPress={() => {
+                                        setSelectedAddressId(addr.id);
+                                        setShowAddressList(false);
+                                    }}
+                                >
+                                    <View style={styles.radioOuter}>
+                                        {selectedAddressId === addr.id && <View style={styles.radioInner} />}
+                                    </View>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={styles.optionTitle}>{addr.recipientName || addr.label}</Text>
+                                        <Text style={styles.optionText} numberOfLines={1}>{addr.street}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            ))}
+                            <TouchableOpacity
+                                style={styles.addNewOption}
+                                onPress={() => router.push("/addresses/form")}
+                            >
+                                <Ionicons name="add" size={20} color="#6CC51D" />
+                                <Text style={styles.addNewText}>Tambah Alamat Lain</Text>
+                            </TouchableOpacity>
+                        </View>
+                    )}
+                </View>
+
+                {/* Section Items */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Ringkasan Barang</Text>
+                    {cartItems.map((item, index) => (
+                        <View key={index} style={styles.itemRow}>
+                            <View style={styles.itemInfo}>
+                                <Text style={styles.itemName}>{item.name}</Text>
+                                <Text style={styles.itemQty}>{item.quantity} x Rp {item.price.toLocaleString("id-ID")}</Text>
+                            </View>
+                            <Text style={styles.itemTotal}>
+                                Rp {(item.price * item.quantity).toLocaleString("id-ID")}
+                            </Text>
+                        </View>
+                    ))}
+                </View>
+
+                {/* Section Payment Summary */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Rincian Pembayaran</Text>
+                    <View style={styles.summaryRow}>
+                        <Text style={styles.summaryLabel}>Subtotal Produk</Text>
+                        <Text style={styles.summaryValue}>Rp {subtotal.toLocaleString("id-ID")}</Text>
                     </View>
-                ))}
-            </View>
+                    <View style={styles.summaryRow}>
+                        <Text style={styles.summaryLabel}>Ongkos Kirim</Text>
+                        <Text style={styles.summaryValue}>Rp {shipping.toLocaleString("id-ID")}</Text>
+                    </View>
+                    <View style={styles.divider} />
+                    <View style={styles.summaryRow}>
+                        <Text style={styles.totalLabel}>Total Pembayaran</Text>
+                        <Text style={styles.totalValue}>Rp {total.toLocaleString("id-ID")}</Text>
+                    </View>
+                </View>
+            </ScrollView>
 
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Rincian Pembayaran</Text>
-                <View style={styles.summaryRow}>
-                    <Text style={styles.summaryLabel}>Subtotal Produk</Text>
-                    <Text style={styles.summaryValue}>Rp {subtotal.toLocaleString("id-ID")}</Text>
-                </View>
-                <View style={styles.summaryRow}>
-                    <Text style={styles.summaryLabel}>Ongkos Kirim</Text>
-                    <Text style={styles.summaryValue}>Rp {shipping.toLocaleString("id-ID")}</Text>
-                </View>
-                <View style={styles.divider} />
-                <View style={styles.summaryRow}>
-                    <Text style={styles.totalLabel}>Total Pembayaran</Text>
-                    <Text style={styles.totalValue}>Rp {total.toLocaleString("id-ID")}</Text>
-                </View>
-            </View>
-        </ScrollView>
-
-        <View style={styles.footer}>
+            <View style={styles.footer}>
                 <TouchableOpacity
                     style={[
                         styles.orderBtn,
@@ -261,7 +266,7 @@ export default function CheckoutScreen() {
                     )}
                 </TouchableOpacity>
             </View>
-        </View >
+        </View>
     );
 }
 
@@ -398,4 +403,3 @@ const styles = StyleSheet.create({
     disabledBtn: { backgroundColor: "#ccc", shadowOpacity: 0 },
     orderBtnText: { color: "#fff", fontWeight: "bold", fontSize: 16 }
 });
-
