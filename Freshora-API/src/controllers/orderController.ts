@@ -11,10 +11,10 @@ interface AuthRequest extends Request {
 export async function createOrder(req: AuthRequest, res: Response) {
   try {
     const userId = req.user?.id;
-    const { addressId } = req.body;
+    const { addressId, paymentMethod } = req.body;
 
-    if (!userId || !addressId)
-      return res.status(400).json({ message: 'User ID dan alamat wajib diisi' });
+    if (!userId || !addressId || !paymentMethod)
+      return res.status(400).json({ message: 'User ID, alamat, dan metode pembayaran wajib diisi' });
 
     // Ambil semua item di keranjang
     const cartItems = await prisma.cartItem.findMany({
@@ -42,6 +42,7 @@ export async function createOrder(req: AuthRequest, res: Response) {
         userId,
         addressId: Number(addressId),
         total,
+        paymentMethod,
         items: {
           create: cartItems.map((it) => ({
             productId: it.productId,

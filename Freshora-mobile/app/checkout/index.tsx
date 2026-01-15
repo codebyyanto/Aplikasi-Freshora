@@ -82,7 +82,7 @@ export default function CheckoutScreen() {
         }, [])
     );
 
-    const handleCreateOrder = async () => {
+    const handleProceedToPayment = () => {
         if (!selectedAddressId) {
             Alert.alert("Error", "Silakan pilih alamat pengiriman terlebih dahulu");
             return;
@@ -93,36 +93,11 @@ export default function CheckoutScreen() {
             return;
         }
 
-        setSubmitting(true);
-        try {
-            const token = await AsyncStorage.getItem("userToken");
-            const res = await fetch(`${API_BASE_URL}${ENDPOINTS.ORDERS}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    items: cartItems,
-                    addressId: selectedAddressId
-                })
-            });
-
-            const data = await res.json();
-
-            if (res.ok) {
-                Alert.alert("Sukses", "Pesanan berhasil dibuat!", [
-                    { text: "Lihat Pesanan", onPress: () => router.replace("/orders") }
-                ]);
-            } else {
-                Alert.alert("Gagal", data.message || "Gagal membuat pesanan");
-            }
-        } catch (error) {
-            console.error(error);
-            Alert.alert("Error", "Terjadi kesalahan koneksi");
-        } finally {
-            setSubmitting(false);
-        }
+        // Navigate to payment page with addressId
+        router.push({
+            pathname: "/checkout/payment",
+            params: { addressId: selectedAddressId }
+        });
     };
 
     const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
@@ -256,7 +231,7 @@ export default function CheckoutScreen() {
                         styles.orderBtn,
                         (submitting || !selectedAddressId) && styles.disabledBtn
                     ]}
-                    onPress={handleCreateOrder}
+                    onPress={handleProceedToPayment}
                     disabled={submitting || !selectedAddressId}
                 >
                     {submitting ? (
