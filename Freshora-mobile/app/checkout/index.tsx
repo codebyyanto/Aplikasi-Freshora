@@ -23,3 +23,60 @@ export default function CheckoutScreen() {
     const [addresses, setAddresses] = useState<any[]>([]);
     const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
     const [showAddressList, setShowAddressList] = useState(false);
+
+    const fetchData = async () => {
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            if (!token) return;
+
+            // Fetch Cart
+            const cartRes = await fetch(`${API_BASE_URL}${ENDPOINTS.CART}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const cartData = await cartRes.json();
+
+            if (cartData.items) {
+                const mapped = cartData.items.map((item: any) => ({
+                    id: item.id,
+                    productId: item.productId,
+                    name: item.product.name,
+                    price: item.product.price,
+                    quantity: item.quantity,
+                    image: item.product.image
+                }));
+                setCartItems(mapped);
+            } else {
+                setCartItems([]);
+            }
+
+            // Fetch Addresses
+            const profileRes = await fetch(`${API_BASE_URL}${ENDPOINTS.PROFILE}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const profileData = await profileRes.json();
+
+            if (profileData.user && profileData.user.addresses) {
+                const addrs = profileData.user.addresses;
+                setAddresses(addrs);
+
+                // Select default or first address
+                const def = addrs.find((a: any) => a.isDefault);
+                if (def) {
+                    setSelectedAddressId(def.id);
+                } else if (addrs.length > 0) {
+                    setSelectedAddressId(addrs[0].id);
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching checkout data:", error);
+            Alert.alert("Error", "Gagal memuat data checkout");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useFocusEffect(
+        useCallback(() => {
+            fetchData();
+        }, [])
+    );
