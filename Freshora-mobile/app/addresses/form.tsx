@@ -237,3 +237,62 @@ export default function AddressForm() {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: "#fff" },
+    topBar: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: 20,
+        paddingTop: 50,
+        backgroundColor: "#fff",
+        borderBottomWidth: 1,
+        borderBottomColor: "#f0f0f0"
+    },
+    backBtn: { padding: 5 },
+    title: { fontSize: 18, fontWeight: "bold", color: "#333" },
+    scrollContent: { padding: 20 },
+
+    inputGroup: { marginBottom: 15 },
+    iconInput: {
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "#F7F9FC",
+        borderRadius: 12,
+        paddingHorizontal: 15,
+        height: 50
+    },
+    inputIcon: { marginRight: 10 },
+    input: { flex: 1, fontSize: 15, color: "#333" },
+    readOnlyInput: { flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+
+    row: { flexDirection: "row" },
+
+    switchContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginTop: 10,
+        marginBottom: 30
+    },
+    switchLabel: { fontSize: 16, fontWeight: "500", color: "#333" },
+
+    footer: {
+        padding: 20,
+        borderTopWidth: 1,
+        borderTopColor: "#eee"
+    },
+    saveBtn: {
+        backgroundColor: "#6CC51D",
+        paddingVertical: 15,
+        borderRadius: 12,
+        alignItems: "center",
+        shadowColor: "#6CC51D",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 5
+    },
+    saveBtnText: { color: "#fff", fontWeight: "bold", fontSize: 16 }
+});
