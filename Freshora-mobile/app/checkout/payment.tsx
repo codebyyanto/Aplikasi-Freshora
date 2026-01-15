@@ -100,3 +100,17 @@ export default function PaymentScreen() {
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>Metode Pembayaran</Text>
             </View>
+
+            {/* Stepper (Visual Only) */}
+            <View style={styles.stepperContainer}>
+                <View style={[styles.stepDot, styles.stepActive]}><Ionicons name="checkmark" size={14} color="#fff" /></View>
+                <View style={[styles.stepLine, styles.stepActive]} />
+                <View style={[styles.stepDot, styles.stepActive]}><Ionicons name="checkmark" size={14} color="#fff" /></View>
+                <View style={[styles.stepLine, styles.stepActive]} />
+                <View style={[styles.stepDot, styles.stepActive]}><Text style={styles.stepNum}>3</Text></View>
+            </View>
+            <View style={styles.stepperLabels}>
+                <Text style={styles.stepLabel}>Keranjang</Text>
+                <Text style={styles.stepLabel}>Alamat</Text>
+                <Text style={[styles.stepLabel, styles.labelActive]}>Bayar</Text>
+            </View>
