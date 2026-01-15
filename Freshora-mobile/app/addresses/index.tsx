@@ -115,3 +115,21 @@ const renderItem = ({ item }: { item: any }) => (
         </View>
     </View>
 );
+
+return (
+    <View style={styles.container}>
+        <View style={styles.topBar}>
+            <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+                <Ionicons name="arrow-back" size={24} color="#333" />
+            </TouchableOpacity>
+            <Text style={styles.title}>Alamat Saya</Text>
+            <TouchableOpacity onPress={() => router.push("/addresses/form")}>
+                <Ionicons name="add-circle-outline" size={28} color="#333" />
+            </TouchableOpacity>
+        </View>
+
+        {loading ? (
+            <ActivityIndicator size="large" color="#6CC51D" style={{ marginTop: 20 }} />
+        ) : (
+                // FlatList akan ada di sini
+            )
