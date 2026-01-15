@@ -232,3 +232,72 @@ const styles = StyleSheet.create({
     sectionTitle: {
         fontSize: 16, fontWeight: "bold", marginBottom: 15, color: "#333"
     },
+
+    // Cards
+    methodCard: {
+        borderWidth: 1,
+        borderColor: "#eee",
+        borderRadius: 12,
+        padding: 15,
+        marginBottom: 15,
+        backgroundColor: "#fff"
+    },
+    methodCardSelected: {
+        borderColor: "#6CC51D",
+        backgroundColor: "#F9FFF5"
+    },
+    methodHeader: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    iconContainer: {
+        width: 48, height: 48, borderRadius: 24,
+        justifyContent: "center", alignItems: "center",
+        marginRight: 15
+    },
+    methodInfo: { flex: 1 },
+    methodName: { fontSize: 16, fontWeight: "bold", color: "#333", marginBottom: 4 },
+    textSelected: { color: "#6CC51D" },
+    methodDesc: { fontSize: 12, color: "#888", lineHeight: 18 },
+
+    // Radio
+    radioOuter: {
+        width: 20, height: 20, borderRadius: 10,
+        borderWidth: 2, borderColor: "#ccc",
+        marginLeft: 10, justifyContent: "center", alignItems: "center"
+    },
+    radioInner: {
+        width: 10, height: 10, borderRadius: 5, backgroundColor: "#6CC51D"
+    },
+
+    // Extra Input
+    extraInputContainer: {
+        marginTop: 15,
+        borderTopWidth: 1,
+        borderTopColor: "#eee",
+        paddingTop: 15
+    },
+    inputLabel: {
+        fontSize: 12, color: "#666", marginBottom: 8, fontWeight: "bold"
+    },
+    textInput: {
+        borderWidth: 1, borderColor: "#ddd", borderRadius: 8,
+        paddingHorizontal: 15, paddingVertical: 10,
+        fontSize: 14, color: "#333", backgroundColor: "#fff"
+    },
+
+    // Footer
+    footer: {
+        padding: 20,
+        borderTopWidth: 1, borderTopColor: "#eee"
+    },
+    payBtn: {
+        backgroundColor: "#6CC51D",
+        paddingVertical: 16, borderRadius: 12,
+        alignItems: "center",
+        shadowColor: "#6CC51D", shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3, shadowRadius: 5, elevation: 5
+    },
+    disabledBtn: { backgroundColor: "#ccc", shadowOpacity: 0 },
+    payBtnText: { color: "#fff", fontSize: 16, fontWeight: "bold" }
+});
