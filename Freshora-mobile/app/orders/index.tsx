@@ -53,8 +53,12 @@ export default function OrderHistory() {
 
             const data = await res.json();
 
-            if (res.ok && data.orders) {
-                setOrders(data.orders);
+            if (res.ok) {
+                if (Array.isArray(data)) {
+                    setOrders(data);
+                } else if (data.orders) {
+                    setOrders(data.orders);
+                }
             }
         } catch (error) {
             console.error(error);
@@ -65,7 +69,11 @@ export default function OrderHistory() {
 
     // Render setiap item pesanan
     const renderItem = ({ item }: { item: any }) => (
-        <View style={styles.card}>
+        <TouchableOpacity
+            style={styles.card}
+            activeOpacity={0.9}
+            onPress={() => router.push(`/orders/${item.id}`)}
+        >
             <View style={styles.header}>
                 <Text style={styles.orderId}>
                     Order #{item.id}
@@ -85,8 +93,9 @@ export default function OrderHistory() {
                 <Text style={styles.totalPrice}>
                     Total: Rp {Number(item.total).toLocaleString("id-ID")}
                 </Text>
+                <Ionicons name="chevron-forward" size={20} color="#ccc" />
             </View>
-        </View>
+        </TouchableOpacity>
     );
 
     return (
