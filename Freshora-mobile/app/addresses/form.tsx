@@ -133,4 +133,107 @@ export default function AddressForm() {
                 style={{ flex: 1 }}
             >
                 <ScrollView contentContainerStyle={styles.scrollContent}>
-                    {/}
+                    { }
+                    <View style={styles.inputGroup}>
+                        <View style={styles.iconInput}>
+                            <Ionicons name="person-outline" size={20} color="#999" style={styles.inputIcon} />
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Nama Penerima *"
+                                value={form.recipientName}
+                                onChangeText={(t) => setForm({ ...form, recipientName: t })}
+                            />
+                        </View>
+                    </View>
+
+                    <View style={styles.inputGroup}>
+                        <View style={styles.iconInput}>
+                            <Ionicons name="location-outline" size={20} color="#999" style={styles.inputIcon} />
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Alamat Lengkap *"
+                                value={form.street}
+                                onChangeText={(t) => setForm({ ...form, street: t })}
+                                multiline
+                            />
+                        </View>
+                    </View>
+
+                    <View style={styles.row}>
+                        <View style={[styles.inputGroup, { flex: 1, marginRight: 10 }]}>
+                            <View style={styles.iconInput}>
+                                <Ionicons name="map-outline" size={20} color="#999" style={styles.inputIcon} />
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Kota *"
+                                    value={form.city}
+                                    onChangeText={(t) => setForm({ ...form, city: t })}
+                                />
+                            </View>
+                        </View>
+                        <View style={[styles.inputGroup, { flex: 1 }]}>
+                            <View style={styles.iconInput}>
+                                <Ionicons name="mail-outline" size={20} color="#999" style={styles.inputIcon} />
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Kode Pos"
+                                    value={form.postal}
+                                    keyboardType="numeric"
+                                    onChangeText={(t) => setForm({ ...form, postal: t })}
+                                />
+                            </View>
+                        </View>
+                    </View>
+
+                    <View style={styles.inputGroup}>
+                        <View style={styles.iconInput}>
+                            <Ionicons name="globe-outline" size={20} color="#999" style={styles.inputIcon} />
+                            <View style={styles.readOnlyInput}>
+                                <Text style={{ color: "#333" }}>{form.country}</Text>
+                                <Ionicons name="chevron-down" size={16} color="#ccc" />
+                            </View>
+                        </View>
+                    </View>
+
+                    <View style={styles.inputGroup}>
+                        <View style={styles.iconInput}>
+                            <Ionicons name="call-outline" size={20} color="#999" style={styles.inputIcon} />
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Nomor Telepon *"
+                                value={form.phoneNumber}
+                                keyboardType="phone-pad"
+                                onChangeText={(t) => setForm({ ...form, phoneNumber: t })}
+                            />
+                        </View>
+                    </View>
+
+                    <View style={styles.switchContainer}>
+                        <Text style={styles.switchLabel}>Jadikan Alamat Utama</Text>
+                        <Switch
+                            value={form.isDefault}
+                            onValueChange={(v) => setForm({ ...form, isDefault: v })}
+                            trackColor={{ false: "#eee", true: "#6CC51D" }}
+                            thumbColor={"#fff"}
+                        />
+                    </View>
+
+                </ScrollView>
+            </KeyboardAvoidingView>
+
+            <View style={styles.footer}>
+                <TouchableOpacity
+                    style={styles.saveBtn}
+                    onPress={handleSave}
+                    disabled={loading}
+                >
+                    {loading ? (
+                        <ActivityIndicator color="#fff" />
+                    ) : (
+                        <Text style={styles.saveBtnText}>Simpan Alamat</Text>
+                    )}
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
+}
