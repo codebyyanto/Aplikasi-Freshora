@@ -27,7 +27,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="home/index"
         options={{
-          title: "Home",
+          title: "Beranda",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" size={24} color={color} />
           ),
@@ -38,7 +38,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="cart"
         options={{
-          title: "Cart",
+          title: "Keranjang",
           tabBarIcon: ({ color }) => (
             <Ionicons name="cart-outline" size={24} color={color} />
           ),
@@ -49,7 +49,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="favorites/index"
         options={{
-          title: "Favorites",
+          title: "Favorit",
           tabBarIcon: ({ color }) => (
             <Ionicons name="heart-outline" size={24} color={color} />
           ),
@@ -59,7 +59,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="profile/index"
         options={{
-          title: "Profile",
+          title: "Profil",
           tabBarIcon: ({ color }) => (
             <Ionicons name="person-outline" size={24} color={color} />
           ),

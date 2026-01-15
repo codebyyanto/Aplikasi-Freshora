@@ -11,7 +11,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { API_BASE_URL, ENDPOINTS } from "../../constants/Config";
+import { API_BASE_URL, ENDPOINTS, STATUS_TRANSLATION } from "../../constants/Config";
 
 export default function OrderDetail() {
     const router = useRouter();
@@ -75,7 +75,7 @@ export default function OrderDetail() {
                 <View style={styles.card}>
                     <View style={styles.rowBetween}>
                         <Text style={styles.label}>Status</Text>
-                        <Text style={styles.statusValue}>{order.status}</Text>
+                        <Text style={styles.statusValue}>{STATUS_TRANSLATION[order.status] || order.status}</Text>
                     </View>
                     <View style={[styles.rowBetween, { marginTop: 8 }]}>
                         <Text style={styles.label}>Tanggal</Text>

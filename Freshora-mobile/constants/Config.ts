@@ -10,3 +10,11 @@ export const ENDPOINTS = {
     ORDERS: "/orders",
     PROFILE: "/profile",
 };
+
+export const STATUS_TRANSLATION: Record<string, string> = {
+    pending: "Menunggu Pembayaran",
+    processing: "Sedang Diproses",
+    shipped: "Sedang Dikirim",
+    delivered: "Selesai",
+    cancelled: "Dibatalkan"
+};

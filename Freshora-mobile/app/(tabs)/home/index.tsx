@@ -137,7 +137,7 @@ export default function Home() {
           <Ionicons name="search-outline" size={20} color="#999" />
 
           <TextInput
-            placeholder="Search keywords..."
+            placeholder="Cari produk..."
             placeholderTextColor="#999"
             style={styles.searchInput}
           />
@@ -160,7 +160,7 @@ export default function Home() {
           />
           <View style={styles.bannerTextOverlay}>
             <Text style={styles.bannerTitle}>
-              20% off on your first purchase
+              Diskon 20% untuk pembelian pertama
             </Text>
           </View>
         </View>
@@ -289,7 +289,7 @@ export default function Home() {
                     }}
                   >
                     <Ionicons name="bag-handle-outline" size={16} color="#6CC51D" />
-                    <Text style={styles.btnText}>Add to cart</Text>
+                    <Text style={styles.btnText}>Tambah</Text>
                   </TouchableOpacity>
                 </View>
               </TouchableOpacity>

@@ -21,7 +21,7 @@ import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Import konfigurasi API
-import { API_BASE_URL, ENDPOINTS } from "../../constants/Config";
+import { API_BASE_URL, ENDPOINTS, STATUS_TRANSLATION } from "../../constants/Config";
 
 export default function OrderHistory() {
     const router = useRouter();
@@ -76,10 +76,10 @@ export default function OrderHistory() {
         >
             <View style={styles.header}>
                 <Text style={styles.orderId}>
-                    Order #{item.id}
+                    Pesanan #{item.id}
                 </Text>
                 <Text style={styles.status}>
-                    {item.status}
+                    {STATUS_TRANSLATION[item.status] || item.status}
                 </Text>
             </View>
 

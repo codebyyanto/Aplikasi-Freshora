@@ -77,7 +77,7 @@ export default function FavoritesScreen() {
           </View>
 
           <View style={styles.actionsContainer}>
-            <TouchableOpacity style={styles.iconBtn} onPress={() => Alert.alert("Feature", "Add to cart logic here")}>
+            <TouchableOpacity style={styles.iconBtn} onPress={() => Alert.alert("Fitur", "Logika tambah keranjang belum diimplementasi")}>
               <Ionicons name="add" size={20} color="#6CC51D" />
             </TouchableOpacity>
 
@@ -97,7 +97,7 @@ export default function FavoritesScreen() {
           <TouchableOpacity onPress={() => router.back()}>
             <Ionicons name="arrow-back" size={24} color="#000" />
           </TouchableOpacity>
-          <Text style={styles.title}>Favorites</Text>
+          <Text style={styles.title}>Favorit Saya</Text>
           <View style={{ width: 24 }} />
         </View>
 
