@@ -90,3 +90,13 @@ export default function PaymentScreen() {
             setSubmitting(false);
         }
     };
+
+    return (
+        <SafeAreaView style={styles.container}>
+            {/* Header */}
+            <View style={styles.header}>
+                <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+                    <Ionicons name="arrow-back" size={24} color="#333" />
+                </TouchableOpacity>
+                <Text style={styles.headerTitle}>Metode Pembayaran</Text>
+            </View>
