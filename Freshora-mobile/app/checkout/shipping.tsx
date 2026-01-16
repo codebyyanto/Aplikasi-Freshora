@@ -34,3 +34,12 @@ const SHIPPING_OPTIONS = [
         eta: "5-7 Hari"
     }
 ];
+
+export default function ShippingScreen() {
+    const router = useRouter();
+    // Optional: could receive pre-selected ID via params if needed
+    const { currentId } = useLocalSearchParams();
+
+    const [selectedId, setSelectedId] = useState<string | null>(
+        (currentId as string) || "reguler"
+    );
