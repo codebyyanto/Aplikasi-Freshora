@@ -91,3 +91,36 @@ export default function NotificationSettings() {
                 <Text style={styles.title}>Notifications</Text>
                 <View style={{ width: 24 }} />
             </View>
+            <ScrollView contentContainerStyle={styles.content}>
+                {/* Allow Notifications */}
+                <View style={styles.card}>
+                    <View style={styles.row}>
+                        <View style={{ flex: 1 }}>
+                            <Text style={styles.label}>Allow Notifications</Text>
+                            <Text style={styles.desc}>Aktifkan semua notifikasi aplikasi</Text>
+                        </View>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#6CC51D" }}
+                            thumbColor={"#f4f3f4"}
+                            onValueChange={() => toggleSwitch('allowNotifications')}
+                            value={settings.allowNotifications}
+                        />
+                    </View>
+                </View>
+
+                {/* Email Notifications */}
+                <View style={styles.card}>
+                    <View style={styles.row}>
+                        <View style={{ flex: 1 }}>
+                            <Text style={styles.label}>Email Notifications</Text>
+                            <Text style={styles.desc}>Terima berita & promo via email</Text>
+                        </View>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#6CC51D" }}
+                            thumbColor={"#f4f3f4"}
+                            onValueChange={() => toggleSwitch('emailNotifications')}
+                            value={settings.emailNotifications}
+                            disabled={!settings.allowNotifications}
+                        />
+                    </View>
+                </View>
