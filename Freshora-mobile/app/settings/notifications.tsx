@@ -157,5 +157,17 @@ export default function NotificationSettings() {
                         />
                     </View>
                 </View>
-
             </ScrollView>
+
+            <View style={styles.footer}>
+                <TouchableOpacity style={styles.saveBtn} onPress={handleSave} disabled={saving}>
+                    {saving ? (
+                        <ActivityIndicator color="#fff" />
+                    ) : (
+                        <Text style={styles.saveText}>Save settings</Text>
+                    )}
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
+}
