@@ -102,3 +102,12 @@ export default function ShippingScreen() {
                     );
                 })}
             </ScrollView>
+
+            <View style={styles.footer}>
+                <TouchableOpacity style={styles.btn} onPress={handleSelect}>
+                    <Text style={styles.btnText}>Pilih Pengiriman</Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
+    );
+}
