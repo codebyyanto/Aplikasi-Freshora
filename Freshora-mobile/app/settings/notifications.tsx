@@ -16,3 +16,56 @@ export default function NotificationSettings() {
         orderNotifications: true,
         generalNotifications: true
     });
+
+    useEffect(() => {
+        fetchSettings();
+    }, []);
+
+    const fetchSettings = async () => {
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            const res = await fetch(`${API_BASE_URL}/profile`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (data.user) {
+                setSettings({
+                    allowNotifications: data.user.allowNotifications ?? true,
+                    emailNotifications: data.user.emailNotifications ?? false,
+                    orderNotifications: data.user.orderNotifications ?? true,
+                    generalNotifications: data.user.generalNotifications ?? true,
+                });
+            }
+        } catch (error) {
+            console.error(error);
+            Alert.alert("Error", "Gagal mengambil pengaturan");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleSave = async () => {
+        setSaving(true);
+        try {
+            const token = await AsyncStorage.getItem("userToken");
+            const res = await fetch(`${API_BASE_URL}/profile/settings`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(settings)
+            });
+
+            if (res.ok) {
+                Alert.alert("Sukses", "Pengaturan berhasil disimpan");
+                router.back();
+            } else {
+                Alert.alert("Error", "Gagal menyimpan pengaturan");
+            }
+        } catch (error) {
+            Alert.alert("Error", "Terjadi kesalahan jaringan");
+        } finally {
+            setSaving(false);
+        }
+    };
