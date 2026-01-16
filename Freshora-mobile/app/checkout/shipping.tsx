@@ -65,3 +65,17 @@ export default function ShippingScreen() {
                 </TouchableOpacity>
                 <Text style={styles.title}>Pilih Pengiriman</Text>
             </View>
+
+            {/* Stepper Visual (Optional, matching design style) */}
+            <View style={styles.stepperContainer}>
+                <View style={[styles.stepDot, styles.stepActive]}><Ionicons name="checkmark" size={14} color="#fff" /></View>
+                <View style={[styles.stepLine, styles.stepActive]} />
+                <View style={[styles.stepDot, styles.stepActive]}><Text style={styles.stepNum}>2</Text></View>
+                <View style={styles.stepLine} />
+                <View style={styles.stepDot}><Text style={styles.stepNum}>3</Text></View>
+            </View>
+            <View style={styles.stepperLabels}>
+                <Text style={styles.stepLabel}>Anter Aja</Text>
+                <Text style={[styles.stepLabel, styles.labelActive]}>Pengiriman</Text>
+                <Text style={styles.stepLabel}>Bayar</Text>
+            </View>
