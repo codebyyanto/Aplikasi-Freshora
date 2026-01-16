@@ -111,3 +111,43 @@ export default function ShippingScreen() {
         </SafeAreaView>
     );
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: "#fff" },
+    header: {
+        flexDirection: "row",
+        alignItems: "center",
+        padding: 20,
+        borderBottomWidth: 1,
+        borderBottomColor: "#f0f0f0"
+    },
+    backBtn: { marginRight: 15 },
+    title: { fontSize: 18, fontWeight: "bold", color: "#333" },
+
+    // Stepper
+    stepperContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 20
+    },
+    stepDot: {
+        width: 24, height: 24, borderRadius: 12,
+        backgroundColor: "#ccc",
+        justifyContent: "center", alignItems: "center"
+    },
+    stepLine: {
+        width: 60, height: 2, backgroundColor: "#ccc"
+    },
+    stepActive: { backgroundColor: "#6CC51D" },
+    stepNum: { color: "#fff", fontSize: 12, fontWeight: "bold" },
+    stepperLabels: {
+        flexDirection: "row",
+        justifyContent: "center",
+        marginTop: 5,
+        marginBottom: 20,
+    },
+    stepLabel: {
+        fontSize: 12, color: "#999", width: 85, textAlign: "center"
+    },
+    labelActive: { color: "#6CC51D", fontWeight: "bold" },
