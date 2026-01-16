@@ -43,3 +43,16 @@ export default function ShippingScreen() {
     const [selectedId, setSelectedId] = useState<string | null>(
         (currentId as string) || "reguler"
     );
+
+    const handleSelect = () => {
+        if (!selectedId) return;
+        const selectedOption = SHIPPING_OPTIONS.find(o => o.id === selectedId);
+
+        // Return to checkout with selected shipping data
+        router.back();
+        router.setParams({
+            shippingId: selectedOption?.id,
+            shippingName: selectedOption?.name,
+            shippingPrice: selectedOption?.price?.toString()
+        });
+    };
