@@ -151,3 +151,45 @@ const styles = StyleSheet.create({
         fontSize: 12, color: "#999", width: 85, textAlign: "center"
     },
     labelActive: { color: "#6CC51D", fontWeight: "bold" },
+
+    content: { padding: 20 },
+    card: {
+        backgroundColor: "#fff",
+        borderWidth: 1,
+        borderColor: "#eee",
+        borderRadius: 12,
+        padding: 15,
+        marginBottom: 15,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 4,
+        elevation: 2
+    },
+    cardSelected: {
+        borderColor: "#6CC51D",
+        backgroundColor: "#F9FFF5"
+    },
+    cardHeader: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 8
+    },
+    optionName: { fontSize: 16, fontWeight: "bold", color: "#333" },
+    optionPrice: { fontSize: 16, fontWeight: "bold", color: "#6CC51D" },
+    optionDesc: { fontSize: 13, color: "#888" },
+
+    footer: {
+        padding: 20,
+        borderTopWidth: 1,
+        borderTopColor: "#eee"
+    },
+    btn: {
+        backgroundColor: "#6CC51D",
+        paddingVertical: 15,
+        borderRadius: 12,
+        alignItems: "center"
+    },
+    btnText: { color: "#fff", fontWeight: "bold", fontSize: 16 }
+});
