@@ -124,3 +124,38 @@ export default function NotificationSettings() {
                         />
                     </View>
                 </View>
+                {/* Order Notifications */}
+                <View style={styles.card}>
+                    <View style={styles.row}>
+                        <View style={{ flex: 1 }}>
+                            <Text style={styles.label}>Order Notifications</Text>
+                            <Text style={styles.desc}>Update status pesanan Anda</Text>
+                        </View>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#6CC51D" }}
+                            thumbColor={"#f4f3f4"}
+                            onValueChange={() => toggleSwitch('orderNotifications')}
+                            value={settings.orderNotifications}
+                            disabled={!settings.allowNotifications}
+                        />
+                    </View>
+                </View>
+
+                {/* General Notifications */}
+                <View style={styles.card}>
+                    <View style={styles.row}>
+                        <View style={{ flex: 1 }}>
+                            <Text style={styles.label}>General Notifications</Text>
+                            <Text style={styles.desc}>Info umum dan update aplikasi</Text>
+                        </View>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#6CC51D" }}
+                            thumbColor={"#f4f3f4"}
+                            onValueChange={() => toggleSwitch('generalNotifications')}
+                            value={settings.generalNotifications}
+                            disabled={!settings.allowNotifications}
+                        />
+                    </View>
+                </View>
+
+            </ScrollView>
