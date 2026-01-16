@@ -11,10 +11,10 @@ interface AuthRequest extends Request {
 export async function createOrder(req: AuthRequest, res: Response) {
   try {
     const userId = req.user?.id;
-    const { addressId, paymentMethod } = req.body;
+    const { addressId, paymentMethod, shippingMethod, shippingCost } = req.body;
 
-    if (!userId || !addressId || !paymentMethod)
-      return res.status(400).json({ message: 'User ID, alamat, dan metode pembayaran wajib diisi' });
+    if (!userId || !addressId || !paymentMethod || !shippingMethod)
+      return res.status(400).json({ message: 'Data tidak lengkap (Alamat, Metode Bayar, Pengiriman)' });
 
     // Ambil semua item di keranjang
     const cartItems = await prisma.cartItem.findMany({
@@ -25,16 +25,18 @@ export async function createOrder(req: AuthRequest, res: Response) {
     if (cartItems.length === 0)
       return res.status(400).json({ message: 'Keranjang kosong' });
 
-    // Cek stok dan hitung total
-    let total = 0;
+    // Cek stok dan hitung subtotal
+    let subtotal = 0;
     for (const it of cartItems) {
       if (it.product.stock < it.quantity) {
         return res.status(400).json({
           message: `Stok tidak cukup untuk produk: ${it.product.name}`,
         });
       }
-      total += it.product.price * it.quantity;
+      subtotal += it.product.price * it.quantity;
     }
+
+    const total = subtotal + Number(shippingCost || 0);
 
     // Buat order + item sekaligus
     const order = await prisma.order.create({
@@ -43,6 +45,8 @@ export async function createOrder(req: AuthRequest, res: Response) {
         addressId: Number(addressId),
         total,
         paymentMethod,
+        shippingMethod,
+        shippingCost: Number(shippingCost || 0),
         items: {
           create: cartItems.map((it) => ({
             productId: it.productId,

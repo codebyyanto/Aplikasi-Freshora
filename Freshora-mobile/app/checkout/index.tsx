@@ -11,18 +11,38 @@ import {
     Platform
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter, useFocusEffect } from "expo-router";
+import { useRouter, useFocusEffect, useLocalSearchParams } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_BASE_URL, ENDPOINTS } from "../../constants/Config";
 
 export default function CheckoutScreen() {
     const router = useRouter();
+    // Receive params from Shipping Screen
+    const params = useLocalSearchParams();
+
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
     const [cartItems, setCartItems] = useState<any[]>([]);
     const [addresses, setAddresses] = useState<any[]>([]);
     const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
     const [showAddressList, setShowAddressList] = useState(false);
+
+    // Shipping State
+    const [shipping, setShipping] = useState({
+        id: "reguler",
+        name: "Standar / Reguler",
+        price: 10000
+    });
+
+    useEffect(() => {
+        if (params.shippingId) {
+            setShipping({
+                id: params.shippingId as string,
+                name: params.shippingName as string,
+                price: Number(params.shippingPrice)
+            });
+        }
+    }, [params.shippingId]);
 
     const fetchData = async () => {
         try {
@@ -93,16 +113,19 @@ export default function CheckoutScreen() {
             return;
         }
 
-        // Navigate to payment page with addressId
+        // Navigate to payment page with addressId and shipping info
         router.push({
             pathname: "/checkout/payment",
-            params: { addressId: selectedAddressId }
+            params: {
+                addressId: selectedAddressId,
+                shippingMethod: shipping.id,
+                shippingCost: shipping.price
+            }
         });
     };
 
     const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-    const shipping = 5000;
-    const total = subtotal + shipping;
+    const total = subtotal + shipping.price;
 
     const selectedAddress = addresses.find(a => a.id === selectedAddressId);
 
@@ -190,6 +213,24 @@ export default function CheckoutScreen() {
                     )}
                 </View>
 
+                {/* Section Shipping Method */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Metode Pengiriman</Text>
+                    <TouchableOpacity
+                        style={styles.shippingCard}
+                        onPress={() => router.push("/checkout/shipping")}
+                    >
+                        <View style={styles.row}>
+                            <Ionicons name="cube-outline" size={24} color="#6CC51D" />
+                            <View style={{ marginLeft: 10, flex: 1 }}>
+                                <Text style={styles.shippingName}>{shipping.name}</Text>
+                                <Text style={styles.shippingPrice}>Rp {shipping.price.toLocaleString("id-ID")}</Text>
+                            </View>
+                            <Ionicons name="chevron-forward" size={20} color="#ccc" />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
                 {/* Section Items */}
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Ringkasan Barang</Text>
@@ -215,7 +256,7 @@ export default function CheckoutScreen() {
                     </View>
                     <View style={styles.summaryRow}>
                         <Text style={styles.summaryLabel}>Ongkos Kirim</Text>
-                        <Text style={styles.summaryValue}>Rp {shipping.toLocaleString("id-ID")}</Text>
+                        <Text style={styles.summaryValue}>Rp {shipping.price.toLocaleString("id-ID")}</Text>
                     </View>
                     <View style={styles.divider} />
                     <View style={styles.summaryRow}>
@@ -376,5 +417,19 @@ const styles = StyleSheet.create({
         elevation: 5
     },
     disabledBtn: { backgroundColor: "#ccc", shadowOpacity: 0 },
-    orderBtnText: { color: "#fff", fontWeight: "bold", fontSize: 16 }
+    orderBtnText: { color: "#fff", fontWeight: "bold", fontSize: 16 },
+
+    // Shipping
+    shippingCard: {
+        flexDirection: "row",
+        alignItems: "center",
+        padding: 10,
+        backgroundColor: "#F9FFF5",
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: "#6CC51D"
+    },
+    row: { flexDirection: "row", alignItems: "center" },
+    shippingName: { fontSize: 14, fontWeight: "bold", color: "#333" },
+    shippingPrice: { fontSize: 12, color: "#666" }
 });
