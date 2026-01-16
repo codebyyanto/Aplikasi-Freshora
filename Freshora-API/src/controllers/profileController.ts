@@ -86,3 +86,20 @@ export async function deleteAddress(req: any, res: Response) {
   await prisma.address.delete({ where: { id } });
   res.json({ ok: true });
 }
+
+export async function updateSettings(req: any, res: Response) {
+  const userId = req.user.id;
+  const { allowNotifications, emailNotifications, orderNotifications, generalNotifications } = req.body;
+
+  const updatedUser = await prisma.user.update({
+    where: { id: userId },
+    data: {
+      allowNotifications,
+      emailNotifications,
+      orderNotifications,
+      generalNotifications
+    }
+  });
+
+  res.json({ user: updatedUser });
+}
