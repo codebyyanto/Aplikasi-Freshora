@@ -46,21 +46,51 @@ const slides = [
 
 // Komponen utama onboarding
 export default function Onboarding() {
-  const router = useRouter(); 
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    checkLogin();
+  }, []);
+
+  const checkLogin = async () => {
+    try {
+      const token = await import("@react-native-async-storage/async-storage").then(
+        (mod) => mod.default.getItem("userToken")
+      );
+      if (token) {
+        // Jika ada token, langsung ke Home
+        router.replace("/(tabs)/home");
+      } else {
+        // Jika tidak, tampilkan onboarding
+        setLoading(false);
+      }
+    } catch (e) {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#fff" }}>
+        {/* Bisa diganti dengan Splash Screen custom */}
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <Swiper
-        loop={false} 
-        activeDotColor="#6CC51D" 
+        loop={false}
+        activeDotColor="#6CC51D"
         dotColor="#D9D9D9"
-        paginationStyle={{ bottom: 80 }} 
+        paginationStyle={{ bottom: 80 }}
       >
         {/* looping setiap slide */}
         {slides.map((item, index) => (
           <ImageBackground
             key={item.id}
-            source={item.background} 
+            source={item.background}
             style={styles.background}
             resizeMode="cover"
           >
@@ -79,7 +109,7 @@ export default function Onboarding() {
                   onPress={() => router.push("/login")} // pindah ke halaman login
                 >
                   <LinearGradient
-                    colors={["#7ED957", "#6CC51D"]} 
+                    colors={["#7ED957", "#6CC51D"]}
                     style={styles.button}
                   >
                     <Text style={styles.buttonText}>Get started</Text>
@@ -105,8 +135,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   darkOverlay: {
-    ...StyleSheet.absoluteFillObject, 
-    backgroundColor: "rgba(29, 28, 28, 0.21)", 
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(29, 28, 28, 0.21)",
   },
   overlayContent: {
     flex: 1,
