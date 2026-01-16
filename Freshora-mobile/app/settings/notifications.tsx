@@ -81,3 +81,13 @@ export default function NotificationSettings() {
             </View>
         );
     }
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+                    <Ionicons name="arrow-back" size={24} color="#333" />
+                </TouchableOpacity>
+                <Text style={styles.title}>Notifications</Text>
+                <View style={{ width: 24 }} />
+            </View>
