@@ -69,3 +69,15 @@ export default function NotificationSettings() {
             setSaving(false);
         }
     };
+
+    const toggleSwitch = (key: keyof typeof settings) => {
+        setSettings(prev => ({ ...prev, [key]: !prev[key] }));
+    };
+
+    if (loading) {
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#6CC51D" />
+            </View>
+        );
+    }
