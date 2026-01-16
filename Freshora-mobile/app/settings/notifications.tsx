@@ -171,3 +171,56 @@ export default function NotificationSettings() {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: "#F7F9FC" },
+    loadingContainer: { flex: 1, justifyContent: "center", alignItems: "center" },
+    header: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: 20,
+        paddingTop: 50,
+        backgroundColor: "#fff",
+        elevation: 2,
+    },
+    backBtn: { padding: 5 },
+    title: { fontSize: 18, fontWeight: "bold", color: "#333" },
+    content: { padding: 20 },
+    card: {
+        backgroundColor: "#fff",
+        padding: 20,
+        borderRadius: 12,
+        marginBottom: 15,
+        elevation: 1,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.05,
+        shadowRadius: 2
+    },
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
+    },
+    label: { fontSize: 16, fontWeight: "bold", color: "#333", marginBottom: 5 },
+    desc: { fontSize: 12, color: "#888", maxWidth: '80%' },
+    footer: {
+        padding: 20,
+        backgroundColor: "#fff",
+        borderTopWidth: 1,
+        borderTopColor: "#eee"
+    },
+    saveBtn: {
+        backgroundColor: "#6CC51D",
+        padding: 15,
+        borderRadius: 12,
+        alignItems: "center",
+        shadowColor: "#6CC51D",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 5
+    },
+    saveText: { color: "#fff", fontWeight: "bold", fontSize: 16 }
+});
