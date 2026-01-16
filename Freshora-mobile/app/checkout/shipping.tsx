@@ -79,3 +79,26 @@ export default function ShippingScreen() {
                 <Text style={[styles.stepLabel, styles.labelActive]}>Pengiriman</Text>
                 <Text style={styles.stepLabel}>Bayar</Text>
             </View>
+
+            <ScrollView contentContainerStyle={styles.content}>
+                {SHIPPING_OPTIONS.map((option) => {
+                    const isSelected = selectedId === option.id;
+                    return (
+                        <TouchableOpacity
+                            key={option.id}
+                            style={[
+                                styles.card,
+                                isSelected && styles.cardSelected
+                            ]}
+                            onPress={() => setSelectedId(option.id)}
+                            activeOpacity={0.9}
+                        >
+                            <View style={styles.cardHeader}>
+                                <Text style={styles.optionName}>{option.name}</Text>
+                                <Text style={styles.optionPrice}>Rp {option.price.toLocaleString("id-ID")}</Text>
+                            </View>
+                            <Text style={styles.optionDesc}>{option.description}</Text>
+                        </TouchableOpacity>
+                    );
+                })}
+            </ScrollView>
