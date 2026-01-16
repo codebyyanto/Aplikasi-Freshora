@@ -18,6 +18,12 @@ model User {
   cartItems CartItem[]
   reviews   Review[]
   createdAt DateTime   @default(now())
+
+  // Notification Preferences
+  allowNotifications   Boolean @default(true)
+  emailNotifications   Boolean @default(false)
+  orderNotifications   Boolean @default(true)
+  generalNotifications Boolean @default(true)
 }
 
 model Address {
